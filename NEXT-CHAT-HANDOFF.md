@@ -58,3 +58,14 @@ Updated: 2026-08-15 00:34 Central
 - Never guarantee SEO rankings.
 - Portrait is reserved for later About/founder use, not Contact by default.
 - Synthetic people are illustrative only; no fake testimonials, patients, clients, outcomes, awards, or claims.
+
+## Anti Gravity IDE parallel video handoff — 2026-08-15 00:47 Central
+- Owner is handing the video production prompt to Anti Gravity IDE because it says it can control local ComfyUI.
+- Anti Gravity was instructed to independently recreate the Gemini film, not remove/crop/cover its watermark.
+- It should save deliverables under D:\AI\outputs\mlr-opening\ including master/web MP4, WebM, poster, clean SVG logo, final frame, workflow.json, and production-notes.md.
+- In the next goose chat, first read this handoff and inspect D:\AI\outputs\mlr-opening\ to see what Anti Gravity produced. Do not overwrite good outputs.
+- Official public Gemini share: https://share.gemini.google/EaARpeZ8msUo
+- Official share download was saved temporarily at C:\Users\harle\Downloads\mlrassets.com-master\.playwright-mcp\Create-a-silent-second-cine.mp4. It is 1280x720, 24 fps, 10.054 seconds, about 3.74 MB, and has the mandatory visible Gemini watermark. Use only as a production reference.
+- Gemini confirmed Google Pro has no authorized export without the visible watermark. Do not spend more time searching for a clean Gemini export and do not provide watermark-removal instructions.
+- First local Wan test exists at D:\AI\outputs\mlr-material-intake-test-01.mp4. It proved local generation works but its image quality is not close enough to Veo and it is not approved footage.
+- The next chat should continue either by reviewing Anti Gravity's completed local assets or, if incomplete, by continuing the deterministic-logo/hybrid-render production method.
