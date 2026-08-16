@@ -2,7 +2,9 @@
 
 /* Homepage cinematic owns the viewport during wheel review. */
 body.homepageRebuild > header,
-body.homepageRebuild > footer { display: none !important; }
+body.homepageRebuild > footer,
+body.whitePineConcept > header,
+body.whitePineConcept > footer { display: none !important; }
 body.homepageRebuild > main { margin: 0; padding: 0; max-width: none; }
 html:has(body.homepageRebuild),
 body.homepageRebuild { overflow: hidden; background: #020304; }
