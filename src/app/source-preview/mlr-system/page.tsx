@@ -1,0 +1,1 @@
+import MlrSystem from "./MlrSystem";export default function Page(){return <MlrSystem/>}
