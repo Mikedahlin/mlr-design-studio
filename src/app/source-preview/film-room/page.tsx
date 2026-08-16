@@ -1,0 +1,1 @@
+import FilmRoom from "./FilmRoom";export default function Page(){return <FilmRoom/>}
