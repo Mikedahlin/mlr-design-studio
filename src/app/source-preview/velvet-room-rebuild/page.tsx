@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import VelvetEditorial from "./VelvetEditorial";export const metadata:Metadata={title:"Velvet Room — Editorial Rebuild"};export default function Page(){return <VelvetEditorial/>}
