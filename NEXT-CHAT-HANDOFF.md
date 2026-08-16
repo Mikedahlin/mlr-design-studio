@@ -1,200 +1,223 @@
-# MLR Design Studio — Current Production Handoff
+# MLR Design Studio — Exact Current Production Handoff
 
-Updated: 2026-08-15 22:04 Central
+Updated: 2026-08-16 01:12 Central
 
-## How to resume
+## START HERE — do not restart or re-plan
 
-Read this file completely, then read the authoritative master plan:
+1. Read this entire file.
+2. Read the authoritative master plan at:
+   `C:\Users\harle\Projects\mlr-design-studio\mlr-design-studio-full-website-plan.txt`
+3. Continue from **EXACT NEXT ACTION** near the bottom.
+4. Preserve every locked approval below. New user instructions override older details.
+5. Do not ask the user to locate source frames or manually organize files that already exist locally. Inspect and move files yourself.
 
-`C:\Users\harle\Projects\mlr-design-studio\mlr-design-studio-full-website-plan.txt`
-
-Continue from the exact next action near the end of this file. Do not restart planning, redo approved work, or introduce unrelated side projects.
-
-## Active repository
+## Active repository and production
 
 - Working directory: `C:\Users\harle\Downloads\mlrassets.com-master`
 - GitHub: https://github.com/Mikedahlin/mlr-design-studio
 - Branch: `main`
-- Last pushed milestone: `885ec92 Add cinematic opening and first three interactive project sites`
-- Vercel is connected to GitHub/main.
+- Current HEAD: `6124fa1 Update handoff with approved production roadmap`
+- Git remote: `origin https://github.com/Mikedahlin/mlr-design-studio.git`
+- Correct Vercel production URL: https://mlr-creative-studios-experience.vercel.app/
+- Correct Vercel project: `mlr-creative-studios-experience`
+- Last inspected production deployment: ready, created 2026-08-15 22:05 Central.
+- The repository lacks a local `.vercel/project.json`, so bare `vercel ls` can incorrectly infer an old project named `route7`. Never deploy to `route7`.
 
-## Governing rule
+## Current uncommitted working tree — preserve it
 
-The master plan is the authoritative production backlog until complete. New user instructions override stale details in that file. Work phase-by-phase, validate each milestone, and stop getting sidetracked.
+Expected `git status --short`:
 
-## Locked approvals and decisions
+```text
+ M src/components/HomepageRebuild.tsx
+ M src/components/lockedWheelData.ts
+?? production/
+?? src/components/HomepageFoldingNav.module.css
+?? src/components/HomepageFoldingNav.tsx
+```
 
-### Homepage opening
+These are intentional local changes and have not been committed or pushed.
 
-- Approved clean source video:
+### Homepage folding navigation implemented locally
+
+Files:
+
+- `src/components/HomepageFoldingNav.tsx`
+- `src/components/HomepageFoldingNav.module.css`
+- Imported/rendered by `src/components/HomepageRebuild.tsx`
+
+Behavior implemented:
+
+- Desktop: small upper-left SERVICES / WORK / STUDIO tabs and folding drawer.
+- Mobile: compact bottom dock and bottom sheet.
+- One open at a time.
+- Click outside and Escape close.
+- Keyboard accessible.
+- Reduced-motion fallback.
+- Contact remains upper-right.
+- Includes Majestic Pine naturally under Work; no special Live Site/Live Work drawer.
+
+Validation already completed after implementation:
+
+- `npm run lint`: passed with zero errors and two pre-existing unrelated `<img>` warnings.
+- `npm run build`: passed.
+- Production browser visual QA was not completed because the old Playwright profile was locked. Next DevTools MCP has since been installed and should be used for browser/runtime QA.
+
+### Cinematic wheel-video correction implemented locally
+
+- `src/components/lockedWheelData.ts` now points White Pine back to `/media/white-pine-dental.mp4` and Velvet Room back to `/media/velvet-room-salon.mp4` instead of their short UI/site capture videos.
+- Apex remains the approved original `/media/apex-motor-co.mp4`.
+- All six cards now use the existing cinematic 10-second, 1280×720 H.264 films.
+- `HomepageRebuild.tsx` currently starts all card videos, loops them muted, and preloads them so side cards do not appear static.
+- Lint and build passed after this correction.
+- This all-video playback approach still requires real-browser performance QA, especially mobile. If six simultaneous videos cause memory/performance problems, preserve cinematic motion but implement a smart nearby-card playback strategy rather than reverting White Pine/Velvet to UI captures.
+
+## Locked homepage approvals
+
+### Opening
+
+- Approved clean source video originally supplied by user:
   `C:\Users\harle\Downloads\MLR_Design_Studio_Website _Video.mp4`
-- Integrated web assets:
+- Integrated assets:
   - `public/media/mlr-opening/mlr-opening.mp4`
   - `public/media/mlr-opening/mlr-opening.webm`
   - `public/media/mlr-opening/mlr-opening-poster.jpg`
-- Desktop shows Press Play, plays the silent ten-second film, then reveals the wheel.
-- Mobile enters the wheel directly.
-- This opening works and must not be replaced with rejected local recreations.
+- Desktop: Press Play, silent ten-second film, then wheel.
+- Mobile: direct wheel entry.
+- User now sees potentially choppy/AI-inconsistent spots and wants the approved film cleaned up, not casually replaced by another poor recreation.
+- Current technical source analysis: MP4 is H.264, 1280×720, 24 fps, exactly 10.0 seconds, 240 frames. Choppiness is likely generated motion/geometry inconsistency rather than variable frame rate.
 
 ### Six-card wheel
 
-The featured wheel remains six curated projects:
+Locked projects:
 
-1. Iron North
-2. Ember
+1. Iron North — construction concept; do not remove or replace.
+2. Ember — premium hospitality/dining; stop using “Supper Club” framing in future copy.
 3. Apex Motor Co.
 4. White Pine Dental
 5. Northshore Lodge
 6. Velvet Room
 
-Do not remove Iron North. Its construction video is one of the strongest carousel visuals, and Iron North must be built out as a complete construction concept.
+Preserve approved wheel direction, pace, pure-black environment, card concept, desktop geometry, improved mobile depth/orbit/touch/flick baseline, side-card focus behavior, and center-card inspection behavior.
 
-The wheel's approved desktop appearance, direction, pace, black environment, card concept, and general behavior must not be casually redesigned.
+### Living sign
 
-Recent fixes:
+- Current homepage `NeonMark` is still a generic SVG `<text>`/font simulation and is explicitly not final.
+- User wants the physical MLR STUDIO glass tubing from the approved film: fixed geometry, hot-white core, moving cyan/magenta/violet/green/ember energy, localized flow around bends, glass shell, colored bloom, breathing, restrained flicker, black surroundings.
+- Rebuild as actual vector paths/tube geometry, not another font approximation or crude threshold mask.
+- Reduced-motion/static fallback required.
 
-- Mobile card bottoms no longer clip.
-- Mobile depth, orbit, touch sensitivity, and flick response were improved; user explicitly said mobile is WAY better. Preserve this baseline.
-- Desktop side-card pointer logic was updated so clicking a card beside center brings it into focus; clicking the centered card opens details.
-- Original Apex cinematic wheel video was restored. Do not replace it with the UI-capture slideshow.
+## New MLR opening production assets — completed and organized
 
-### Homepage folding navigation — approved
+The assistant extracted reference frames from the approved opening. They are in:
 
-User approved small, thin, fast, smooth folding cards/drawers.
+`production/mlr-opening/references/`
 
-Desktop placement: upper-left, clear of the centered neon sign and wheel.
+Files:
 
-Collapsed labels:
+- `frame-00-75.png`
+- `frame-02-50.png`
+- `frame-04-50.png`
+- `frame-06-50.png`
+- `frame-08-25.png`
+- `frame-09-50.png`
+- `mlr-opening-contact-sheet.jpg`
 
-- SERVICES
-- WORK
-- STUDIO
+The user then generated all three requested ChatGPT master images. They are now copied into:
 
-Constraints:
+`production/mlr-opening/chatgpt-masters/`
 
-- Relatively small and thin
-- Fast and smooth physical fold/unfold feel
-- Only one open at a time
-- Click outside and Escape close it
-- Must not interfere with wheel drag
-- Keyboard accessible
-- Reduced-motion fallback
-- Mobile uses a compact bottom dock/bottom sheet rather than shrinking desktop tabs
-- Contact remains upper-right
+Files:
 
-Suggested content:
+- `mlr-foundry-master.png` — newly located at Downloads and copied into production at this save point.
+- `mlr-transition-master.png`
+- `mlr-sign-master.png`
 
-- Services: websites/development, brand identity, renderings/visual production, video/motion, graphic design, SEO/performance/accessibility
-- Work: featured projects, full archive, client/concept distinction, case studies
-- Studio: direct creative partnership, ownership/portability, process, About MLR
+Original downloaded masters also exist in `C:\Users\harle\Downloads\`.
 
-User does NOT want a special “Live Site” or “Live Work” homepage example/card.
+### Visual assessment already made
 
-### Majestic Pine Renovations
+- `mlr-sign-master.png`: strong and suitable as the primary geometry/lighting reference. Correct MLR/STUDIO wording, clean multicolor tubes, white cores, pure black. It should guide manual fixed-path reconstruction; do not ship the raster image as the live sign.
+- `mlr-transition-master.png`: visually strong machinery/energy reference, but it changed the sign into a flat horizontal composition. Use its machinery and energy, not its generated lettering. Composite/animate correct stacked MLR/STUDIO geometry.
+- `mlr-foundry-master.png`: completed by user at 01:09 Central and copied into production, but has not yet been visually inspected. Inspect it first next chat.
 
-- Site: https://majesticpinerenovations.com
-- This is the user's real work example and belongs in the complete Work archive/case studies.
-- Do not replace Iron North with it.
-- Do not create a special “live site example” homepage drawer.
-- Present it naturally as client work where appropriate, with normal project/case-study presentation.
+Do not ask the user to regenerate these images or hunt for them.
 
-### Living MLR sign
+## Tools now available
 
-The current wheel logo remains a font/SVG simulation and is not the desired final sign.
+- Nano Banana: active, stable `gemini-2.5-flash-image`, 16:9 generation.
+- Brave Search MCP: secret saved and server activated; web, image, video, news, and context tools available.
+- Next DevTools MCP: directly added and activated; includes Next.js runtime diagnostics, docs, and browser automation.
+- Playwright: installed, but its prior Chrome profile was locked; prefer newly installed Next DevTools browser automation or clean up stale Playwright process if necessary.
+- FFmpeg/ffprobe: installed and working locally.
+- Three.js: dependency installed.
+- GitHub integration: active.
+- Glif: account showed four repeated Goose OAuth connections after timed-out attempts, but Glif tools were not exposed locally. User has only 50 free credits/day. Do not waste time or credits; user should not be asked for another token unless the extension explicitly requires it.
+- ChatGPT Images: user can generate excellent stills manually and has substantial allowance.
+- Gemini/Veo: user can generate better videos manually from copy/paste prompts. Use only after exact shot/keyframe planning.
+- Amazon Nova Canvas: explicitly abandoned. User does not want an AWS account. Do not revisit unless asked.
 
-The desired sign is the living MLR STUDIO neon tubing from the approved clean film: fixed tube geometry, moving colored energy, pulsing/breathing/flicker, hot white core, colored bloom, and black surroundings. Do not produce another generic font approximation or crude threshold mask.
+## User workflow preference — important
 
-This remains a Phase 1 item, but do not derail the rest of production with another low-quality Blender/Wan recreation. Use the clean approved film as the visual source/reference and retain a robust reduced-motion fallback.
+The user is frustrated because they have spent days providing extensions and manually doing production work. Going forward:
 
-## Project sites completed as first passes
+- Stop installing tools unless there is a proven blocker.
+- Do all local extraction, inspection, file discovery, organization, compositing, code, QA, and deployment yourself.
+- Only ask the user to use ChatGPT/Gemini when their account is truly required for generation.
+- When asking for generation, provide one exact copy/paste prompt, exact input file paths already selected by you, exact output filename, and wait for inspection before requesting more.
+- Never tell the user to “find strong frames”; extract/select them yourself.
+- Conserve Glif and Brave quotas.
 
-### White Pine Dental
+## Project-site state and design differentiation
 
-- Route: `/work/white-pine-dental`
-- Files: `src/app/work/white-pine-dental/`
-- Gemini/Nano Banana imagery: `public/media/white-pine/`
-- Has treatment explorer, booking demo, education, first-visit information, insurance/financing guidance, disclaimers, responsive behavior, and wheel preview.
+First-pass sites already exist:
 
-### Velvet Room
+- `/work/white-pine-dental`
+- `/work/velvet-room`
+- `/work/apex-motor`
 
-- Route: `/work/velvet-room`
-- Files: `src/app/work/velvet-room/`
-- Imagery/media: `public/media/velvet-room/`
-- Has service explorer, consultation, booking demo, editorial imagery, and wheel preview.
+They currently look too structurally similar and are not final portfolio pieces.
 
-### Apex Motor Co.
+Locked differentiation:
 
-- Route: `/work/apex-motor`
-- Files: `src/app/work/apex-motor/`
-- Imagery/media: `public/media/apex-motor/`
-- User likes the basic site direction but wants better car images and much more realistic custom-build discussion.
-- Expand platform/build logic: intended use, current modifications, fuel, powertrain, supporting systems, brakes, tires, suspension, cooling, fueling, drivetrain, thermal consistency, diagnostics, reliability, emissions/legal tradeoffs, and staged daily/street-track/closed-course paths.
-- Never invent horsepower gains, awards, customers, or shop results.
-- Wheel uses original `/media/apex-motor-co.mp4`, not the UI slideshow.
+- White Pine: calm linear guided-care journey, education, insurance/new-patient flow.
+- Velvet Room: nonlinear editorial lookbook, horizontal/magazine layouts, draggable portfolio, moodboard consultation, compact booking drawer.
+- Apex: technical build workstation, platform entry, persistent spec, dependency graph, staged builds, data/logging, exploded views/hotspots.
+- Iron North: construction/jobsite system, map/archive, capabilities, materials, bid/qualification, timeline/documentation.
+- Northshore: spatial property map, accommodations, itinerary, seasons/weather, availability.
+- Ember: sensory menu/ingredient/heat, reservation, private events, sourcing, dietary/accessibility filters.
 
-## Critical design correction
+Apex also needs better vehicle imagery and realistic build logic covering intended use, existing modifications, fuel, powertrain, supporting systems, brakes, tires, suspension, cooling, fueling, drivetrain, thermal consistency, diagnostics, reliability, emissions/legal tradeoffs, and staged daily/street-track/closed-course paths. Never invent horsepower or outcomes.
 
-The user correctly observed that White Pine, Velvet Room, and Apex currently look structurally too similar. They are first passes, not final portfolio pieces.
+## Truthfulness and ownership rules
 
-They must be differentiated by information architecture, navigation, motion, interaction, and conversion—not just color and imagery.
+- Clearly distinguish client and concept work.
+- Majestic Pine Renovations (https://majesticpinerenovations.com) is real client work and belongs naturally in Work/case studies; do not replace Iron North with it.
+- No fake testimonials, staff, patients, doctors, attorneys, customers, awards, results, rankings, performance gains, or engagement figures.
+- Synthetic actors/footage are concept/illustrative where needed.
+- No SEO guarantees.
+- Ownership copy must state clients own agreed finished deliverables; no monthly rent merely to retain ownership; compatible hosting and portability supported; editing, hosting help, and maintenance optional.
 
-Direction:
+## EXACT NEXT ACTION
 
-- White Pine: calm linear guided-care experience; concern-based treatment journey, education library, insurance/new-patient flow.
-- Velvet Room: nonlinear editorial lookbook; horizontal/magazine layouts, draggable visual portfolio, moodboard-style consultation, compact booking drawer.
-- Apex: technical build workstation; vehicle-platform entry, persistent build spec, dependency graph, staged builds, data/logging, exploded views/hotspots.
-- Iron North: construction/jobsite system; project map/archive, capabilities, material explorer, bid/qualification workflow, timeline/documentation.
-- Northshore Lodge: spatial property map, accommodations, itinerary, seasons/weather, availability concept.
-- Ember: sensory menu/ingredient/heat experience, reservation, private events, sourcing, dietary/accessibility filters.
+Do these in order without asking the user to generate anything else first:
 
-Shared code may cover invisible infrastructure, but visible composition must not feel templated.
+1. Open and visually inspect `production/mlr-opening/chatgpt-masters/mlr-foundry-master.png`. Compare it with `mlr-transition-master.png`, `mlr-sign-master.png`, and the extracted references/contact sheet.
+2. Perform a more useful frame-by-frame/motion audit of the existing 10-second opening. Identify exact timestamps/ranges with visible geometry morphing, jumps, camera stutter, exposure shifts, or weak handoff into the wheel. Create an audit document under `production/mlr-opening/`.
+3. Decide and document the least-destructive cleanup plan: preserve strong original segments; repair/re-time/interpolate only safe ranges; use master imagery for replacement/composite shots where necessary; do not blindly interpolate lettering.
+4. Begin reconstructing the live MLR sign as fixed custom SVG paths/tube geometry using `mlr-sign-master.png` and clean source frames as references. Replace the current font-based `NeonMark` only when the new sign is demonstrably better. Keep reduced-motion fallback.
+5. Use Next DevTools runtime/browser automation to visually QA the existing folding nav and six cinematic wheel videos at desktop and mobile. Verify nav does not interfere with drag/flick/selection and measure whether six simultaneous videos are acceptable.
+6. Run lint/build after any changes.
+7. Create a local git save-point commit only after the current homepage nav/video changes and organized production assets are checked and intentional. Push to `main` only after validating the correct Vercel project/production URL. Never deploy to route7.
+8. Show the user the opening/sign cleanup test and homepage milestone before requesting Gemini video generations or starting another large project site.
 
-## Nano Banana / visual-production decision
+## Do not do next
 
-- Nano Banana MCP is repaired and uses stable `gemini-2.5-flash-image` with explicit 16:9 imageConfig.
-- It successfully generates 1344×768 imagery.
-- User wants a TON of excellent graphics, renderings, architectural/house imagery, campaign art, and video-source visuals.
-- Generate at scale only after locking each project's brief and visual direction; do not waste quota on incoherent bulk output.
-- Final logos must be rebuilt as clean SVG/vector artwork rather than shipping generated malformed text.
-- Videos should combine real browser interaction captures, Nano Banana stills, parallax/camera movement, local atmospheric layers, Blender where useful, and FFmpeg. Do not rely on weak Wan 1.3B for whole branded films.
-
-## Truthfulness rules
-
-- Clearly distinguish client work and concept work.
-- No fake testimonials, employees, patients, attorneys, doctors, awards, outcomes, rankings, performance gains, or engagement figures.
-- Synthetic actors/footage must be presented as concept/illustrative material where needed.
-- No SEO ranking guarantees.
-
-## Remaining featured sites
-
-- Iron North — build as construction concept; preserve its wheel video.
-- Northshore Lodge — not built.
-- Ember — not built; remove/avoid “Supper Club” framing and define it as premium hospitality/dining.
-
-## Main MLR pages still required
-
-- Work archive with client/concept distinction and Majestic Pine
-- Full case studies
-- Services
-- Ownership and portability positioning
-- About
-- Contact refinement
-- Accessibility, SEO, performance, media, metadata, sitemap/robots, cross-browser and mobile QA
-
-Ownership must state:
-
-- Clients own agreed finished deliverables.
-- No monthly rent merely to retain ownership.
-- Compatible hosting and portability are supported.
-- Editing, hosting help, and maintenance are optional.
-
-## Exact next action
-
-1. Check `git status` and the latest deployment state.
-2. Implement the approved compact folding SERVICES / WORK / STUDIO navigation on the homepage with the desktop and mobile behavior above.
-3. Validate that it does not interfere with desktop mouse drag, mobile touch/flick, center-card inspection, or the improved mobile geometry.
-4. Run ESLint and the production build.
-5. Show the user for approval before starting another large site.
-6. Then formalize the six locked project briefs and visual-production matrices so the existing first passes can be differentiated and completed systematically.
-
-Do not start another unrelated concept, replace Iron North, add a special Live Work drawer, or change the approved wheel mechanics.
+- Do not install AWS/Nova Canvas.
+- Do not restart planning.
+- Do not ask for more extensions.
+- Do not ask the user to choose/extract frames already available.
+- Do not replace Iron North.
+- Do not add a Live Work drawer.
+- Do not revert to static UI recordings on homepage cards.
+- Do not casually alter approved wheel mechanics.
+- Do not generate all six replacement films before the opening/sign workflow and one benchmark are approved.
