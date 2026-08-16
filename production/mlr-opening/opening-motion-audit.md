@@ -64,3 +64,15 @@ Unsafe: lettering, tube bends, machinery edges, conduit junctions, circular aper
 - Exposure changes feel motivated by ignition, not random pumping.
 - The final video frame and live SVG align without a visible geometry cut.
 - Reduced-motion/mobile users retain the direct-wheel/static fallback.
+
+## Approved cleanup test â€” 2026-08-16 02:32 Central
+
+User approved the visual direction of `/source-preview/opening-cleanup`: clean foundry imagery transitioning to the exact fixed-path MLR/STUDIO sign, with no malformed/generated lettering. Expand this direction into the full 10-second opening. Do not replace production until the full version is clearly better and its final pose matches the live homepage sign.
+
+## Rejected test â€” v3
+
+The 10-second v3 timing test was rejected because it merely extended the approved four-second transition with nearly static holds. Duration alone is not progress. Do not use or present v3 as a production candidate. Version 4 must be judged on distinct motion phases rather than runtime.
+
+## Approved smoothing method â€” 2026-08-16 02:43 Central
+
+User approved the synchronized A/B conservative smoothing test. Lock this method: smooth and deflicker only the early machinery range (0.000â€“3.125 seconds), preserve original lettering/sign frames from 3.125 seconds onward, retain the original creative content, and do not substitute generated imagery. Normalize the final delivery to exactly 10.000 seconds and validate the handoff into the live fixed-path sign before replacing production media.

@@ -11,6 +11,15 @@ Updated: 2026-08-16 01:12 Central
 4. Preserve every locked approval below. New user instructions override older details.
 5. Do not ask the user to locate source frames or manually organize files that already exist locally. Inspect and move files yourself.
 
+## AUTHORITATIVE APPROVAL BOUNDARY â€” DO NOT DRIFT
+
+- The homepage is the only approved design direction, and it is still being finished.
+- Every other existing page is rejected as a final design and must be rebuilt.
+- White Pine, Velvet Room, and Apex routes are prototype/source material only; do not polish or treat them as approved portfolio pieces.
+- Services, Work, Studio/About, Contact, and all project experiences will be rebuilt around the approved homepage quality and the locked differentiated project systems.
+- Produce a project wheel film from its final rebuilt direction, not from a rejected prototype layout.
+- Full authority: `production/AUTHORITATIVE-APPROVAL-BOUNDARY.md`.
+
 ## Active repository and production
 
 - Working directory: `C:\Users\harle\Downloads\mlrassets.com-master`
