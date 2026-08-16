@@ -1,0 +1,1 @@
+import Ember from "./Ember";export default function Page(){return <Ember/>}

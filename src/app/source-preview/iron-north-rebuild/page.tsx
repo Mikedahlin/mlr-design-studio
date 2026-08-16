@@ -1,0 +1,1 @@
+import IronNorth from "./IronNorth";export default function Page(){return <IronNorth/>}

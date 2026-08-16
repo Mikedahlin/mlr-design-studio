@@ -1,0 +1,1 @@
+import Northshore from "./Northshore";export default function Page(){return <Northshore/>}
