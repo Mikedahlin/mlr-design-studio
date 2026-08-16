@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import ApexWorkstation from "./ApexWorkstation";export const metadata:Metadata={title:"Apex Motor — Technical Rebuild"};export default function Page(){return <ApexWorkstation/>}
