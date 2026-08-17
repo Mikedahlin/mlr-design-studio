@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import GlassHouseGallery from "@/components/GlassHouseGallery";export const metadata:Metadata={title:"Glass House Gallery Study | MLR Assets",robots:{index:false,follow:false}};export default function Page(){return <GlassHouseGallery/>}

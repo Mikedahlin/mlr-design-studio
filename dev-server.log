@@ -1,0 +1,89 @@
+
+> mlr-assets-website@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 49672, using available port 3001 instead.
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.4.113:3001
+✓ Ready in 440ms
+
+Image with src "/media/iron-north-construction.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/media/ember-supper-club.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/media/apex-motor-co.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/media/white-pine-dental.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/media/northshore-lodge.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/media/velvet-room-salon.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 351ms (next.js: 153ms, application-code: 199ms)
+[browser] Image with src "/media/iron-north-construction.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/ember-supper-club.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/apex-motor-co.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/white-pine-dental.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/northshore-lodge.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/velvet-room-salon.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET /icon?0ef619c124e8cfc9 200 in 174ms (next.js: 58ms, application-code: 116ms)
+ GET / 200 in 67ms (next.js: 3ms, application-code: 63ms)
+[browser] Image with src "/media/iron-north-construction.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/ember-supper-club.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/apex-motor-co.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/white-pine-dental.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/northshore-lodge.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[browser] Image with src "/media/velvet-room-salon.png" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+✓ Compiled in 554ms
+ GET / 200 in 655ms (next.js: 523ms, application-code: 133ms)
+ GET / 200 in 40ms (next.js: 19ms, application-code: 21ms)
+ GET / 200 in 176ms (next.js: 55ms, application-code: 121ms)
+ GET /media/mlr-opening/mlr-opening-poster.jpg 404 in 241ms (next.js: 207ms, application-code: 34ms)
+ GET /icon?0ef619c124e8cfc9 200 in 25ms (next.js: 17ms, application-code: 8ms)
+✓ Compiled in 36ms
+ GET / 200 in 50ms (next.js: 27ms, application-code: 23ms)
+ GET / 200 in 105ms (next.js: 31ms, application-code: 74ms)
+ GET /media/mlr-opening/mlr-opening.webm 404 in 41ms (next.js: 6ms, application-code: 35ms)
+ GET /media/mlr-opening/mlr-opening-poster.jpg 404 in 83ms (next.js: 6ms, application-code: 77ms)
+ GET /media/mlr-opening/mlr-opening.mp4 404 in 37ms (next.js: 3ms, application-code: 34ms)
+✓ Compiled in 38ms
+ GET / 200 in 135ms (next.js: 39ms, application-code: 97ms)
+ GET / 200 in 167ms (next.js: 49ms, application-code: 118ms)
+ GET / 200 in 108ms (next.js: 31ms, application-code: 77ms)
+✓ Compiled in 78ms
+ GET / 200 in 82ms (next.js: 48ms, application-code: 34ms)
+✓ Compiled in 47ms
+ GET / 200 in 54ms (next.js: 26ms, application-code: 28ms)
+✓ Compiled in 46ms
+ GET / 200 in 47ms (next.js: 26ms, application-code: 21ms)
+✓ Compiled in 41ms
+ GET / 200 in 52ms (next.js: 30ms, application-code: 23ms)
+✓ Compiled in 37ms
+ GET / 200 in 46ms (next.js: 25ms, application-code: 21ms)
+✓ Compiled in 43ms
+ GET / 200 in 51ms (next.js: 28ms, application-code: 23ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 41ms
+ GET / 200 in 161ms (next.js: 28ms, application-code: 132ms)
+ GET /icon?0ef619c124e8cfc9 200 in 54ms (next.js: 31ms, application-code: 23ms)
+✓ Compiled in 47ms
+✓ Compiled in 54ms
+✓ Compiled in 46ms
+✓ Compiled in 40ms
+✓ Compiled in 49ms
+✓ Compiled in 49ms
+ GET / 200 in 42ms (next.js: 3ms, application-code: 39ms)
+^C^C

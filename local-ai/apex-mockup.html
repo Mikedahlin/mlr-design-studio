@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Motor Co. — Concept Mockup</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #06080d;
+    --surface: #0c1018;
+    --panel: #111620;
+    --border: #1c2433;
+    --accent: #2f7cff;
+    --accent-dim: #1a4a9e;
+    --cyan: #00d4ff;
+    --text: #e8ecf4;
+    --text-dim: #6b7a94;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  html { background: var(--black); color: var(--text); font-family: var(--sans); scroll-behavior: smooth; }
+
+  body { overflow-x: hidden; }
+
+  /* SCAN-LINE OVERLAY */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,212,255,0.015) 2px,
+      rgba(0,212,255,0.015) 4px
+    );
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+    background: rgba(6,8,13,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; }
+  .nav-brand svg { width: 32px; height: 32px; }
+  .nav-brand span { font: 900 18px/1 var(--sans); letter-spacing: 0.08em; }
+  .nav-brand span em { font-style: normal; color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font: 700 10px/1 var(--mono); letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    padding: 10px 20px; border: 1px solid var(--accent); border-radius: 2px;
+    font: 700 10px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: #fff; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding: 120px 60px 80px;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(47,124,255,0.08), transparent 50%),
+      radial-gradient(ellipse at 70% 40%, rgba(0,212,255,0.04), transparent 40%),
+      var(--black);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 720px; }
+  .kicker {
+    font: 700 10px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .kicker::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font: 900 clamp(48px, 6vw, 80px)/1.02 var(--sans); letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lede {
+    font: 400 18px/1.6 var(--sans); color: var(--text-dim); max-width: 540px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; margin-bottom: 60px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; background: var(--accent); color: #fff; border: none; border-radius: 2px;
+    font: 700 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #4a90ff; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; background: transparent; color: var(--text-dim); border: 1px solid var(--border); border-radius: 2px;
+    font: 700 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* READOUT BAR */
+  .readout {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); max-width: 540px;
+  }
+  .readout div {
+    padding: 16px 20px; background: var(--surface);
+  }
+  .readout dt {
+    font: 700 9px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .readout dd { font: 600 13px/1 var(--sans); color: var(--text); }
+
+  /* SECTION */
+  section { padding: 100px 60px; }
+  .section-head { margin-bottom: 60px; }
+  .section-head h2 {
+    font: 900 clamp(32px, 4vw, 52px)/1.08 var(--sans); letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .section-head p { font: 400 16px/1.6 var(--sans); color: var(--text-dim); max-width: 480px; }
+
+  /* SERVICE SUITE */
+  .service-grid {
+    display: grid; grid-template-columns: 220px 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+  .service-tabs {
+    display: flex; flex-direction: column; background: var(--surface);
+  }
+  .service-tab {
+    padding: 20px 24px; border: none; background: transparent; text-align: left; cursor: pointer;
+    border-bottom: 1px solid var(--border); transition: all 0.2s;
+  }
+  .service-tab:last-child { border-bottom: none; }
+  .service-tab .tab-num {
+    font: 700 9px/1 var(--mono); letter-spacing: 0.15em; color: var(--text-dim);
+    display: block; margin-bottom: 6px;
+  }
+  .service-tab .tab-label {
+    font: 700 13px/1 var(--sans); color: var(--text-dim); transition: color 0.2s;
+  }
+  .service-tab.active { background: var(--panel); border-left: 3px solid var(--accent); }
+  .service-tab.active .tab-label { color: var(--text); }
+  .service-tab:hover .tab-label { color: var(--accent); }
+  .service-detail {
+    padding: 40px; background: var(--panel); display: flex; flex-direction: column; justify-content: center;
+  }
+  .service-detail h3 { font: 700 24px/1.2 var(--sans); margin-bottom: 12px; }
+  .service-detail .desc { font: 400 15px/1.6 var(--sans); color: var(--text-dim); margin-bottom: 24px; max-width: 420px; }
+  .service-detail ul { list-style: none; margin-bottom: 32px; }
+  .service-detail li {
+    padding: 8px 0; font: 400 14px/1.4 var(--sans); color: var(--text-dim);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .service-detail li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+  .price-block {
+    padding: 20px; background: rgba(47,124,255,0.06); border: 1px solid rgba(47,124,255,0.15);
+  }
+  .price-block small {
+    font: 700 9px/1 var(--mono); letter-spacing: 0.18em; color: var(--text-dim); display: block; margin-bottom: 8px;
+  }
+  .price-block strong { font: 900 32px/1 var(--sans); color: var(--accent); }
+  .price-block span { display: block; font: 400 12px/1 var(--sans); color: var(--text-dim); margin-top: 6px; }
+
+  /* DYNO READOUT */
+  .dyno-section {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+  .dyno-image {
+    position: relative; min-height: 400px;
+    background: linear-gradient(135deg, #0a0e18, #111828);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .dyno-image::before {
+    content: 'CALIBRATION BAY';
+    font: 700 10px/1 var(--mono); letter-spacing: 0.2em; color: var(--text-dim); opacity: 0.3;
+  }
+  .dyno-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, var(--panel));
+  }
+  .dyno-panel {
+    padding: 48px; background: var(--panel); display: flex; flex-direction: column; justify-content: center;
+  }
+  .dyno-panel .kicker { margin-bottom: 16px; }
+  .dyno-panel h3 { font: 900 36px/1.1 var(--sans); margin-bottom: 16px; }
+  .dyno-panel > p { font: 400 15px/1.6 var(--sans); color: var(--text-dim); margin-bottom: 32px; }
+
+  /* SVG CHART */
+  .chart-container {
+    padding: 24px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); margin-bottom: 24px;
+  }
+  .chart-container svg { width: 100%; height: auto; }
+  .chart-container .grid-line { stroke: var(--border); stroke-width: 0.5; }
+  .chart-container .baseline { fill: none; stroke: var(--text-dim); stroke-width: 2; }
+  .chart-container .apex-line { fill: none; stroke: var(--accent); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(47,124,255,0.4)); }
+  .chart-container .axis-text { font: 700 9px/1 var(--mono); fill: var(--text-dim); letter-spacing: 0.1em; }
+  .legend { display: flex; gap: 24px; margin-top: 16px; }
+  .legend span { display: flex; align-items: center; gap: 8px; font: 400 12px/1 var(--sans); color: var(--text-dim); }
+  .legend i { width: 12px; height: 3px; border-radius: 1px; }
+  .legend .dot-base { background: var(--text-dim); }
+  .legend .dot-apex { background: var(--accent); }
+
+  /* BUILD PLANNER */
+  .planner-grid {
+    display: grid; grid-template-columns: 1fr 340px; gap: 40px;
+  }
+  .planner-questions fieldset {
+    border: none; margin-bottom: 32px;
+  }
+  .planner-questions legend {
+    font: 400 14px/1.4 var(--sans); color: var(--text); margin-bottom: 14px; display: block;
+  }
+  .planner-questions legend span {
+    font: 700 9px/1 var(--mono); color: var(--accent); margin-right: 8px;
+  }
+  .planner-options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .planner-options label {
+    padding: 10px 18px; border: 1px solid var(--border); border-radius: 2px;
+    font: 600 13px/1 var(--sans); color: var(--text-dim); cursor: pointer; transition: all 0.2s;
+  }
+  .planner-options label:hover { border-color: var(--accent); color: var(--accent); }
+  .planner-options label.checked {
+    background: rgba(47,124,255,0.1); border-color: var(--accent); color: var(--accent);
+  }
+  .planner-options input { display: none; }
+  .planner-summary {
+    padding: 28px; background: var(--panel); border: 1px solid var(--border);
+    position: sticky; top: 84px;
+  }
+  .planner-summary .kicker { margin-bottom: 16px; }
+  .planner-summary h4 { font: 700 18px/1.2 var(--sans); margin-bottom: 20px; }
+  .planner-summary dl { margin-bottom: 24px; }
+  .planner-summary div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .planner-summary dt { font: 400 13px/1 var(--sans); color: var(--text-dim); }
+  .planner-summary dd { font: 600 13px/1 var(--sans); color: var(--text); }
+  .planner-summary .rec {
+    padding: 16px; background: rgba(47,124,255,0.06); border-left: 3px solid var(--accent);
+    font: 400 13px/1.5 var(--sans); color: var(--text-dim); margin-bottom: 20px;
+  }
+
+  /* WORKSHOP */
+  .workshop {
+    position: relative; min-height: 420px; display: flex; align-items: flex-end;
+    padding: 60px; overflow: hidden;
+    background: linear-gradient(135deg, #080c16, #0f1520);
+  }
+  .workshop::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, var(--black), transparent 60%);
+  }
+  .workshop-content { position: relative; z-index: 2; }
+  .workshop h2 { font: 900 42px/1.1 var(--sans); margin-bottom: 16px; }
+  .workshop p { font: 400 16px/1.6 var(--sans); color: var(--text-dim); max-width: 440px; margin-bottom: 32px; }
+  .facilities { display: flex; gap: 24px; flex-wrap: wrap; }
+  .facilities span {
+    padding: 10px 18px; border: 1px solid var(--border); border-radius: 2px;
+    font: 700 10px/1 var(--mono); letter-spacing: 0.12em; color: var(--text-dim);
+  }
+
+  /* INTAKE */
+  .intake-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); margin-bottom: 40px;
+  }
+  .intake-step {
+    padding: 28px; background: var(--panel); text-align: center;
+  }
+  .intake-step span {
+    font: 700 9px/1 var(--mono); letter-spacing: 0.15em; color: var(--accent); display: block; margin-bottom: 10px;
+  }
+  .intake-step strong { font: 700 16px/1 var(--sans); display: block; margin-bottom: 8px; }
+  .intake-step p { font: 400 13px/1.4 var(--sans); color: var(--text-dim); }
+  .demo-form {
+    max-width: 480px; padding: 32px; background: var(--panel); border: 1px solid var(--border);
+  }
+  .demo-form label {
+    display: block; margin-bottom: 16px;
+    font: 700 10px/1 var(--mono); letter-spacing: 0.12em; color: var(--text-dim);
+  }
+  .demo-form input {
+    display: block; width: 100%; margin-top: 8px; padding: 12px 14px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-dim);
+    font: 400 14px/1 var(--sans); border-radius: 2px;
+  }
+  .demo-form button {
+    margin-top: 20px; padding: 14px 28px; width: 100%;
+    background: var(--border); border: none; color: var(--text-dim);
+    font: 700 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 2px; cursor: not-allowed;
+  }
+  .demo-badge {
+    display: inline-block; margin-bottom: 20px; padding: 6px 12px;
+    background: rgba(255,190,60,0.08); border: 1px solid rgba(255,190,60,0.2);
+    font: 700 9px/1 var(--mono); letter-spacing: 0.15em; color: #ffbe3c;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px; border-top: 1px solid var(--border);
+    background: var(--black);
+  }
+  footer .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+  footer .brand { font: 900 16px/1 var(--sans); letter-spacing: 0.06em; }
+  footer .brand em { font-style: normal; color: var(--accent); }
+  footer .back-top {
+    font: 700 10px/1 var(--mono); letter-spacing: 0.12em; color: var(--text-dim);
+    text-decoration: none;
+  }
+  footer .legal {
+    font: 400 12px/1.6 var(--sans); color: var(--text-dim); max-width: 720px;
+    opacity: 0.6;
+  }
+  footer .legal strong { color: var(--text); }
+
+  /* MOBILE */
+  @media (max-width: 800px) {
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .service-grid { grid-template-columns: 1fr; }
+    .service-tabs { flex-direction: row; overflow-x: auto; }
+    .service-tab { min-width: 140px; border-bottom: none; border-right: 1px solid var(--border); }
+    .service-tab.active { border-left: none; border-bottom: 3px solid var(--accent); }
+    .dyno-section { grid-template-columns: 1fr; }
+    .planner-grid { grid-template-columns: 1fr; }
+    .intake-steps { grid-template-columns: repeat(2, 1fr); }
+    .readout { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .facilities { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M4 34 17 12l7 11 6-9 14 20H30l-6-9-5 9H4Z"/>
+      <path d="M7 38h34"/>
+    </svg>
+    <span>APEX<em>MOTOR</em></span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#dyno">Data</a>
+    <a href="#planner">Planner</a>
+    <a href="#workshop">Workshop</a>
+  </div>
+  <a href="#intake" class="nav-cta">Start Intake</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="kicker">Calibration / Diagnostics / Integration</p>
+    <h1>Performance,<br><em>resolved.</em></h1>
+    <p class="hero-lede">A technical workshop for intentional street and closed-course builds — measured before modified.</p>
+    <div class="hero-actions">
+      <a href="#planner" class="btn-primary">Plan your build ↗</a>
+      <a href="#services" class="btn-ghost">Explore services →</a>
+    </div>
+    <dl class="readout">
+      <div><dt>Process</dt><dd>Baseline first</dd></div>
+      <div><dt>Output</dt><dd>Documented setup</dd></div>
+      <div><dt>Focus</dt><dd>Repeatable behavior</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- SERVICE SUITE -->
+<section id="services">
+  <div class="section-head">
+    <p class="kicker">Capability Matrix</p>
+    <h2>Focused work.<br>Clear scope.</h2>
+    <p>Each engagement begins with fitment, condition, and intended-use review.</p>
+  </div>
+  <div class="service-grid">
+    <div class="service-tabs">
+      <button class="service-tab active">
+        <span class="tab-num">01</span>
+        <span class="tab-label">Calibration</span>
+      </button>
+      <button class="service-tab">
+        <span class="tab-num">02</span>
+        <span class="tab-label">Diagnostics</span>
+      </button>
+      <button class="service-tab">
+        <span class="tab-num">03</span>
+        <span class="tab-label">Hardware</span>
+      </button>
+      <button class="service-tab">
+        <span class="tab-num">04</span>
+        <span class="tab-label">Track Prep</span>
+      </button>
+    </div>
+    <div class="service-detail">
+      <h3>ECU calibration</h3>
+      <p class="desc">A measured calibration workflow built around the vehicle, installed hardware, fuel, and intended operating environment.</p>
+      <ul>
+        <li>Baseline scan and health review</li>
+        <li>Controlled load-cell sessions</li>
+        <li>Road manners verification</li>
+      </ul>
+      <div class="price-block">
+        <small>Example starting at</small>
+        <strong>$695</strong>
+        <span>Final scope follows inspection</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNO READOUT -->
+<section id="dyno" style="padding: 0;">
+  <div class="dyno-section">
+    <div class="dyno-image"></div>
+    <div class="dyno-panel">
+      <p class="kicker">Sample data / not a result</p>
+      <h3>See the whole curve.</h3>
+      <p>We use plots to discuss behavior across the operating range — not to promote a single peak number.</p>
+      <div class="chart-container">
+        <svg viewBox="0 0 500 220">
+          <g>
+            <line class="grid-line" x1="40" y1="20" x2="40" y2="180"/>
+            <line class="grid-line" x1="40" y1="180" x2="480" y2="180"/>
+            <line class="grid-line" x1="40" y1="60" x2="480" y2="60" stroke-dasharray="4 4"/>
+            <line class="grid-line" x1="40" y1="100" x2="480" y2="100" stroke-dasharray="4 4"/>
+            <line class="grid-line" x1="40" y1="140" x2="480" y2="140" stroke-dasharray="4 4"/>
+          </g>
+          <path class="baseline" d="M40 165 C120 158 170 135 240 110 S360 75 420 88 S470 115 480 130"/>
+          <path class="apex-line" d="M40 162 C100 150 160 120 240 90 S370 42 420 55 S465 90 480 108"/>
+          <g class="axis-text">
+            <text x="40" y="200">2.5K</text>
+            <text x="230" y="200">4.5K</text>
+            <text x="430" y="200">7K RPM</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i class="dot-base"></i>Baseline</span>
+          <span><i class="dot-apex"></i>Illustrative revision</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD PLANNER -->
+<section id="planner">
+  <div class="section-head">
+    <p class="kicker">Build Planner / 03 Inputs</p>
+    <h2>Define the brief.</h2>
+    <p>This planning tool provides a general starting point only. It does not diagnose a vehicle or create a service quote.</p>
+  </div>
+  <div class="planner-grid">
+    <div class="planner-questions">
+      <fieldset>
+        <legend><span>01</span>How will the vehicle be used?</legend>
+        <div class="planner-options">
+          <label class="checked"><input type="radio" name="use" checked>Daily street</label>
+          <label><input type="radio" name="use">Street + weekend</label>
+          <label><input type="radio" name="use">Closed-course</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span>02</span>What is the primary priority?</legend>
+        <div class="planner-options">
+          <label><input type="radio" name="pri">Response</label>
+          <label class="checked"><input type="radio" name="pri" checked>Balanced</label>
+          <label><input type="radio" name="pri">Thermal consistency</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span>03</span>What is the current configuration?</legend>
+        <div class="planner-options">
+          <label><input type="radio" name="cfg">Stock</label>
+          <label class="checked"><input type="radio" name="cfg" checked>Lightly modified</label>
+          <label><input type="radio" name="cfg">Built system</label>
+        </div>
+      </fieldset>
+    </div>
+    <aside class="planner-summary">
+      <p class="kicker">Live Build Brief</p>
+      <h4>Daily street</h4>
+      <dl>
+        <div><dt>Priority</dt><dd>Balanced</dd></div>
+        <div><dt>Configuration</dt><dd>Lightly modified</dd></div>
+      </dl>
+      <div class="rec">Begin with diagnostics, then scope a measured calibration session.</div>
+      <a href="#intake" class="btn-primary" style="width:100%;justify-content:center;">Continue to intake ↓</a>
+      <small style="display:block;margin-top:12px;font:400 11px/1 var(--sans);color:var(--text-dim);">Illustrative guidance. Vehicle inspection required.</small>
+    </aside>
+  </div>
+</section>
+
+<!-- WORKSHOP -->
+<section id="workshop" style="padding: 0;">
+  <div class="workshop">
+    <div class="workshop-content">
+      <p class="kicker">The Workshop</p>
+      <h2>Controlled inputs.<br>Useful outputs.</h2>
+      <p>A concept environment organized around inspection, instrumented testing, careful integration, and documentation.</p>
+      <div class="facilities">
+        <span>01 / Load-Cell Dyno</span>
+        <span>02 / Calibration Bay</span>
+        <span>03 / Alignment</span>
+        <span>04 / Fabrication</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTAKE -->
+<section id="intake">
+  <div class="section-head">
+    <p class="kicker">Project Intake / Demo</p>
+    <h2>Start with context.</h2>
+    <p>This four-step display is nonfunctional and does not transmit or store information.</p>
+  </div>
+  <div class="intake-steps">
+    <div class="intake-step"><span>01</span><strong>Vehicle</strong><p>Year, make, model, powertrain.</p></div>
+    <div class="intake-step"><span>02</span><strong>Configuration</strong><p>Hardware, software, fuel.</p></div>
+    <div class="intake-step"><span>03</span><strong>Objective</strong><p>Use case, symptoms, priorities.</p></div>
+    <div class="intake-step"><span>04</span><strong>Review</strong><p>Workshop fit and next steps.</p></div>
+  </div>
+  <div class="demo-badge">Concept demo · Not connected to a workshop</div>
+  <div class="demo-form">
+    <label>Vehicle<input disabled placeholder="e.g. 2024 fictional coupe"></label>
+    <label>Project objective<input disabled placeholder="Briefly describe the goal"></label>
+    <button disabled>Demo only — unavailable</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="brand">APEX<em>MOTOR</em></div>
+    <a href="#" class="back-top">Back to top ↑</a>
+  </div>
+  <div class="legal">
+    <p><strong>Safety & legal:</strong> Vehicle modification can affect reliability, warranties, insurance, noise, safety systems, and road legality. Always comply with local laws and use qualified professionals.</p>
+    <p style="margin-top:8px;"><strong>Fictional / privacy:</strong> Apex Motor is a fictional portfolio experience. Names, services, pricing, charts, and facilities are illustrative. The disabled intake does not collect, store, or transmit personal information.</p>
+  </div>
+</footer>
+
+</body>
+</html>

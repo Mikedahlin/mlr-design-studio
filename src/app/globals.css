@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+/* Homepage cinematic owns the viewport during wheel review. */
+body.homepageRebuild > header,
+body.homepageRebuild > footer,
+body.whitePineConcept > header,
+body.whitePineConcept > footer { display: none !important; }
+body.homepageRebuild > main { margin: 0; padding: 0; max-width: none; }
+html:has(body.homepageRebuild),
+body.homepageRebuild { overflow: hidden; background: #020304; }
+
+@theme inline {
+  --color-background: #faf9f6;
+  --color-surface: #f1efe9;
+  --color-card: #ffffff;
+  --color-card-hover: #f5f4f0;
+  --color-border: #333333;
+  --color-border-light: #d4d1c9;
+
+  --color-primary: #ff3e1a;
+  --color-primary-light: #ff5c3d;
+  --color-primary-dark: #d92f0f;
+  --color-secondary: #0a0a0a;
+  --color-secondary-light: #333333;
+  --color-accent: #ff3e1a;
+  --color-accent-pink: #ff3e1a;
+
+  --color-text: #0a0a0a;
+  --color-text-secondary: #333333;
+  --color-text-muted: #6b6b6b;
+
+  --color-ink: #0a0a0a;
+  --color-ink-border: #ffffff;
+
+  --font-sans: var(--font-bricolage);
+  --font-mono: var(--font-jetbrains);
+}
+
+/* Dark theme — literal inversion of the light palette. Accent (Vermilion) stays constant. */
+:root[data-theme="dark"] {
+  --color-background: #0a0a0a;
+  --color-surface: #141414;
+  --color-card: #111111;
+  --color-card-hover: #1a1a1a;
+  --color-border: #d4d1c9;
+  --color-border-light: #333333;
+
+  --color-primary: #ff3e1a;
+  --color-primary-light: #ff5c3d;
+  --color-primary-dark: #d92f0f;
+  --color-secondary: #faf9f6;
+  --color-secondary-light: #d4d1c9;
+  --color-accent: #ff3e1a;
+  --color-accent-pink: #ff3e1a;
+
+  --color-text: #faf9f6;
+  --color-text-secondary: #d4d1c9;
+  --color-text-muted: #94918a;
+
+  --color-ink: #faf9f6;
+  --color-ink-border: #0a0a0a;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Flat industrial card — no blur, no glass, sharp border */
+.glass {
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.glass-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.glass-card-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.glass-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--color-border);
+}
+
+/* Dark ink panel (replaces gradient-mesh) */
+.gradient-mesh {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-background);
+}
+.gradient-mesh > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grain disabled — flat surfaces only */
+.grain::after {
+  content: none;
+}
+.grain > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Flat accent text (no gradient) */
+.gradient-text {
+  color: var(--color-primary);
+}
+
+/* Flat hard highlight (replaces glow) */
+.glow-primary {
+  box-shadow: 3px 3px 0 var(--color-primary);
+}
+
+.glow-secondary {
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+/* Flat Button */
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-background);
+  padding: 0.75rem 1.75rem;
+  border-radius: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid var(--color-ink);
+  cursor: pointer;
+}
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--color-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.75rem 1.75rem;
+  border-radius: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+/* Mono label utility */
+.mono-label {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Section Spacing */
+.section {
+  padding: 5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .section {
+    padding: 7rem 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .section {
+    padding: 8rem 4rem;
+  }
+}
+
+/* Container */
+.container-custom {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+}
