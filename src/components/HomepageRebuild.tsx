@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {useCallback,useEffect,useLayoutEffect,useRef,useState,type CSSProperties,type PointerEvent} from "react";
-import {useMotionValue,useSpring,animate} from "framer-motion";
+import {useMotionValue,animate} from "framer-motion";
 import {lockedConcepts} from "./lockedWheelData";
 import NeonMark from "./NeonMark";
 import HomepageFoldingNav from "./HomepageFoldingNav";
@@ -14,7 +14,6 @@ function Gallery({navOpen}:{navOpen:boolean}){
   const[selected,setSelected]=useState(0);
   const[open,setOpen]=useState(false);
   const rawPos=useMotionValue(0);
-  const pos=useSpring(rawPos,{stiffness:300,damping:30,mass:.8});
   const selectedRef=useRef(0);
   const scene=useRef<HTMLDivElement>(null);
   const drag=useRef({on:false,x:0,t:0,m:0,v:0});
@@ -39,13 +38,13 @@ function Gallery({navOpen}:{navOpen:boolean}){
     selectedRef.current=mod(Math.round(v),6);
   },[]);
 
-  useLayoutEffect(()=>update(pos.get()),[selected,open,update,pos]);
+  useLayoutEffect(()=>update(rawPos.get()),[selected,open,update]);
 
   useEffect(()=>{
     let id=0;
     const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const tick=(now:number)=>{
-      const v=pos.get();
+      const v=rawPos.get();
       update(v);
       if(!reduce&&!drag.current.on&&!open&&animRef.current===null){
         const dt=lastTime.current?now-lastTime.current:16.7;
@@ -62,21 +61,21 @@ function Gallery({navOpen}:{navOpen:boolean}){
     };
     id=requestAnimationFrame(tick);
     return()=>cancelAnimationFrame(id);
-  },[update,open,pos,rawPos]);
+  },[update,open,rawPos]);
 
   const snap=useCallback((i:number)=>{
     stopAnim();
-    const v=pos.get();
+    const v=rawPos.get();
     const d=dist(i,v);
     const target=v+d;
     rawPos.jump(target);
     selectedRef.current=i;
     setSelected(i);
-  },[pos,rawPos,stopAnim]);
+  },[rawPos,stopAnim]);
 
   const go=useCallback((i:number)=>{
     stopAnim();
-    const v=pos.get();
+    const v=rawPos.get();
     const d=dist(i,v);
     const target=v+d;
     animRef.current=animate(rawPos,target,{
@@ -85,19 +84,19 @@ function Gallery({navOpen}:{navOpen:boolean}){
       damping:30,
       mass:.8,
       restDelta:.0001,
-      onComplete:()=>{animRef.current=null;const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
+      onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
     });
-  },[pos,rawPos,snap,stopAnim]);
+  },[rawPos,snap,stopAnim]);
 
   useEffect(()=>{
     const key=(e:KeyboardEvent)=>{
-      if(e.key==="ArrowRight"){e.preventDefault();go(mod(Math.round(pos.get())+1,6))}
-      if(e.key==="ArrowLeft"){e.preventDefault();go(mod(Math.round(pos.get())-1,6))}
+      if(e.key==="ArrowRight"){e.preventDefault();go(mod(Math.round(rawPos.get())+1,6))}
+      if(e.key==="ArrowLeft"){e.preventDefault();go(mod(Math.round(rawPos.get())-1,6))}
       if(e.key==="Escape")setOpen(false);
     };
     addEventListener("keydown",key);
     return()=>removeEventListener("keydown",key);
-  },[go,pos]);
+  },[go]);
 
   const down=(e:PointerEvent<HTMLDivElement>)=>{
     if(navOpen||open||(e.target as HTMLElement).closest("nav"))return;
@@ -131,7 +130,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
         type:"tween",
         duration:Math.min(1.2,Math.abs(vel)*60),
         ease:[0.25,0.1,0.25,1],
-        onComplete:()=>{animRef.current=null;const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
+        onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
       });
     }else{
       const card=(e.target as HTMLElement).closest<HTMLElement>("[data-project-card]");
