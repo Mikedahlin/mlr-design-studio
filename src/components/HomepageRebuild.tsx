@@ -31,7 +31,6 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const mobile=mobileRef.current;
     const reachBase=innerWidth*(mobile?.48:.58);
     const reach=Math.min(reachBase,mobile?140:720);
-    const reach=Math.min(reachBase,minReach);
     cards.forEach((card,i)=>{
       const d=dist(i,v),a=d*Math.PI/3,cos=Math.cos(a),depth=(cos+1)/2,z=cos*(mobile?180:500),x=Math.sin(a)*reach,front=Math.abs(d)<.47,scale=mobile?.46+depth*.32:.52+depth*.50;
       card.style.transform=`translate3d(${x.toFixed(2)}px,${(-depth*(mobile?5:11)).toFixed(2)}px,${z.toFixed(2)}px) scale(${scale.toFixed(4)}) rotateY(${(-Math.sin(a)*(mobile?10:19)).toFixed(2)}deg)`;
@@ -134,13 +133,12 @@ function Gallery({navOpen}:{navOpen:boolean}){
     drag.current.on=false;
     scene.current?.classList.remove(s.dragging);
     if(moved>10){
-      const vel=Math.max(-.026,Math.min(.026,drag.current.v*(mobile?2.5:1.9)));
-      const power=Math.abs(vel)*(mobile?5000:4400);
-      const power=Math.abs(vel)*(mobile?7000:6000);
+      const mobile=innerWidth<=720;
+      const vel=Math.max(-.032,Math.min(.032,drag.current.v*(mobile?3.0:2.2)));
+      const power=Math.abs(vel)*(mobile?6000:5200);
       const target=rawPos.get()+vel*power;
       animRef.current=animate(rawPos,target,{
-        duration:Math.min(1.25,Math.abs(vel)*(mobile?56:46)),
-        duration:Math.min(1.6,Math.abs(vel)*(mobile?70:55)),
+        duration:Math.min(1.3,Math.abs(vel)*(mobile?65:52)),
         ease:[0.25,0.1,0.25,1],
         onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
       });
