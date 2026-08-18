@@ -112,7 +112,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const u=-dx/(innerWidth<=720?Math.max(120,innerWidth*.34):Math.max(230,innerWidth*.27));
     rawPos.set(rawPos.get()+u);
     drag.current.m+=Math.abs(dx);
-    drag.current.v=drag.current.v*.55+(u/dt)*.45;
+    drag.current.v=drag.current.v*.3+(u/dt)*.7;
     drag.current.x=e.clientX;
     drag.current.t=now;
   };
@@ -123,12 +123,13 @@ function Gallery({navOpen}:{navOpen:boolean}){
     drag.current.on=false;
     scene.current?.classList.remove(s.dragging);
     if(moved>10){
-      const vel=Math.max(-.022,Math.min(.022,drag.current.v*(innerWidth<=720?2.8:2.0)));
-      const power=Math.abs(vel)*5000;
+      const mobile=innerWidth<=720;
+      const vel=Math.max(-.045,Math.min(.045,drag.current.v*(mobile?3.5:2.5)));
+      const power=Math.abs(vel)*(mobile?7000:6000);
       const target=rawPos.get()+vel*power;
       animRef.current=animate(rawPos,target,{
         type:"tween",
-        duration:Math.min(1.2,Math.abs(vel)*60),
+        duration:Math.min(1.6,Math.abs(vel)*(mobile?70:55)),
         ease:[0.25,0.1,0.25,1],
         onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
       });
