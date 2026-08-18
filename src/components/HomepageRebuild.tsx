@@ -51,7 +51,8 @@ function Gallery({navOpen}:{navOpen:boolean}){
         const dt=lastTime.current?now-lastTime.current:16.7;
         quietRef.current+=dt;
         if(quietRef.current>2600){
-          rawPos.set(v-.000035*dt);
+          const drift=rawPos.get()-.000035*dt;
+          rawPos.jump(drift);
         }
       }else{
         quietRef.current=0;
@@ -84,7 +85,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
       damping:30,
       mass:.8,
       restDelta:.0001,
-      onComplete:()=>{const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
+      onComplete:()=>{animRef.current=null;const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
     });
   },[pos,rawPos,snap,stopAnim]);
 
@@ -130,7 +131,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
         type:"tween",
         duration:Math.min(1.2,Math.abs(vel)*60),
         ease:[0.25,0.1,0.25,1],
-        onComplete:()=>{const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
+        onComplete:()=>{animRef.current=null;const n=mod(Math.round(pos.get()),6);selectedRef.current=n;setSelected(n)}
       });
     }else{
       const card=(e.target as HTMLElement).closest<HTMLElement>("[data-project-card]");
