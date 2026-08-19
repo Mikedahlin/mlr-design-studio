@@ -32,7 +32,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const reachBase=innerWidth*(mobile?.48:.58);
     const reach=Math.min(reachBase,mobile?140:720);
     cards.forEach((card,i)=>{
-      const d=dist(i,v),a=d*Math.PI/3,cos=Math.cos(a),depth=(cos+1)/2,z=cos*(mobile?180:500),x=Math.sin(a)*reach,front=Math.abs(d)<.47,scale=mobile?.46+depth*.32:.52+depth*.50;
+      const d=dist(i,v),a=d*Math.PI/3,cos=Math.cos(a),depth=(cos+1)/2,z=cos*(mobile?180:500),x=Math.sin(a)*reach,front=Math.abs(d)<.47,scale=mobile?.52+depth*.44:.52+depth*.50;
       card.style.transform=`translate3d(${x.toFixed(2)}px,${(-depth*(mobile?5:11)).toFixed(2)}px,${z.toFixed(2)}px) scale(${scale.toFixed(4)}) rotateY(${(-Math.sin(a)*(mobile?10:19)).toFixed(2)}deg)`;
       card.style.opacity=String((.18+depth*.82).toFixed(3));
       card.style.zIndex=String(Math.round(depth*30));
@@ -61,6 +61,9 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const onResize=()=>{mobileRef.current=innerWidth<=720;};
     addEventListener("resize",onResize);
     addEventListener("orientationchange",onResize);
+    const globalUp=()=>{if(drag.current.on){drag.current.on=false;scene.current?.classList.remove(s.dragging)}};
+    addEventListener("pointerup",globalUp);
+    addEventListener("pointercancel",globalUp);
     let id=0;
     const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const tick=(now:number)=>{
@@ -80,7 +83,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
       id=requestAnimationFrame(tick);
     };
     id=requestAnimationFrame(tick);
-    return()=>{cancelAnimationFrame(id);removeEventListener("resize",onResize);removeEventListener("orientationchange",onResize);};
+    return()=>{cancelAnimationFrame(id);removeEventListener("resize",onResize);removeEventListener("orientationchange",onResize);removeEventListener("pointerup",globalUp);removeEventListener("pointercancel",globalUp)};
   },[update,open,rawPos]);
 
   const go=useCallback((i:number)=>{
@@ -113,7 +116,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
     stopAnim();
     drag.current={on:true,x:e.clientX,t:performance.now(),m:0,v:0};
     scene.current?.classList.add(s.dragging);
-    if(e.pointerType!=="mouse"){try{e.currentTarget.setPointerCapture(e.pointerId);}catch{}}
+    try{e.currentTarget.setPointerCapture(e.pointerId);}catch{}
   };
 
   const move=(e:PointerEvent<HTMLDivElement>)=>{
@@ -159,7 +162,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
   };
 
   const active=lockedConcepts[selected];
-  return <section className={s.gallery} style={{"--active":active.accent} as CSSProperties}><div className={s.abyss}/><div ref={scene} className={[s.scene,open?s.stopped:""].join(" ")} role="region" aria-roledescription="carousel" aria-label="Website project wheel. Use arrow keys to navigate." tabIndex={0} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}><i className={s.orbit}/>{lockedConcepts.map((p,i)=>{return <article data-project-card data-index={i} key={p.slug} className={[s.projectCard,i===selected?s.frontCard:""].join(" ")} style={{"--accent":p.accent,opacity:0} as CSSProperties} aria-hidden={i!==selected}><button tabIndex={i===selected?0:-1} onClick={e=>{if(e.detail===0)choose(i)}} aria-label={(i===selected?"Inspect ":"Bring forward ")+p.name}><span className={s.phoneGlass}><span className={s.viewport}>{p.video?<video src={p.video} poster={p.image} autoPlay={i===selected} muted loop playsInline preload={i===selected?"auto":"metadata"} />:<Image src={p.image} alt="" fill priority={i===selected} sizes="(max-width:720px) 76vw,390px"/>}<i/></span><span className={s.cardName}>{p.name}</span></span></button></article>})}</div><p className={s.sr} aria-live="polite">{active.name} selected. {open&&"Wheel stopped for inspection."}</p>{open&&<aside><button className={s.close} onClick={()=>setOpen(false)} aria-label="Close project details">A-</button><small>{active.industry}</small><h2>{active.name}</h2><p>{active.line}</p><div><a href={'/work#'+active.slug}>VIEW PROJECT</a><a href={active.slug==='white-pine-dental'?'/work/white-pine-dental':active.slug==='velvet-room'?'/work/velvet-room':active.slug==='apex-motor'?'/work/apex-motor':'/source-preview/glass-houses#'+active.slug}>OPEN SITE</a></div></aside>}</section>}
+  return <section className={s.gallery} style={{"--active":active.accent} as CSSProperties}><div className={s.abyss}/><div ref={scene} className={[s.scene,open?s.stopped:""].join(" ")} role="region" aria-roledescription="carousel" aria-label="Website project wheel. Use arrow keys to navigate." tabIndex={0} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}><i className={s.orbit}/>{lockedConcepts.map((p,i)=>{return <article data-project-card data-index={i} key={p.slug} className={[s.projectCard,i===selected?s.frontCard:""].join(" ")} style={{"--accent":p.accent,opacity:0} as CSSProperties} aria-hidden={i!==selected}><button tabIndex={i===selected?0:-1} onClick={e=>{if(e.detail===0)choose(i)}} aria-label={(i===selected?"Inspect ":"Bring forward ")+p.name}><span className={s.phoneGlass}><span className={s.viewport}>{p.video?<video src={p.video} poster={p.image} autoPlay={i===selected} muted loop playsInline preload={i===selected?"auto":"metadata"} />:<Image src={p.image} alt="" fill priority={i===selected} sizes="(max-width:720px) 80vw,380px"/>}<i/></span><span className={s.cardName}>{p.name}</span></span></button></article>})}</div><p className={s.sr} aria-live="polite">{active.name} selected. {open&&"Wheel stopped for inspection."}</p>{open&&<aside><button className={s.close} onClick={()=>setOpen(false)} aria-label="Close project details">×</button><small>{active.industry}</small><h2>{active.name}</h2><p>{active.line}</p><div><a href={'/work#'+active.slug}>VIEW PROJECT</a><a href={active.slug==='white-pine-dental'?'/work/white-pine-dental':active.slug==='velvet-room'?'/work/velvet-room':active.slug==='apex-motor'?'/work/apex-motor':'/source-preview/glass-houses#'+active.slug}>OPEN SITE</a></div></aside>}</section>}
 type OpeningPhase="ready"|"playing"|"exiting"|"entered";
 function OpeningFilm({phase,onPlay,onProgress,onComplete,onSkip}:{phase:OpeningPhase;onPlay:()=>void;onProgress:()=>void;onComplete:()=>void;onSkip:()=>void}){const video=useRef<HTMLVideoElement>(null);useEffect(()=>{if(phase==="playing")void video.current?.play().catch(onComplete)},[phase,onComplete]);if(phase==="entered")return null;return <section className={[s.filmGate,phase==="exiting"?s.filmGateExiting:""].join("  ")} aria-label="MLR Studio cinematic opening"><video ref={video} className={s.openingFilm} muted playsInline preload="auto" poster="/media/mlr-opening/mlr-opening-poster.jpg" onTimeUpdate={onProgress} onEnded={onComplete} onError={onComplete}><source src="/media/mlr-opening/mlr-opening.webm" type="video/webm"/><source src="/media/mlr-opening/mlr-opening.mp4" type="video/mp4"/></video>{phase==="ready"&&<div className={s.filmStart}><span>MLR / CREATIVE STUDIO</span><button type="button" onClick={onPlay}>PRESS PLAY</button><small>10 SECOND CINEMATIC OPENING</small></div>}{phase!=="ready"&&<button type="button" className={s.filmSkip} onClick={onSkip}>SKIP</button>}</section>}
 
