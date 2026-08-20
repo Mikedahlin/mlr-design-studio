@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 
 const contactMethods = [
@@ -208,6 +209,19 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <AnimatedSection delay={0.15}>
                 <div className="space-y-5">
+                  <div className="glass-card p-6 text-center">
+                    <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border border-border bg-card">
+                      <Image
+                        src="/media/apex-motor/apex-hero.png"
+                        alt="Mike Dahlin"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h3 className="text-base font-bold text-text">Mike Dahlin</h3>
+                    <p className="text-xs text-text-secondary mt-1">Design Director &amp; Founder</p>
+                  </div>
+
                   {contactMethods.map((method) => (
                     <a
                       key={method.title}
