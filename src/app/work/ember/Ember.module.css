@@ -1,1 +1,257 @@
-.site{position:relative;min-height:100vh;overflow:hidden;background:#1b0905;color:#f8ead9;font-family:Arial,sans-serif}.site *{box-sizing:border-box}.site>img{position:fixed!important;object-fit:cover;filter:brightness(.35) saturate(1.05)}.dark{position:fixed;inset:0;background:linear-gradient(90deg,#1b0905ed 0 32%,#1b090544 70%,#1b0905aa),linear-gradient(0deg,#1b0905f0,transparent 55%);pointer-events:none}.site>header{position:absolute;z-index:5;left:24px;right:24px;top:20px;display:flex;justify-content:space-between;font:700 8px monospace;letter-spacing:.14em}.site a{color:#fff}.hero,.menu,.visit,.site>footer{position:relative;z-index:2}.hero{min-height:700px;padding:155px 7vw 100px;max-width:950px}.hero>p:first-child,.menu>nav button,.visit>div>p{font:700 9px monospace;letter-spacing:.18em;color:#e47a3c}.hero h1{margin:22px 0;font:400 clamp(58px,8vw,126px)/.82 Georgia,serif;letter-spacing:-.07em}.hero h1 em{color:#e47a3c}.intro{max-width:450px;color:#edd7c4;font-size:16px;line-height:1.6}.hero>button,.visit button,.inquiry button{margin-top:28px;padding:15px 18px;border:1px solid #e47a3c;background:#e47a3c;color:#251008;font:700 8px monospace;cursor:pointer}.menu{padding:100px 7vw;background:#1b0905e8}.menu>nav{display:flex;gap:8px;border-bottom:1px solid #fff3;padding-bottom:16px}.menu>nav button{padding:13px 18px;border:1px solid #fff3;background:none;color:#fff8;cursor:pointer}.menu>nav button[aria-pressed=true]{background:#e47a3c;color:#251008;border-color:#e47a3c}.dishGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}.dish,.dishActive{padding:0 0 22px;border:1px solid #fff2;background:#2b0e08;color:#fff;text-align:left;cursor:pointer}.dishActive{border-color:#e47a3c;background:#401408}.dish>span,.dishActive>span{position:relative;display:block;height:280px}.dish img,.dishActive img{object-fit:cover}.dish small,.dish strong,.dish p,.dishActive small,.dishActive strong,.dishActive p{display:block;margin:15px 18px 0}.dish small,.dishActive small{font:700 8px monospace;color:#e47a3c;letter-spacing:.12em}.dish strong,.dishActive strong{font:400 28px Georgia}.dish p,.dishActive p{color:#e8cabb;font-size:13px;line-height:1.45}.drinks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px}.drinks article{min-height:250px;padding:24px;background:#2d120bdd;border:1px solid #e47a3c55}.drinks span,.special small{font:700 8px monospace;color:#e47a3c;letter-spacing:.14em}.drinks h2,.special h2{font:400 38px Georgia;margin:60px 0 12px}.drinks p,.special p{color:#e8cabb;line-height:1.5}.special{max-width:760px;margin-top:48px;padding:50px;background:#3a140bdd;border:1px solid #e47a3c}.special h2{margin-top:25px;font-size:62px}.visit{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:end;padding:100px 7vw;background:#ead8c3;color:#2b120b}.visit>div>p:first-child{color:#a74d24}.visit h2{font:400 clamp(42px,5vw,78px)/.86 Georgia;margin:12px 0;letter-spacing:-.06em}.visit>div>p:last-child{max-width:480px;line-height:1.5}.visit button{background:none;color:#2b120b;border-color:#2b120b;margin:0}.inquiry{position:fixed;z-index:20;inset:8%;padding:8vw;background:#210b06f5;border:1px solid #e47a3c}.inquiry>button:first-child{position:absolute;right:22px;top:20px;margin:0;background:none;color:#fff;border:0}.inquiry h2{font:400 clamp(54px,7vw,110px)/.85 Georgia;max-width:850px}.site>footer{padding:18px 24px;display:flex;justify-content:space-between;background:#140604;color:#9a6d5a;font:6px monospace}@media(max-width:800px){.site>header span{display:none}.hero{min-height:650px;padding:125px 22px 75px}.hero h1{font-size:62px}.menu,.visit{padding:75px 22px}.dishGrid,.drinks,.visit{grid-template-columns:1fr}.dish>span,.dishActive>span{height:300px}.menu>nav{overflow:auto}.visit button{margin-top:10px;min-height:48px}.inquiry{inset:55px 8px 8px;overflow:auto;padding:55px 22px}.site>footer{display:block;line-height:2}.site>footer span{display:block}}
+.site {
+  background: #2a0b09;
+  color: #fff0df;
+  font-family: var(--font-serif, "Georgia", serif);
+  min-height: 100vh;
+  padding-bottom: 8rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.header a, .header span {
+  color: #fff0df;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #110504;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+  opacity: 0.4;
+  transition: opacity 1.5s ease-out;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.heroContent h1 {
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: #d08b61;
+}
+
+.heroContent p {
+  font-size: 1rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.menuSection {
+  padding: 10rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.menuSection h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #d08b61;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(208, 139, 97, 0.2);
+  transition: transform 0.4s ease;
+  cursor: default;
+}
+
+.menuItem:hover {
+  transform: translateX(10px);
+}
+
+.menuItem h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.menuItem p {
+  margin: 0;
+  color: rgba(255, 240, 223, 0.6);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.menuItem span {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1.1rem;
+  color: #d08b61;
+}
+
+.ingredientStory {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.ingredientVisual {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.ingredientVisual img {
+  object-fit: cover;
+  transition: transform 3s ease;
+}
+
+.ingredientVisual:hover img {
+  transform: scale(1.05);
+}
+
+.ingredientText h2 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  color: #d08b61;
+}
+
+.ingredientText p {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: rgba(255, 240, 223, 0.8);
+}
+
+.reservation {
+  padding: 8rem 2rem;
+  background: #110504;
+  text-align: center;
+}
+
+.reservationBox {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #2a0b09;
+  padding: 4rem;
+  border: 1px solid rgba(208, 139, 97, 0.3);
+}
+
+.reservationBox h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: #d08b61;
+}
+
+.reservationBox > p {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 223, 0.6);
+  margin-bottom: 3rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.formGroup label {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: #d08b61;
+}
+
+.formGroup input, .formGroup select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 240, 223, 0.3);
+  color: #fff0df;
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+}
+
+.formGroup input:focus, .formGroup select:focus {
+  outline: none;
+  border-bottom-color: #d08b61;
+}
+
+.bookBtn {
+  background: #d08b61;
+  color: #110504;
+  border: none;
+  width: 100%;
+  padding: 1.25rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.bookBtn:hover {
+  background: #fff0df;
+}
+
+@media (max-width: 900px) {
+  .ingredientStory {
+    grid-template-columns: 1fr;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .reservationBox {
+    padding: 2rem;
+  }
+}

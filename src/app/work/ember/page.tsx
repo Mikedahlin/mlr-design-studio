@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Ember from "./Ember";
+import EmberExperience from "./EmberExperience";
 
 export const metadata: Metadata = {
-  title: "Ember | MLR Creative Studio",
-  description: "Upscale supper club concept — fire, bourbon, and a table after dark.",
+  title: "Ember | Upscale Supper Club",
+  description:
+    "A moody hospitality site with rich food photography and old-school Minnesota warmth.",
 };
 
-export default function Page() {
-  return <Ember />;
+export default function EmberPage() {
+  return <EmberExperience />;
 }
