@@ -1,0 +1,50 @@
+- generic [active] [ref=f5e1]:
+  - main [ref=f5e2]:
+    - main [ref=f5e3]:
+      - navigation "Studio index":
+        - button "INDEX 01—04" [ref=f5e4] [cursor=pointer]:
+          - generic [ref=f5e6]: INDEX
+          - generic [ref=f5e7]: 01—04
+      - link "CONTACT" [ref=f5e8] [cursor=pointer]:
+        - /url: /contact
+      - generic "MLR Studio":
+        - img:
+          - generic:
+            - generic: MLR
+            - generic: STUDIO
+          - generic:
+            - generic: MLR
+            - generic: STUDIO
+          - generic:
+            - generic: MLR
+            - generic: STUDIO
+          - generic:
+            - generic: MLR
+            - generic: STUDIO
+      - generic [ref=f5e9]:
+        - region "Website project wheel. Use arrow keys to navigate." [ref=f5e11]:
+          - article [ref=f5e13]:
+            - button "Inspect Iron North" [ref=f5e14] [cursor=pointer]:
+              - generic [ref=f5e15]: Iron North
+          - article [ref=f5e19]:
+            - button [ref=f5e20] [cursor=pointer]:
+              - generic [ref=f5e21]: Ember
+          - article [ref=f5e25]:
+            - button [ref=f5e26] [cursor=pointer]:
+              - generic [ref=f5e27]: Apex Motor Co.
+          - article [ref=f5e31]:
+            - button [ref=f5e32] [cursor=pointer]:
+              - generic [ref=f5e33]: White Pine Dental
+          - article [ref=f5e37]:
+            - button [ref=f5e38] [cursor=pointer]:
+              - generic [ref=f5e39]: Northshore Lodge
+          - article [ref=f5e43]:
+            - button [ref=f5e44] [cursor=pointer]:
+              - generic [ref=f5e45]: Velvet Room
+        - paragraph [ref=f5e49]: Iron North selected.
+      - region "MLR Studio cinematic opening" [ref=f5e50]:
+        - generic [ref=f5e52]:
+          - generic [ref=f5e53]: MLR / CREATIVE STUDIO
+          - button "PRESS PLAY" [ref=f5e54] [cursor=pointer]
+          - generic [ref=f5e55]: 10 SECOND CINEMATIC OPENING
+  - alert [ref=f5e56]

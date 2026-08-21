@@ -1,0 +1,69 @@
+
+> mlr-assets-website@0.1.0 dev
+> next dev --port 3001
+
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.4.152:3001
+✓ Ready in 658ms
+
+ GET / 200 in 463ms (next.js: 274ms, application-code: 189ms)
+ GET /icon?0ef619c124e8cfc9 200 in 202ms (next.js: 79ms, application-code: 123ms)
+ GET / 200 in 51ms (next.js: 6ms, application-code: 45ms)
+ GET / 200 in 55ms (next.js: 5ms, application-code: 50ms)
+ GET / 200 in 265ms (next.js: 242ms, application-code: 23ms)
+ GET / 200 in 385ms (next.js: 7ms, application-code: 378ms)
+ GET / 200 in 34ms (next.js: 2ms, application-code: 31ms)
+ GET / 200 in 43ms (next.js: 3ms, application-code: 40ms)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="page" pagePath="page.tsx">
+                          <SegmentTrieNode>
+                          <Home>
+                            <HomepageRebuild>
+                              <main
++                               className={"HomepageRebuild-module__k33BIG__root HomepageRebuild-module__k33BIG__live  "}
+-                               className={"HomepageRebuild-module__k33BIG__root HomepageRebuild-module__k33BIG__live..."}
+                              >
+-                               <section
+-                                 className={"HomepageRebuild-module__k33BIG__filmGate  "}
+-                                 aria-label="MLR Studio cinematic opening"
+-                               >
+                        ...
+                      ...
+          ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at main (<anonymous>)
+    at HomepageRebuild (src/components/HomepageRebuild.tsx:171:927)
+    at Home (src\app\page.tsx:4:10)
+  169 | ...IO</span><button type="button" onClick={onPlay}>PRESS PLAY</button><small>10 SECOND CI...
+  170 | ...
+> 171 | ...er("popstate",onPopState)},[phase]);return <main className={[s.root,s.live,phase!=="en...
+      |                                               ^
+  172 | ...
+✓ Compiled in 101ms
+ GET / 200 in 367ms (next.js: 336ms, application-code: 31ms)
+ GET / 200 in 95ms (next.js: 3ms, application-code: 92ms)
