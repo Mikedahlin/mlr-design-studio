@@ -85,7 +85,7 @@ export default function ApexExperience() {
       </header>
 
       <section className={styles.hero} id="top">
-        <Image src="/media/apex-motor/apex-hero.png" alt="Performance coupe in a dark technical workshop" fill priority sizes="100vw" className={styles.heroImage} />
+        <Image src="/media/card-final-frames/apex-motor.jpg" alt="Performance coupe in a dark technical workshop" fill priority sizes="100vw" className={styles.heroImage} />
         <div className={styles.heroShade} />
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.heroContent} id="main-content">
