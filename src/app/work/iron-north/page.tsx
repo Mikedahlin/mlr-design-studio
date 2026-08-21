@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import IronNorth from "./IronNorth";
+import IronNorthExperience from "./IronNorthExperience";
 
 export const metadata: Metadata = {
-  title: "Iron North | MLR Creative Studio",
-  description: "Industrial construction brand concept — Minnesota steel, serious work.",
+  title: "Iron North | Commercial Construction",
+  description:
+    "A cinematic construction brand built around scale, trust, and raw industrial confidence.",
 };
 
-export default function Page() {
-  return <IronNorth />;
+export default function IronNorthPage() {
+  return <IronNorthExperience />;
 }
