@@ -85,7 +85,7 @@ export default function ApexExperience() {
       </header>
 
       <section className={styles.hero} id="top">
-        <Image src="/media/card-final-frames/apex-motor.jpg" alt="Performance coupe in a dark technical workshop" fill priority sizes="100vw" className={styles.heroImage} />
+        <Image src="/media/production/apex/apex-hero-car-hero-CONCEPT.webp" alt="Performance coupe in a dark technical workshop" fill priority sizes="100vw" className={styles.heroImage} />
         <div className={styles.heroShade} />
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.heroContent} id="main-content">
@@ -111,7 +111,7 @@ export default function ApexExperience() {
       </section>
 
       <section className={styles.calibration} aria-labelledby="data-title">
-        <div className={styles.photo}><Image src="/media/apex-motor/apex-calibration.png" alt="Technician reviewing calibration data beside a vehicle" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
+        <div className={styles.photo}><Image src="/media/production/apex/apex-macro-turbo-hero-CONCEPT.webp" alt="Technician reviewing calibration data beside a vehicle" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
         <div className={styles.dataPanel}><p className={styles.kicker}>SAMPLE DATA / NOT A RESULT</p><h2 id="data-title">See the whole curve.</h2><p>We use plots to discuss behavior across the operating range—not to promote a single peak number.</p>
           <div className={styles.chart} role="img" aria-label="Illustrative sample dyno chart comparing baseline and revised curves from 2500 to 7000 RPM">
             <svg viewBox="0 0 620 260" aria-hidden="true"><g className={styles.gridLines}><path d="M48 20V220H600M48 60H600M48 100H600M48 140H600M48 180H600M48 220H600" /></g><path className={styles.baseLine} d="M48 196 C140 188 195 160 262 126 S397 81 480 99 S560 131 600 152"/><path className={styles.apexLine} d="M48 193 C120 182 186 143 262 104 S404 47 482 63 S558 103 600 122"/><g className={styles.axisText}><text x="48" y="242">2.5K</text><text x="302" y="242">4.5K</text><text x="566" y="242">7K RPM</text></g></svg>
@@ -131,7 +131,7 @@ export default function ApexExperience() {
       </section>
 
       <section className={styles.workshop} id="workshop" aria-labelledby="workshop-title">
-        <Image src="/media/apex-motor/apex-workshop.png" alt="Organized performance workshop with a vehicle on a lift" fill sizes="100vw" />
+        <Image src="/media/production/apex/apex-hero-car-card-CONCEPT.webp" alt="Organized performance workshop with a vehicle on a lift" fill sizes="100vw" />
         <div className={styles.workshopShade} />
         <div className={styles.workshopCopy}><p className={styles.kicker}>THE WORKSHOP</p><h2 id="workshop-title">Controlled inputs.<br />Useful outputs.</h2><p>A concept environment organized around inspection, instrumented testing, careful integration, and documentation.</p><div className={styles.facilities}><span>01 / LOAD-CELL DYNO</span><span>02 / CALIBRATION BAY</span><span>03 / ALIGNMENT</span><span>04 / FABRICATION</span></div></div>
       </section>
