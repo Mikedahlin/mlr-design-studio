@@ -52,3 +52,12 @@ NEXT-CHAT-HANDOFF.md
 PROJECT-HANDOFF.md
 mlr-design-studio-full-website-plan.txt
 dev-server*.log
+
+# Internal AI/session files - local only
+AGENTS.md
+CHANGELOG.md
+SOURCE-OF-TRUTH-AUDIT.md
+_backups/
+.card-final-frames/
+.playwright-mcp/
+untrack-list.txt
