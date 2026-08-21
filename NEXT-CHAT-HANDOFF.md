@@ -1,6 +1,6 @@
 # MLR Design Studio — Current Production Handoff
 
-Updated: 2026-08-18 14:30 Central
+Updated: 2026-08-21 Central
 
 ## How to resume
 
@@ -8,201 +8,121 @@ Read this file completely, then read the authoritative master plan:
 
 `C:\Users\harle\Projects\mlr-design-studio\mlr-design-studio-full-website-plan.txt`
 
-Continue from the exact next action near the end of this file. Do not restart planning, redo approved work, or introduce unrelated side projects.
+Continue from "Exact next action" near the end of this file. Do not restart planning, redo approved work, or introduce unrelated side projects.
 
 ## Active repository
 
 - Working directory: `C:\Users\harle\Projects\mlr-design-studio`
 - GitHub: https://github.com/Mikedahlin/mlr-design-studio
 - Branch: `main`
-- Last pushed: `bbcb0e7` — Bigger cards, cursor release, close button, mobile INDEX nav
-- Vercel is connected to GitHub/main. Push triggers auto-deploy.
-- **Do not touch the wheel animation code.** User is satisfied with current behavior.
+- Last pushed: `aefb02e` — Fix mojibake text and trim AI-gibberish UI segments from card previews
+- Vercel is connected to GitHub/main. Push triggers auto-deploy (~40s builds).
+- **Do not touch the wheel animation mechanics.** User is satisfied with current behavior.
 
-## Governing rule
+## STOP POINT — state as of this handoff
 
-The master plan is the authoritative production backlog until complete. New user instructions override stale details in that file. Work phase-by-phase, validate each milestone, and stop getting sidetracked.
+Everything below this line reflects a clean, deployed, user-confirmed state:
+
+- **Desktop wheel works**: cards spin by drag, click opens the full project site.
+- **Mobile wheel works**: user called it "the best mobile has been." Touch swipe spins, tap opens.
+- **All site text is correct**: mojibake eliminated, AI-gibberish video segments removed.
+- All six project routes live and reachable from wheel cards: `/work/iron-north`, `/work/ember`, `/work/apex-motor`, `/work/white-pine-dental`, `/work/northshore-lodge`, `/work/velvet-room`.
+
+Do not stack new experiments on top of this state without reading the session log below.
+
+## Session log (2026-08-20/21) — what broke and how it was fixed
+
+### 1. Project cards did not open their sites (multiple failed fix attempts before root cause)
+
+**Root cause:** `setPointerCapture()` on the scene div retargets the browser's `click` event to the scene container. Click events NEVER reach card buttons/anchors while capture is active. This defeated every attempt that relied on button `onClick` or anchor default navigation, and also defeated `e.target.closest(card)` inside `pointerup` (pointerup target is retargeted too).
+
+**Final working solution (do not regress):**
+- Cards are real `<a href="/work/{slug}">` elements covering the full card (`position:absolute; inset:0; zIndex:10`).
+- On tap (pointer moved <10px), `up()` resolves the element under the pointer with `document.elementFromPoint(e.clientX, e.clientY)` — geometric lookup, immune to capture retargeting — then follows that card link via `window.location.href`.
+- Drags (>10px) fling the wheel exactly as before; keyboard Enter works natively on the focused anchor.
+
+Related commits: `c2b1fde`, `045d9de`, `06fdf2b`, `f6d3a62`, `436fec0`, `ab6a1c7`, `ec11a17`.
+
+### 2. Wheel stopped spinning after links were added
+
+**Root cause:** native `<a>`/`<img>`/`<video>` elements are mouse-draggable; pressing one and moving starts a browser link-drag which fires `pointercancel` and kills the drag stream.
+
+**Fix (commit `efe51d1`):** `onDragStart={e=>e.preventDefault()}` on the scene + `draggable={false}` on card anchors, videos, and images. No-op on touch; mobile unaffected.
+
+### 3. "Alien language" text
+
+Two separate sources:
+
+- **Page mojibake** — `WhitePineExperience.tsx` contained UTF-8-read-as-Windows-1252 corruption (`â€™`, `â†’`, `Â©`…). Fixed with exact byte-level reversal (22 replacements). Commit `aefb02e`. Verified clean on production.
+- **AI-gibberish inside card preview videos** — each 10s Gemini-rendered loop ended with a website-mockup reveal containing pseudo-text nav/headlines (`HOME GRAPHIT ELECTICY APLICATIONS ASENTARS`, `PALGUS CHENS ABCOIUS`, etc.). Fixed by trimming every video to its clean pre-UI segment (verified frame-by-frame with OCR):
+
+| Video | New length | Gibberish started at |
+|-------|-----------|---------------------|
+| apex-motor.mp4 (+mobile) | 5.5s | ~6.0s |
+| ember.mp4 (+mobile) | 7.5s | ~8.0s |
+| iron-north.mp4 (+mobile) | 6.0s | ~6.5s |
+| northshore-lodge.mp4 (+mobile) | 6.0s | ~6.5s |
+| velvet-room.mp4 (+mobile) | 6.0s | ~6.3s |
+| white-pine-dental.mp4 (+mobile) | 6.5s | ~7.0s |
+
+Opening film (`mlr-opening-stable.*`) OCR-scanned clean — only genuine "MLR" branding. Posters in `card-previews/posters/` scanned clean, untouched.
+
+If these videos are ever regenerated, the replacement renders must contain no readable pseudo-text, or the same trim-and-verify process must be repeated.
 
 ## Where we are in the plan
 
-**Phase 1 — Approve the opening and wheel: IN PROGRESS**
+**Phase 1 — Approve the opening and wheel: IN PROGRESS, near completion**
 
-Step 1 (Review wheel) is largely complete. Desktop confirmed good. Mobile has had multiple fixes pushed and needs final validation on a real device.
+Step 1 (Review wheel): effectively done — desktop confirmed good by user, mobile confirmed best-ever by user. Formal "Wheel approved" gate still belongs to the user.
 
-### What was completed this session
-
-1. **Card sizing increased** — Desktop 290×365 → 370×465px. Mobile 245×320 → 290×375px. Mobile JS scale 0.78× → 0.96× front card. Desktop scale unchanged (1.02×).
-2. **Cursor stick fix** — Removed `if(e.pointerType!=="mouse")` guard on `setPointerCapture` (was skipping capture for mouse, causing pointerup to escape the scene). Added window-level `pointerup`/`pointercancel` safety net.
-3. **Detail popup close button** — Changed from "A-" to "×". Added visible circular border/background styling (36×36px, border, hover state). Escape key handler already existed.
-4. **INDEX nav mobile** — Route opacity 0.55 → 0.8, added 12px vertical padding for touch targets.
-5. **Image sizes updated** — `sizes` attribute now `(max-width:720px) 80vw,380px`.
-
-### Git history (all on main)
-
-- `d13dbac` — Clean slate: full wheel + 6 sites + INDEX nav
-- `a0c0fac` — Updated handoff
-- `76a5a10` — Fix INDEX nav on mobile
-- `1d65438` — Bigger center card on mobile
-- `6d8264a` — Remove drop-shadow from frontCard
-- `0a52385` — Fix card borders + isolate sign GPU layer
-- `5016f06` — Fix mobile jank: removed memo+contain, separated snap from spring
-- `4541d47` — Extract NeonMark to separate component to prevent SVG re-render flash
-- `b8c0374` — Fix mobile: nav guard in Gallery, bigger center card, touch-action on trigger
-- `be6768c` — Memoize NeonMark with React.memo, disable gallery pointer-events when nav open, add focus-visible to routes
-- `f6d7446` — Port wheel animation to Framer Motion springs
-- `9aeb183` — Fix idle drift: clear animRef on complete, use rawPos.jump for micro-drift
-- `bc33d67` — Remove useSpring wrapper to eliminate drag lag
-- `ef955ca` — Fix mobile sign flicker: remove contain:layout on cards, force sign compositor layer
-- `a6125da` — Boost wheel momentum: faster velocity tracking, higher power/velocity ceiling
-- `f125b7c` — Fix: remove duplicate const declarations breaking build
-- `31940cb` — Fix(homepage): moderate card sizing and momentum tuning
-- `93c1ee2` — Fix(homepage): mobile wheel centering, corner clipping, rAF jank, hydration mismatch
-- `36aa3d6` — Revert scene contain change - was causing sign flicker and card clipping
-- `6b22617` — Fix INDEX route opacity on mobile, relax scene contain to unclip card glow borders
-- `bbcb0e7` — Bigger cards, cursor release, close button, mobile INDEX nav
+Steps 2–6 remain: motion-engine hardening, expandable geometry, opening production workflow (opening film exists and is approved in stable form), living interactive sign, full validation pass.
 
 ## Locked approvals and decisions
 
 ### Homepage opening
-
-- Approved clean source video: `public/media/mlr-opening/mlr-opening.mp4` / `.webm`
-- Desktop shows Press Play, plays the silent ten-second film, then reveals the wheel.
-- Mobile enters the wheel directly.
-- This opening works and must not be replaced.
+- Approved stable opening: `public/media/mlr-opening/mlr-opening-stable.mp4` / `.webm` (desktop Press Play → 10s film → wheel; mobile enters wheel directly).
+- Do not replace the opening or its preload strategy without testing drag performance.
 
 ### Six-card wheel
+1. Iron North 2. Ember 3. Apex Motor Co. 4. White Pine Dental 5. Northshore Lodge 6. Velvet Room
+- Do not remove Iron North. Do not change rotation direction, card positions, momentum feel, or `cursor:pointer` on cards.
 
-The featured wheel remains six curated projects:
+### INDEX nav
+Cinematic overlay nav approved (WORK / SERVICES / STUDIO / START A PROJECT).
 
-1. Iron North
-2. Ember
-3. Apex Motor Co.
-4. White Pine Dental
-5. Northshore Lodge
-6. Velvet Room
-
-Do not remove Iron North. Do not change the wheel speed, rotation direction, card positions, or momentum feel.
-
-### Homepage navigation — INDEX overlay approved
-
-User approved the cinematic INDEX nav (ported from old project `HomepageFoldingNav.tsx`):
-
-- Pill button top-left: glowing dot + "INDEX" + "01—04"
-- Opens full-screen overlay with 4 routes in film-credit style
-- Routes: WORK, SERVICES, STUDIO, START A PROJECT
-- Focused route white and full-size, others blurred and smaller
-- Escape or click to close
-- Replaced the CompactNav (SERVICES/WORK/STUDIO tabs)
-
-### Living MLR sign
-
-The current wheel logo remains a font/SVG simulation and is not the desired final sign. This is a Phase 1 item.
-
-### Vercel domain
-
-- User has GoDaddy domain `mlrassets.com`
-- Vercel nameservers updated: `ns1.vercel-dns.com` / `ns2.vercel-dns.com`
-- SSL should auto-provision
-
-## Six differentiated project sites — all ported
-
-All six rebuild versions from the old project (`mlrassets.com-master`) have been ported into the new project:
-
-| Project | Route | Layout | Status |
-|---------|-------|--------|--------|
-| Iron North | `/work/iron-north` | Three-panel: project map, ledger, qualify sidebar | Ported, needs validation |
-| Ember | `/work/ember` | Fixed-viewport sensory menu, concentric rings | Ported, needs validation |
-| Apex Motor Co. | `/work/apex-motor` | Technical dashboard, build configurator | Kept existing |
-| White Pine Dental | `/work/white-pine-dental` | Calm guided-care, treatment explorer | Kept existing |
-| Northshore Lodge | `/work/northshore-lodge` | SVG property map, stay planner | Ported, needs validation |
-| Velvet Room | `/work/velvet-room` | Editorial fashion magazine spread, drag/swipe | Replaced with editorial version |
-
-Rebuild-stills images copied to `public/media/rebuild-stills/`.
+### Living sign
+Current neon mark is a font/SVG simulation; true tube-geometry sign remains a Phase 1 item (Step 5).
 
 ## Key technical notes
 
-- **Wheel animation uses Framer Motion `useMotionValue` + `animate()`** — NOT `useSpring`, NOT manual RAF spring physics. The RAF loop reads `rawPos.get()` directly and updates card DOM. Framer Motion `animate()` handles snap/go/momentum transitions.
-- **NeonMark is `React.memo` wrapped** with zero props — it never re-renders. Do not add props to it.
-- **Cards update via direct DOM manipulation** in the RAF loop (60fps outside React). Do not add React state updates inside the animation loop.
-- **`setPointerCapture` is now called unconditionally** for all pointer types (mouse, touch, pen). A window-level `pointerup` safety net also resets drag state.
-- **Velocity/momentum values are tuned and approved.** Do not adjust unless user explicitly asks to re-tune.
+- **Wheel uses Framer Motion `useMotionValue` + `animate()`**, RAF reads `rawPos.get()` and writes card DOM directly at 60fps outside React. No React state inside the animation loop.
+- **NeonMark is `React.memo`, zero props** — never re-renders. Do not add props.
+- **`setPointerCapture` is called unconditionally** in `down()` — remember the click-retargeting consequence documented above before adding any click-based UI inside the scene.
+- **Velocity/momentum values are tuned and approved.** Do not adjust without explicit user request.
+- **Videos are H.264, silent (`-an`), `+faststart`, trimmed lengths per table above.** Mobile variants mirror desktop cuts.
 
-## Known critical bugs to fix next
+## Status of previously listed bugs (from 2026-08-18 handoff)
 
-### BUG 1: Racing border is completely invisible (CRITICAL)
-
-The `.projectCard:after` pseudo-element with the `edgeSpark` animation exists in CSS (line 13) but renders zero visible pixels.
-
-**Root cause:** `.projectCard` has `contain: layout paint style` (set on CSS lines 4 and 10, never removed). Per CSS spec, `contain: paint` clips all visual content to the element's padding box. The `::after` has `inset: -8px`, placing it entirely outside the card. The `overflow: visible` on line 13 does NOT override `contain: paint`.
-
-**Secondary cause:** `.scene` has `contain: strict` (line 10) which includes `contain: paint`, adding a second clipping boundary.
-
-**Fix required:**
-- Change `.projectCard` from `contain: layout paint style` to `contain: layout style` (remove paint containment) — on CSS lines 4 and 10
-- Change `.scene` from `contain: strict` to `contain: layout style` (line 10)
-- The handoff says "Do not re-add `contain:layout style`" to `.projectCard` — this rule was about preventing GPU compositing thrash from a previous version. The fix here is removing `paint` from the existing `contain` declaration, not re-adding it. The `layout style` containment does not cause the same thrash.
-
-**After fixing containment, also consider:**
-- The conic gradient arc is only ~34 degrees (9.4% of the circle) — the white-hot core is just 4 degrees / ~18px. This may be too subtle even when visible.
-- The 4px ring width (from `padding: 4px` + mask-composite) is very thin.
-- The triple `drop-shadow` glow extends beyond the `::after` but would be clipped by parent containment.
-- Animation speed: 4.8s for full rotation. Stagger: only 3 distinct offsets for 6 cards.
-
-### BUG 2: Card names too small
-
-`.cardName` font: `900 clamp(16px, 1.6vw, 24px)/1 "Arial Rounded MT Bold"`. On a 1920px screen, `1.6vw = 30.7px` but clamped to max `24px`. On mobile, fixed at `14px`. These are tiny on the now-larger cards (370×465 desktop, 290×375 mobile).
-
-**Fix:** Increase the clamp range. Suggested: `clamp(18px, 2.2vw, 32px)` desktop, `16px` mobile.
-
-### BUG 3: Spin speed/duration needs re-tuning
-
-User explicitly asked to fix "how long and how fast they spin." Current values:
-- Max velocity cap: `0.032` (both platforms)
-- Velocity multiplier: `3.0` mobile, `2.2` desktop
-- Power factor: `6000` mobile, `5200` desktop
-- Max duration: `1.3s` (both platforms)
-- Duration factor: `65` mobile, `52` desktop
-- Easing: `[0.25, 0.1, 0.25, 1]`
-
-These were previously approved but user now wants them changed. The new conversation should re-tune and get re-approval. **Do not change rotation direction or card positions.**
-
-### BUG 4: Jankiness on mobile
-
-Likely related to `contain: strict` on `.scene` and `contain: layout paint style` on `.projectCard`. The `contain: strict` forces size containment which can cause layout thrash. Removing `paint` containment (Bug 1 fix) may also improve mobile jank.
-
-## What the user sees on Vercel now
-
-- Homepage with cinematic INDEX nav, neon sign, 6-card wheel
-- All 6 project site routes functional
-- Pure black background, accent-glow cards, bigger mobile sign
-- Smooth Framer Motion wheel with boosted momentum
-- Cards are now larger (370×465 desktop, 290×375 mobile)
-- Detail popup has visible × close button
-- INDEX nav routes are more visible on mobile (0.8 opacity)
-- Racing border is INVISIBLE (contain:paint clips it)
-- Card names are small (24px max desktop, 14px mobile)
-- Spin feel may need re-tuning per user feedback
+- ~~BUG 2 card names too small~~ — fixed (`.cardName` clamp now `18px–32px` desktop).
+- ~~BUG 4 mobile jank~~ — resolved per user ("best mobile has been").
+- BUG 1 racing border visibility — unverified; ask user whether the edge spark is visible before touching containment CSS.
+- BUG 3 spin speed/duration re-tune — user has not raised it since; do not touch unless asked.
 
 ## Remaining work
 
 ### Phase 1 completion
-
-1. **Fix the four critical bugs above** (racing border, card names, spin re-tune, jankiness)
-2. Validate on real mobile device — all fixes, touch drag, sign flicker, INDEX nav
-3. Steps 2-6 of Phase 1 from the master plan (motion engine validation, expandable geometry, opening production, living sign, full validation)
-4. Then Phase 2+ per the master plan
+1. User validates racing border visibility (Bug 1) — fix only if they want it.
+2. Step 2: motion-engine hardening checklist from master plan.
+3. Step 3: expandable (data-driven) wheel geometry — keep six-card version intact.
+4. Step 4: opening production workflow refinement.
+5. Step 5: living interactive sign.
+6. Step 6: full validation matrix (drag/flick/keyboard/SR/reduced-motion/policies).
+7. User says "Wheel approved" → Phase 2.
 
 ### Exact next action
+Ask the user: "Is the wheel approved?" If yes, begin Phase 2 (visual-production system) per the master plan. If no, work the Phase 1 steps above in order.
 
-1. Fix `contain: paint` on `.projectCard` (change to `contain: layout style`)
-2. Fix `contain: strict` on `.scene` (change to `contain: layout style`)
-3. Increase `.cardName` font sizes
-4. Re-tune spin speed/duration with user approval
-5. Validate on real mobile device
-6. Continue Phase 1 steps 2-6 per the master plan
-7. Then Phase 2+
-
-Do not start another unrelated concept, replace Iron North, add a special Live Work drawer, change the approved wheel mechanics, or touch the momentum/velocity values without user approval.
+Do not start another unrelated concept, replace Iron North, add a Live Work drawer, change approved wheel mechanics, or touch momentum values without approval.
 
 ## Truthfulness rules
 
