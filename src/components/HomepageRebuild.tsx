@@ -147,13 +147,6 @@ function Gallery({navOpen}:{navOpen:boolean}){
         ease:[0.25,0.1,0.25,1],
         onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
       });
-    }else{
-      const card=(e.target as HTMLElement).closest<HTMLElement>("[data-project-card]");
-      const index=Number(card?.dataset.index);
-      if(Number.isInteger(index)){
-        if(index!==selectedRef.current)go(index);
-        else setOpen(true);
-      }
     }
     try{if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}catch{}
   };
