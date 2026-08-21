@@ -43,7 +43,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
         frontRef.current[i]=front;
         card.classList.toggle(s.frontCard,front);
         card.setAttribute("aria-hidden",String(!front));
-        const b=card.querySelector("button");if(b)b.tabIndex=front?0:-1;
+        const b=card.querySelector("a");if(b)b.tabIndex=front?0:-1;
         const video=card.querySelector("video");
         if(video){if(front){if(video.paused)void video.play().catch(()=>{})}else if(!video.paused)video.pause()}
       }
@@ -132,25 +132,32 @@ function Gallery({navOpen}:{navOpen:boolean}){
     drag.current.t=now;
   };
 
+  const settle=(n:number)=>{
+    const snap=Math.round(rawPos.get());
+    animRef.current=animate(rawPos,snap,{type:"spring",stiffness:140,damping:20,mass:.9,restDelta:.0001,onComplete:()=>{animRef.current=null;selectedRef.current=n;scene.current?.classList.remove(s.dragging);setSelected(n)}});
+  };
+
   const up=(e:PointerEvent<HTMLDivElement>)=>{
     if(!drag.current.on)return;
     const moved=drag.current.m;
     drag.current.on=false;
-    scene.current?.classList.remove(s.dragging);
+    e.preventDefault();
     if(moved>10){
       const mobile=innerWidth<=720;
       const vel=Math.max(-.032,Math.min(.032,drag.current.v*(mobile?3.0:2.2)));
       const power=Math.abs(vel)*(mobile?6000:5200);
       const target=rawPos.get()+vel*power;
       animRef.current=animate(rawPos,target,{
-        duration:Math.min(1.3,Math.abs(vel)*(mobile?65:52)),
+        duration:Math.min(1.3,Math.max(.5,Math.abs(vel)*(mobile?65:52))),
         ease:[0.25,0.1,0.25,1],
-        onComplete:()=>{animRef.current=null;const n=mod(Math.round(rawPos.get()),6);selectedRef.current=n;setSelected(n)}
+        onComplete:()=>{animRef.current=null;settle(mod(Math.round(rawPos.get()),6))}
       });
     }else{
       const link=document.elementFromPoint(e.clientX,e.clientY)?.closest<HTMLElement>("[data-project-card] a");
       const href=link?.getAttribute("href");
-      if(href)window.location.href=href;
+      const idx=Number(link?.closest<HTMLElement>("[data-project-card]")?.dataset.index??-1);
+      if(href&&idx===selectedRef.current)window.location.href=href;
+      else if(idx>=0)go(idx);
     }
     try{if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}catch{}
   };
