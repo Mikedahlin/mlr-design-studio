@@ -1,1 +1,241 @@
-.site{position:relative;min-height:100vh;overflow:hidden;background:#111b18;color:#f4eddf;font-family:Arial,sans-serif}.site *{box-sizing:border-box}.site>img{position:fixed!important;object-fit:cover;filter:brightness(.42) saturate(.8)}.mist{position:fixed;inset:0;background:linear-gradient(90deg,#0c1714e8 0 34%,#0c171455 70%,#0c171488),linear-gradient(0deg,#0c1714e8,transparent 55%);pointer-events:none}.site>header{position:absolute;z-index:5;left:24px;right:24px;top:20px;display:flex;justify-content:space-between;font:700 8px monospace;letter-spacing:.14em}.site a{color:#fff}.hero,.activities,.stays,.season,.site>footer{position:relative;z-index:2}.hero{min-height:720px;max-width:920px;padding:150px 7vw 100px}.kicker,.sectionHead>p{font:700 9px monospace;letter-spacing:.18em;color:#d49b5a}.hero h1{margin:22px 0;font:400 clamp(54px,8vw,126px)/.82 Georgia,serif;letter-spacing:-.07em}.hero h1 em,.stays h2 em{color:#d49b5a}.intro{max-width:440px;color:#e5ddcf;font-size:15px;line-height:1.6}.heroActions{display:flex;gap:10px;margin-top:28px}.heroActions button,.stayCard button{padding:14px 18px;border:1px solid #fff8;background:#0e1914b8;color:#fff;font:700 8px monospace;cursor:pointer}.heroActions button:first-child{background:#d49b5a;color:#15221c;border-color:#d49b5a}.activities{padding:100px 7vw;background:#12211bd9}.sectionHead h2,.stays h2,.season h2{margin:12px 0;font:400 clamp(42px,6vw,86px)/.86 Georgia,serif;letter-spacing:-.06em}.sectionHead>span{color:#c6cbbf}.activityGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}.activity{padding:0 0 20px;border:1px solid #fff2;background:#0b1712;color:#fff;text-align:left;cursor:pointer}.activityActive{padding:0 0 20px;border:1px solid #d49b5a;background:#17281f;color:#fff;text-align:left;cursor:pointer}.activityImage{position:relative;display:block;height:240px}.activityImage img{object-fit:cover;filter:saturate(.8)}.activity small,.activity strong,.activity p,.activityActive small,.activityActive strong,.activityActive p{display:block;margin:14px 18px 0}.activity small,.activityActive small{font:700 8px monospace;color:#d49b5a;letter-spacing:.14em}.activity strong,.activityActive strong{font:400 24px Georgia}.activity p,.activityActive p{color:#c9d0c7;font-size:12px;line-height:1.45}.stays{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:120px 7vw;background:#e8e0d0;color:#1a3028}.stays .kicker{color:#9b6935}.stays h2{color:#1a3028}.body{max-width:460px;line-height:1.6;color:#4b5c50}.stayButtons{display:grid;max-width:440px;margin-top:28px}.stayButtons button{padding:16px 0;border:0;border-bottom:1px solid #1a302844;background:none;text-align:left;color:#1a3028;font:700 11px monospace;cursor:pointer}.stayButtons button[aria-pressed=true]{color:#a4642d}.stayButtons span{display:inline-block;width:38px}.stayCard{position:relative;min-height:520px;overflow:hidden;background:#111}.stayCard>img{object-fit:cover}.stayCard>div{position:absolute;left:22px;right:22px;bottom:22px;padding:22px;background:#0c1714dd;color:#fff}.stayCard small{font:700 8px monospace;color:#d49b5a}.stayCard h3{font:400 30px Georgia;margin:10px 0}.season{padding:110px 7vw;background:#0b1713;color:#f4eddf}.season nav{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}.season nav button{padding:12px 16px;border:1px solid #fff4;background:none;color:#fff;font:700 8px monospace;cursor:pointer}.season nav button[aria-pressed=true]{background:#d49b5a;color:#17231c;border-color:#d49b5a}.season>p:last-child{max-width:650px;color:#cbd4ca;line-height:1.6}.site>footer{padding:18px 24px;display:flex;justify-content:space-between;background:#08110e;color:#83938a;font:6px monospace}@media(max-width:800px){.site>header span{display:none}.hero{min-height:670px;padding:125px 22px 70px}.hero h1{font-size:58px}.heroActions{flex-direction:column;align-items:flex-start}.activities,.stays,.season{padding:75px 22px}.activityGrid,.stays{grid-template-columns:1fr}.activityImage{height:260px}.stayCard{min-height:430px}.site>footer{display:block;line-height:2}.site>footer span{display:block}}
+.site {
+  background: #14201c;
+  color: #f4ead5;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  min-height: 100vh;
+  padding-bottom: 8rem;
+  overflow-x: hidden;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.header a, .header span {
+  color: #f4ead5;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #0a110e;
+}
+
+.heroImage {
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+}
+
+.heroContent h1 {
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.heroContent p {
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  color: #dc9447;
+}
+
+.intro {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10rem 2rem;
+  text-align: center;
+}
+
+.intro p {
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: 2rem;
+  line-height: 1.6;
+  color: #f4ead5;
+}
+
+.explorer {
+  padding: 4rem 2rem 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.explorerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid rgba(244, 234, 213, 0.2);
+  padding-bottom: 2rem;
+}
+
+.explorerHeader h2 {
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.cabins {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.cabinCard {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #0a110e;
+}
+
+.cabinCard img {
+  object-fit: cover;
+  transition: transform 1.5s ease, opacity 0.5s ease;
+  opacity: 0.7;
+}
+
+.cabinCard:hover img {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+.cabinInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 2rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(20, 32, 28, 0.9), transparent);
+  pointer-events: none;
+}
+
+.cabinInfo h3 {
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.cabinInfo p {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #dc9447;
+}
+
+.booking {
+  background: #0a110e;
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.bookingBox {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem;
+  border: 1px solid rgba(220, 148, 71, 0.3);
+}
+
+.bookingBox h2 {
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.bookingBox p {
+  color: rgba(244, 234, 213, 0.6);
+  margin-bottom: 4rem;
+}
+
+.dates {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.dateField {
+  flex: 1;
+  text-align: left;
+}
+
+.dateField label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #dc9447;
+  margin-bottom: 0.5rem;
+}
+
+.dateField input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(244, 234, 213, 0.3);
+  color: #f4ead5;
+  font-family: var(--font-serif, "Georgia", serif);
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.dateField input:focus {
+  outline: none;
+  border-bottom-color: #dc9447;
+}
+
+.checkBtn {
+  background: #f4ead5;
+  color: #14201c;
+  border: none;
+  padding: 1.5rem 4rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkBtn:hover {
+  background: #dc9447;
+  color: #f4ead5;
+}
+
+@media (max-width: 900px) {
+  .cabins {
+    grid-template-columns: 1fr;
+  }
+  .dates {
+    flex-direction: column;
+  }
+  .bookingBox {
+    padding: 2rem;
+  }
+}
