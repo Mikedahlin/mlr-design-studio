@@ -167,7 +167,7 @@ export default function AboutPage() {
             <div className="glass-card p-8 md:p-12 max-w-2xl mx-auto text-center">
               <div className="relative w-28 h-28 mx-auto mb-5 border border-border overflow-hidden">
                 <Image
-                  src="/mike-dahlin.jpg"
+                  src="/Mikes_Website_Profile_Pic.jpg"
                   alt="Mike Dahlin, Founder of MLR Assets"
                   fill
                   className="object-cover grayscale"
