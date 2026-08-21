@@ -160,7 +160,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
 
   const choose=(i:number)=>{
     if(drag.current.m>10){drag.current.m=0;return}
-    if(i!==selectedRef.current){go(i);return};window.location.href=siteHref(lockedConcepts[i].slug)
+    window.location.href=siteHref(lockedConcepts[i].slug)
   };
 
   const active=lockedConcepts[selected];
