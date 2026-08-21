@@ -46,3 +46,9 @@ next-env.d.ts
 # generated one-off marketing assets
 /*.png
 !public/**/*.png
+
+# Internal working docs - local only
+NEXT-CHAT-HANDOFF.md
+PROJECT-HANDOFF.md
+mlr-design-studio-full-website-plan.txt
+dev-server*.log
