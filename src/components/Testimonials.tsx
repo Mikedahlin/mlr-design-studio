@@ -7,7 +7,7 @@ const metrics = [
   { value: "5", label: "Client Projects Delivered" },
   { value: "2026", label: "Founded" },
   { value: "100%", label: "Live & Shipped" },
-  { value: "AI-Assisted", label: "Every Build" },
+  { value: "100%", label: "Direct Collaboration" },
 ];
 
 const testimonials = [

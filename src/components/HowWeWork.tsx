@@ -17,12 +17,12 @@ const steps = [
   },
   {
     number: "02",
-    title: "Build with AI",
+    title: "Build with care",
     description:
-      "Frontier AI tools handle the heavy lifting. Human experts handle the judgment, brand, and polish.",
+      "We turn the approved direction into a responsive, accessible site and review the details as we go.",
     details: [
-      "AI-assisted development",
-      "Human code review",
+      "Responsive development",
+      "Code and accessibility review",
       "Design system creation",
       "Iterative feedback loops",
     ],
@@ -55,8 +55,8 @@ export default function HowWeWork() {
             <span className="gradient-text"> in weeks, not months</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            AI collapses the timeline. Human expertise ensures the result is
-            right. Here&apos;s how it works.
+            Clear strategy and careful execution keep the project moving.
+            Here&apos;s how it works.
           </p>
         </AnimatedSection>
 

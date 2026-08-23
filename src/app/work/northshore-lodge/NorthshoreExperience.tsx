@@ -1,92 +1,132 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./Northshore.module.css";
+import { useState } from "react";
+import s from "./Northshore.module.css";
 
-const accommodations = [
+const activities = [
   {
-    name: "The Water Cabins",
-    desc: "Direct lake access, private dock.",
-    image: "/media/production/northshore/TEST-northshore-lodge-exterior.webp"
+    name: "Paddle the shoreline",
+    type: "ON THE WATER",
+    image: "/media/production/northshore/northshore-render-1.webp",
+    copy: "Quiet coves, warm light, and a route that follows the weather."
   },
   {
-    name: "The Ridge Suites",
-    desc: "Elevated canopy views, cedar soaking tubs.",
-    image: "/media/production/northshore/TEST-northshore-interior-lake-view.webp"
+    name: "Walk the cedar trails",
+    type: "ON FOOT",
+    image: "/media/production/northshore/northshore-render-2.webp",
+    copy: "A slower morning through pine, cedar, and changing ground."
+  },
+  {
+    name: "Gather by the fire",
+    type: "AFTER DARK",
+    image: "/media/production/northshore/northshore-render-3.webp",
+    copy: "Bring a sweater, stay awhile, and let the evening take its time."
+  },
+  {
+    name: "Find a winter line",
+    type: "IN THE COLD",
+    image: "/media/brand-reference/luxury_lakeside_cabin.webp",
+    copy: "Snowshoe, ski, or make the day about the view from inside."
   }
 ];
 
+const stays = [
+  { name: "LAKE HOUSE", detail: "Shared gathering space, water views, and room to settle in." },
+  { name: "CEDAR CABIN", detail: "A quiet base for two, close to trails and morning light." },
+  { name: "FAMILY CABIN", detail: "Flexible space for a long weekend outside together." }
+];
+
 export default function NorthshoreExperience() {
+  const [activity, setActivity] = useState(0);
+  const [stay, setStay] = useState(0);
+  const [season, setSeason] = useState("AUTUMN");
+
   return (
-    <main className={styles.site}>
-      <header className={styles.header}>
+    <main className={s.site}>
+          <Image src="/media/production/northshore/northshore-render-1.webp" alt="Misty lake at sunrise" fill priority sizes="100vw" />
+      <div className={s.mist} />
+      <header>
+        <b>NORTHSHORE LODGE</b>
+        <span>WILDERNESS / WATER / TIME OUTSIDE</span>
         <Link href="/">RETURN TO MLR</Link>
-        <span>NORTHSHORE LODGE</span>
       </header>
 
-      <section className={styles.hero}>
-        <Image 
-          src="/media/production/northshore/TEST-northshore-hero-lake-approach.webp" 
-          alt="Misty lake approach to the lodge" 
-          fill 
-          priority 
-          sizes="100vw" 
-          className={styles.heroImage} 
-        />
-        <div className={styles.heroContent}>
-          <h1>Northshore</h1>
-          <p>The quiet water.</p>
+      <section className={s.hero}>
+        <p className={s.kicker}>A place to go outside</p>
+        <h1>Come for the lake.<br/><em>Stay for everything around it.</em></h1>
+        <p className={s.intro}>Northshore is a fictional lodge concept built around cedar, clear water, long evenings, and time with the people you brought with you.</p>
+        <div className={s.heroActions}>
+          <button onClick={() => document.getElementById("activities")?.scrollIntoView({ behavior: "smooth" })}>SEE THE ACTIVITIES</button>
+          <button onClick={() => document.getElementById("stays")?.scrollIntoView({ behavior: "smooth" })}>EXPLORE CABINS</button>
         </div>
       </section>
 
-      <section className={styles.intro}>
-        <p>A place designed to disappear into the landscape. We built Northshore Lodge around the existing pines, utilizing charred cedar and local stone to create a sanctuary that breathes with the lake.</p>
-      </section>
-
-      <section className={styles.explorer}>
-        <div className={styles.explorerHeader}>
-          <h2>Accommodations</h2>
+      <section className={s.activities} id="activities">
+        <div className={s.sectionHead}>
+          <p>MAKE A DAY OF IT</p>
+          <h2>Outside looks different here.</h2>
+          <span>Choose a starting point. Leave room for the rest.</span>
         </div>
-        <div className={styles.cabins}>
-          {accommodations.map((acc, i) => (
-            <div key={i} className={styles.cabinCard}>
-              <Image 
-                src={acc.image} 
-                alt={acc.name} 
-                fill 
-                sizes="(max-width: 900px) 100vw, 50vw" 
-              />
-              <div className={styles.cabinInfo}>
-                <h3>{acc.name}</h3>
-                <p>{acc.desc}</p>
-              </div>
-            </div>
+        <div className={s.activityGrid}>
+          {activities.map((a, i) => (
+            <button key={a.name} className={i === activity ? s.activityActive : s.activity} onClick={() => setActivity(i)}>
+              <span className={s.activityImage}>
+                <Image src={a.image} alt={a.name} fill sizes="(max-width:800px) 90vw, 24vw" />
+              </span>
+              <small>{a.type}</small>
+              <strong>{a.name}</strong>
+              <p>{a.copy}</p>
+            </button>
           ))}
         </div>
       </section>
 
-      <section className={styles.booking}>
-        <div className={styles.bookingBox}>
-          <h2>Reserve Your Stay</h2>
-          <p>Select your dates to view seasonal availability.</p>
+      <section className={s.stays} id="stays">
+        <div>
+          <p className={s.kicker}>Find your place</p>
+          <h2>Bring a weekend.<br/><em>We&apos;ll handle the setting.</em></h2>
+          <p className={s.body}>Choose the kind of space that fits your group, then tell us when you&apos;d like to come. This is a concept experience—there is no live inventory or availability.</p>
           
-          <form className={styles.form} onSubmit={e => e.preventDefault()}>
-            <div className={styles.dates}>
-              <div className={styles.dateField}>
-                <label>Arrival</label>
-                <input type="date" />
-              </div>
-              <div className={styles.dateField}>
-                <label>Departure</label>
-                <input type="date" />
-              </div>
-            </div>
-            
-            <button className={styles.checkBtn}>Check Availability</button>
-          </form>
+          <div className={s.stayButtons}>
+            {stays.map((x, i) => (
+              <button key={x.name} aria-pressed={stay === i} onClick={() => setStay(i)}>
+                <span>0{i + 1}</span>{x.name}
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        <div className={s.stayCard}>
+          <Image src={activities[activity].image} alt="" fill sizes="(max-width:800px) 90vw,45vw" />
+          <div>
+            <small>{stays[stay].name}</small>
+            <h3>{stays[stay].detail}</h3>
+            <button>REQUEST A STAY</button>
+          </div>
         </div>
       </section>
+
+      <section className={s.season}>
+        <p className={s.kicker}>The same place, another season</p>
+        <h2>What are you in the mood for?</h2>
+        <nav>
+          {["WINTER", "SPRING", "SUMMER", "AUTUMN"].map(x => (
+            <button key={x} aria-pressed={season === x} onClick={() => setSeason(x)}>{x}</button>
+          ))}
+        </nav>
+        <p>
+          {season === "WINTER" ? "Snow underfoot, fire in the evening, and a slower start to the day." :
+           season === "SPRING" ? "Changing trails, cold water, and the first green showing through." :
+           season === "SUMMER" ? "Long light, open water, and more reasons to stay outside." :
+           "Cedar color, cool mornings, warm meals, and the lake at its quietest."}
+        </p>
+      </section>
+
+      <footer>
+        <span>FICTIONAL LODGE CONCEPT / ILLUSTRATIVE MEDIA</span>
+        <span>NO RATES, REVIEWS, OR AVAILABILITY ARE CLAIMED</span>
+      </footer>
     </main>
   );
 }

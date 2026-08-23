@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Work | MLR Assets",
   description:
-    "See what we build. Using AI-forward web development.",
+    "See what we build: custom websites and digital experiences for real businesses.",
   alternates: {
     canonical: "/work",
   },
@@ -42,7 +42,7 @@ const projects: Project[] = [
     title: "Buselmeier Law — Live Site",
     category: "Client Project · What Ted Chose",
     description:
-      "The real site in production. We presented multiple design directions; this is the one the client selected. Practice area pages, attorney profile, case results, and a legal AI assistant.",
+      "The real site in production. We presented multiple design directions; this is the one the client selected. Practice area pages, attorney profile, and case results.",
     metrics: [
       { label: "Status", value: "Live" },
       { label: "Version", value: "In Production" },
@@ -58,12 +58,12 @@ const projects: Project[] = [
     description:
       "A clean, conservative law-firm direction — light palette, serif typography, structured sections built around trust and readability.",
     metrics: [
-      { label: "Status", value: "Live Demo" },
+      { label: "Status", value: "Demo" },
       { label: "Direction", value: "Light & Traditional" },
       { label: "Type", value: "Static Build" },
     ],
     tags: ["Concept", "Traditional", "Trust-First"],
-    status: "Live Demo",
+    status: "Demo",
     url: "https://www.mlrassets.com/templates/ted-v1/index.html",
   },
   {
@@ -72,12 +72,12 @@ const projects: Project[] = [
     description:
       "An immersive, motion-forward alternative — dark palette, bold display type, animated hero. A second real direction for the same client.",
     metrics: [
-      { label: "Status", value: "Live Demo" },
+      { label: "Status", value: "Demo" },
       { label: "Direction", value: "Cinematic & Motion" },
       { label: "Type", value: "React Build" },
     ],
     tags: ["Concept", "Motion Design", "Cinematic"],
-    status: "Live Demo",
+    status: "Demo",
     url: "https://www.mlrassets.com/templates/ted-v2/index.html",
   },
 ];
@@ -193,10 +193,10 @@ export default function WorkPage() {
           {/* Templates anchor and compact list */}
           <AnimatedSection className="mt-12" delay={0.2}>
             <div id="templates" className="glass-card p-6 md:p-8 max-w-3xl mx-auto">
-              <p className="mono-label text-xs text-primary mb-2">Templates & Demos</p>
-              <h3 className="text-xl font-bold text-text mb-3">Preview templates and earlier drafts</h3>
+              <p className="mono-label text-xs text-primary mb-2">Earlier Directions</p>
+              <h3 className="text-xl font-bold text-text mb-3">Selected design directions</h3>
               <p className="text-sm text-text-secondary mb-4">
-                These are demos and design iterations — not live client sites. Click any item to view the template in full.
+                These are clearly labeled demos and design directions — not live client sites. Click an item to view it in full.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -208,9 +208,6 @@ export default function WorkPage() {
                 </Link>
                 <Link href="/templates/ted-blue/index.html" className="px-4 py-3 border border-border bg-surface text-text text-sm hover:bg-primary/5">
                   Ted — Black &amp; Gold
-                </Link>
-                <Link href="/templates/atlaslume" className="px-4 py-3 border border-border bg-surface text-text text-sm hover:bg-primary/5">
-                  AtlasLume — AI SaaS Demo
                 </Link>
               </div>
             </div>

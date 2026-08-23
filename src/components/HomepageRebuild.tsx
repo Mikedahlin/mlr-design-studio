@@ -63,7 +63,14 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const onResize=()=>{mobileRef.current=innerWidth<=720;};
     addEventListener("resize",onResize);
     addEventListener("orientationchange",onResize);
-    const globalUp=()=>{if(drag.current.on){drag.current.on=false;scene.current?.classList.remove(s.dragging)}};
+    const globalUp=(e:Event)=>{
+      if(!drag.current.on)return;
+      drag.current.on=false;
+      scene.current?.classList.remove(s.dragging);
+      if(e instanceof PointerEvent&&scene.current?.hasPointerCapture(e.pointerId)){
+        try{scene.current.releasePointerCapture(e.pointerId)}catch{}
+      }
+    };
     addEventListener("pointerup",globalUp);
     addEventListener("pointercancel",globalUp);
     let id=0;
@@ -141,14 +148,15 @@ function Gallery({navOpen}:{navOpen:boolean}){
     if(!drag.current.on)return;
     const moved=drag.current.m;
     drag.current.on=false;
+    scene.current?.classList.remove(s.dragging);
     e.preventDefault();
     if(moved>10){
       const mobile=innerWidth<=720;
       const vel=Math.max(-.032,Math.min(.032,drag.current.v*(mobile?3.0:2.2)));
-      const power=Math.abs(vel)*(mobile?6000:5200);
+      const power=Math.abs(vel)*(mobile?6200:5400);
       const target=rawPos.get()+vel*power;
       animRef.current=animate(rawPos,target,{
-        duration:Math.min(1.3,Math.max(.5,Math.abs(vel)*(mobile?65:52))),
+        duration:Math.min(1.35,Math.max(.5,Math.abs(vel)*(mobile?67:54))),
         ease:[0.25,0.1,0.25,1],
         onComplete:()=>{animRef.current=null;settle(mod(Math.round(rawPos.get()),6))}
       });

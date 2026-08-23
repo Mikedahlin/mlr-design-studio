@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "About | MLR Assets",
   description:
-    "AI-forward web development studio. Human judgment, frontier tooling, measurable results.",
+    "A small web and visual design studio focused on clear thinking, strong craft, and measurable results.",
   alternates: {
     canonical: "/about",
   },
@@ -16,12 +16,12 @@ const values = [
   {
     title: "Transparency First",
     description:
-      "We show our process honestly — the AI tools we use, the human review steps, the real timelines. No black boxes.",
+      "We show the plan, the work, the timeline, and the handoff clearly. No black boxes.",
   },
   {
     title: "Speed Without Shortcuts",
     description:
-      "AI compresses timelines. We never compress quality. Every output goes through thorough review before it ships.",
+      "We move quickly without skipping the details that make a site dependable, accessible, and easy to use.",
   },
   {
     title: "Results Over Aesthetics",
@@ -48,13 +48,13 @@ export default function AboutPage() {
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 Built for the
-                <span className="gradient-text"> AI-native era</span>
+                <span className="gradient-text"> work that matters</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-                MLR Assets is an AI-forward web development studio. We pair
-                frontier AI tooling with human expertise to build sites that
-                are faster, better, and more cost-effective than traditional
-                agency work — without the DIY risk of self-serve builder sites that you never truly own.
+                MLR Assets is a small web and visual design studio. We pair
+                clear strategy, thoughtful design, and dependable code to
+                build sites that help real businesses earn attention and
+                make it easier for customers to take the next step.
               </p>
             </AnimatedSection>
           </div>
@@ -69,23 +69,22 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-text mb-5">Our Story</h2>
               <div className="space-y-4 text-text-secondary leading-relaxed">
                 <p>
-                  The web development industry is split into two camps: AI
-                  builders selling self-serve automation for $10-30/month, and
-                  traditional agencies charging $5K-$35K+ with weeks-long
-                  timelines. Both have real limitations. We believe you should own your site with no hidden fees.
+                  The web development industry often makes a choice between
+                  do-it-yourself builders and expensive agency processes. Both
+                  can leave a business with the wrong fit. We believe you
+                  should own your site with no hidden fees.
                 </p>
                 <p>
-                  AI builders produce fast but generic output — no strategy, no
-                  brand judgment, no custom work. Traditional agencies deliver
-                  quality but at a pace and price that excludes many businesses
-                  who need it. And by the time they&apos;re done building your site it&apos;s already outdated.
+                  Do-it-yourself builders can be fast but generic. Traditional
+                  agencies can deliver quality but at a pace and price that
+                  excludes many businesses who need it. Your site should be
+                  specific to your work, not a compromise.
                 </p>
                 <p>
-                  MLR Assets fills the gap. We&apos;re a new studio that
-                  visibly builds with frontier AI tooling — borrowing the same
-                  design language used by companies like Anthropic, Vercel, and
-                  Linear. The result: agency-quality output at AI speed, with
-                  the transparency and accountability of a real team behind it. We believe we should work as hard as you.
+                  MLR Assets fills the gap with direct, focused collaboration.
+                  You work with the person making the decisions, the design,
+                  and the code. The result is a site with agency-level care
+                  without layers of handoffs or unnecessary meetings.
                 </p>
               </div>
             </AnimatedSection>
@@ -94,23 +93,20 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-text mb-5">Our Approach</h2>
               <div className="space-y-4 text-text-secondary leading-relaxed">
                 <p>
-                  Every project starts with human strategy. We learn your
-                  business, your audience, and your goals. Then we deploy
-                  AI tools to accelerate development — generating layouts,
-                  scaffolding code, and drafting content — while we personally
-                  review, refine, and polish every detail.
+                  Every project starts with strategy. We learn your business,
+                  your audience, and your goals. Then we plan the structure,
+                  design the experience, build the site, and personally review
+                  every detail before handoff.
                 </p>
                 <p>
-                  This isn&apos;t about replacing developers with AI. It&apos;s
-                  about giving skilled humans better tools, Ai is a very useful TOOL. The ratio of
-                  AI-to-human work varies by task, but the outcome is
-                  consistent: faster delivery, lower cost, same (or better)
-                  quality. We believe in working as hard as you do.
+                  The process is collaborative and practical. You get clear
+                  decisions, visible progress, and a finished site that your
+                  business can actually own and use. We believe in working as
+                  hard as you do.
                 </p>
                 <p>
-                  We&apos;re transparent about this because we believe the
-                  industry&apos;s secrecy around AI use is a disservice to
-                  clients. You deserve to know how your site gets built.
+                  We&apos;re transparent because you deserve to know how your site
+                  gets planned, built, tested, and handed over.
                 </p>
               </div>
             </AnimatedSection>
@@ -181,8 +177,7 @@ export default function AboutPage() {
                 MLR Assets LLC
               </p>
               <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto">
-                Building with AI since before it was trendy. Focused on
-                delivering real results for real businesses — not chasing
+                Building useful digital work for real businesses — not chasing
                 hype, not overselling capabilities.
               </p>
             </div>

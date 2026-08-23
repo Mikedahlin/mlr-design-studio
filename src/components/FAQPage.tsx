@@ -5,19 +5,14 @@ import FAQSection from "./FAQ";
 
 const faqItems = [
   {
-    question: "What does 'AI-forward' actually mean?",
-    answer:
-      "It means we use AI tools throughout our development process — for design generation, code scaffolding, content creation, and testing. Every project is human-reviewed and polished. AI makes us faster; humans ensure the result is right.",
-  },
-  {
     question: "How is this different from using Wix or Squarespace?",
     answer:
-      "Those are template-based DIY platforms. We build custom sites from scratch using AI as a development tool — not a template engine. You get original design, custom code you own, and human expertise in strategy, brand, and conversion optimization.",
+      "Those are template-based DIY platforms. We build custom sites around your business instead of fitting your business into a template. You get original design, custom code you own, and a clear plan for what the site needs to do.",
   },
   {
     question: "How is this different from a traditional agency?",
     answer:
-      "Traditional agencies bill for hours and often take months. We use AI to compress timelines dramatically while maintaining the same quality. A site that takes an agency 8-12 weeks might take us 2-4 weeks. Lower cost, faster delivery, same (or better) output.",
+      "We keep the team small and the communication direct. That means fewer handoffs, clear decisions, and a process sized to the actual project instead of a large agency workflow.",
   },
   {
     question: "What tech stack do you use?",

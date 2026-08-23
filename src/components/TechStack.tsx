@@ -11,7 +11,7 @@ const technologies = [
   "PostgreSQL",
   "Vercel",
   "Figma",
-  "AI/ML Tools",
+  "Business Integrations",
   "Headless CMS",
 ];
 

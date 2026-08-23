@@ -1,111 +1,129 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./Ember.module.css";
+import { useState } from "react";
+import s from "./Ember.module.css";
 
-const menuItems = [
-  { name: "Wood-Fired Bone Marrow", price: "24", desc: "Charred sourdough, parsley salad, smoked sea salt" },
-  { name: "Dry-Aged Ribeye", price: "72", desc: "45-day dry age, roasted garlic butter, blistered vine tomatoes" },
-  { name: "Embered Venison Loin", price: "48", desc: "Juniper reduction, smoked parsnip purée, wild mushrooms" },
-  { name: "Burnt Honey Panna Cotta", price: "14", desc: "Black mission figs, toasted hazelnut, thyme" }
+const dishes = [
+  {
+    name: "Charred onion + rye",
+    kind: "SMALL PLATE",
+    price: "$14",
+    image: "/media/production/ember/ember-dish-hero.webp",
+    copy: "Sweet, smoky, brightened at the table."
+  },
+  {
+    name: "Roasted roots",
+    kind: "FROM THE FIRE",
+    price: "$19",
+    image: "/media/production/ember/ember-grill-hero-CONCEPT.webp",
+    copy: "Caramelized vegetables, cultured cream, herbs."
+  },
+  {
+    name: "Herb oil + warm grain",
+    kind: "TO SHARE",
+    price: "$16",
+    image: "/media/production/ember/ember-macro-oil-hero-CONCEPT.webp",
+    copy: "Green, savory, and built for passing around."
+  }
+];
+
+const drinks = [
+  { name: "House Old Fashioned", note: "Bourbon / orange / smoke" },
+  { name: "Ember Spritz", note: "Bitter citrus / bubbles / rosemary" },
+  { name: "Northstar Sour", note: "Rye / lemon / honey" }
 ];
 
 export default function EmberExperience() {
+  const [dish, setDish] = useState(0);
+  const [tab, setTab] = useState("MENU");
+  const [inquiry, setInquiry] = useState(false);
+
   return (
-    <main className={styles.site}>
-      <header className={styles.header}>
+    <main className={s.site}>
+      <Image src={dishes[dish].image} alt={dishes[dish].name} fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+      <div className={s.dark} />
+      <header>
+        <b>EMBER</b>
+        <span>SUPPER / DRINKS / GOOD COMPANY</span>
         <Link href="/">RETURN TO MLR</Link>
-        <span>EMBER / SUPPER CLUB</span>
       </header>
 
-      <section className={styles.hero}>
-        <Image 
-          src="/media/production/ember/ember-grill-hero-CONCEPT.webp" 
-          alt="Cinematic shot of food cooking over an open fire grill" 
-          fill 
-          priority 
-          sizes="100vw" 
-          className={styles.heroImage} 
-        />
-        <div className={styles.heroContent}>
-          <h1>Ember</h1>
-          <p>Fire, bourbon, and a table after dark.</p>
-        </div>
+      <section className={s.hero}>
+        <p>DINNER AFTER DARK</p>
+        <h1>Come hungry.<br/><em>Stay for one more.</em></h1>
+        <p className={s.intro}>A fictional supper-club concept shaped by live fire, good drinks, and food worth slowing down for.</p>
+        <button onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}>SEE TONIGHT&apos;S MENU</button>
       </section>
 
-      <section className={styles.ingredientStory}>
-        <div className={styles.ingredientText}>
-          <h2>Smoke &<br/>Source.</h2>
-          <p>We source heritage proteins and organic local produce, trusting the fundamental elements of fire and time to elevate them. Our kitchen operates around an open hardwood hearth, bringing primal warmth to every plate.</p>
-        </div>
-        <div className={styles.ingredientVisual}>
-          <Image 
-            src="/media/production/ember/ember-macro-oil-hero-CONCEPT.webp" 
-            alt="Macro shot of olive oil and herbs near a fire" 
-            fill 
-            sizes="(max-width: 900px) 100vw, 50vw" 
-          />
-        </div>
-      </section>
-
-      <section className={styles.menuSection}>
-        <h2>The Hearth Menu</h2>
-        <div className={styles.menuList}>
-          {menuItems.map((item, i) => (
-            <div key={i} className={styles.menuItem}>
-              <div>
-                <h3>{item.name}</h3>
-                <p>{item.desc}</p>
-              </div>
-              <span>${item.price}</span>
-            </div>
+      <section className={s.menu} id="menu">
+        <nav>
+          {["MENU", "DRINKS", "SPECIALS"].map(x => (
+            <button key={x} aria-pressed={tab === x} onClick={() => setTab(x)}>{x}</button>
           ))}
-        </div>
+        </nav>
+        
+        {tab === "MENU" && (
+          <div className={s.dishGrid}>
+            {dishes.map((d, i) => (
+              <button key={d.name} className={i === dish ? s.dishActive : s.dish} onClick={() => setDish(i)}>
+                <span>
+                  <Image src={d.image} alt={d.name} fill sizes="(max-width:800px) 88vw,28vw" style={{ objectFit: "cover" }} />
+                </span>
+                <small>{d.kind} / {d.price}</small>
+                <strong>{d.name}</strong>
+                <p>{d.copy}</p>
+              </button>
+            ))}
+          </div>
+        )}
+        
+        {tab === "DRINKS" && (
+          <div className={s.drinks}>
+            <Image src="/media/production/ember/ember-cocktail-hero.webp" alt="Cocktail" fill sizes="100vw" style={{ objectFit: "cover", opacity: 0.3, zIndex: -1 }} />
+            {drinks.map(d => (
+              <article key={d.name}>
+                <span>EMBER BAR</span>
+                <h2>{d.name}</h2>
+                <p>{d.note}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        
+        {tab === "SPECIALS" && (
+          <article className={s.special}>
+            <small>THIS WEEK / FICTIONAL SPECIAL</small>
+            <h2>Fire-roasted supper for two</h2>
+            <p>A rotating plate, something sweet, and a drink selected from the bar. The exact menu changes with the season.</p>
+          </article>
+        )}
       </section>
 
-      <section className={styles.reservation}>
-        <div className={styles.reservationBox}>
-          <h2>Reserve a Table</h2>
-          <p>Concept demonstration only.</p>
-          
-          <form className={styles.formGrid} onSubmit={e => e.preventDefault()}>
-            <div className={styles.formGroup}>
-              <label>Date</label>
-              <input type="date" />
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label>Time</label>
-              <select>
-                <option>6:00 PM</option>
-                <option>7:00 PM</option>
-                <option>8:00 PM</option>
-                <option>9:00 PM</option>
-              </select>
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label>Party Size</label>
-              <select>
-                <option>2 Guests</option>
-                <option>4 Guests</option>
-                <option>6+ Guests</option>
-              </select>
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label>Seating</label>
-              <select>
-                <option>Main Dining</option>
-                <option>Chef's Counter</option>
-              </select>
-            </div>
-          </form>
-          
-          <button className={styles.bookBtn}>Find Table</button>
+      <section className={s.visit}>
+        <div>
+          <p>MAKE AN EVENING OF IT</p>
+          <h2>Good food is only part of the plan.</h2>
+          <p>Ask about a table, a private gathering, or the kind of night you want to make.</p>
         </div>
+        <button onClick={() => setInquiry(true)}>ASK ABOUT A TABLE</button>
+        <button onClick={() => setInquiry(true)}>PRIVATE EVENTS</button>
       </section>
+
+      {inquiry && (
+        <aside className={s.inquiry}>
+          <button onClick={() => setInquiry(false)}>CLOSE</button>
+          <p>START A CONVERSATION</p>
+          <h2>Tell us what you&apos;re planning.</h2>
+          <p>A concept inquiry would collect a preferred date range, party size, dietary questions, and whether you&apos;re joining us for dinner or a private event.</p>
+          <button>CONTINUE CONCEPT</button>
+        </aside>
+      )}
+
+      <footer>
+        <span>FICTIONAL SUPPER-CLUB CONCEPT / ILLUSTRATIVE MENU</span>
+        <span>NO LIVE RESERVATIONS, PRICES, OR AVAILABILITY ARE CLAIMED</span>
+      </footer>
     </main>
   );
 }

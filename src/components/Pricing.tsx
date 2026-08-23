@@ -12,7 +12,7 @@ const plans = [
       "Perfect for a focused landing page, MVP, or single-page site that needs to look professional and load fast.",
     features: [
       "Single-page or simple multi-page site",
-      "AI-assisted design + development",
+      "Custom design and development",
       "Responsive, mobile-first build",
       "Basic SEO setup",
       "2 revision rounds",

@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Services | MLR Assets",
   description:
-    "AI web development, custom applications, e-commerce, performance optimization, and AI integration services.",
+    "Custom web development, applications, e-commerce, performance optimization, and business integrations.",
   alternates: {
     canonical: "/services",
   },
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    title: "AI Web Development",
+    title: "Web Development",
     description:
-      "Custom websites built with frontier AI tooling. We use AI to accelerate development — layout generation, code scaffolding, content creation — while human experts review and refine every detail.",
+      "Custom websites planned, designed, and built around your business, audience, and goals.",
     features: [
       "Custom design (not templates)",
-      "AI-assisted development workflow",
+      "Strategy-led development",
       "Responsive, mobile-first builds",
       "Performance-optimized (sub-2s loads)",
       "SEO-ready architecture",
@@ -62,15 +62,14 @@ const services = [
     ],
   },
   {
-    title: "AI Integration",
+    title: "Automation & Integrations",
     description:
-      "Add intelligent features to your site — AI chatbots, smart search, content generation, marketing campaigns, and automation workflows that save time and improve user experience.",
+      "Connect the tools your business already uses and streamline the work that happens behind your website.",
     features: [
-      "AI chatbot / virtual assistant",
-      "AI-powered search & recommendations",
-      "Content generation pipelines",
-      "Workflow automation",
-      "Custom AI API integrations",
+      "Forms and lead routing",
+      "Search and data connections",
+      "Content and workflow automation",
+      "Custom API integrations",
     ],
   },
   {
@@ -103,9 +102,9 @@ export default function ServicesPage() {
                 <span className="gradient-text"> build</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-                Full-spectrum web development powered by AI. From landing
-                pages to full-stack applications — we deliver faster without
-                cutting corners.
+                Full-spectrum web development for ambitious small businesses.
+                From landing pages to full-stack applications — we build
+                around your goals, not a template.
               </p>
             </AnimatedSection>
           </div>
