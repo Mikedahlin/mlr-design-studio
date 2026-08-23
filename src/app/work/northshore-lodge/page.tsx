@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import NorthshoreExperience from "./NorthshoreExperience";
+import NorthshoreExperience from "./NorthshoreExperienceRebuild";
 
 export const metadata: Metadata = {
   title: "Northshore Lodge | Minnesota Resort",
   description:
-    "A concept resort experience focused on tactile luxury, cedar, and quiet water.",
+    "A northwoods lodge experience focused on cedar, clear water, outdoor activities, cabins, camping, and RV sites.",
 };
 
 export default function NorthshoreLodgePage() {
