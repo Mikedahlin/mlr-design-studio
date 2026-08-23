@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import EmberExperience from "./EmberExperience";
+import EmberExperience from "./EmberExperienceRebuild";
 
 export const metadata: Metadata = {
   title: "Ember | Upscale Supper Club",

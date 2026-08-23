@@ -1,0 +1,108 @@
+.site {
+  --ember-ink: #1a0d0a;
+  --ember-paper: #f3e6d2;
+  --ember-muted: #bba895;
+  --ember-line: rgba(243, 230, 210, 0.18);
+  --ember-copper: #d58f62;
+  background: var(--ember-ink);
+  color: var(--ember-paper);
+  font-family: var(--font-serif, Georgia, serif);
+  min-height: 100vh;
+  overflow: clip;
+}
+.topbar { align-items: center; display: flex; font-family: var(--font-sans, system-ui, sans-serif); justify-content: space-between; left: 0; letter-spacing: 0.14em; padding: 2rem clamp(1.2rem, 4vw, 4rem); position: absolute; right: 0; text-transform: uppercase; top: 0; z-index: 5; }
+.brand, .returnLink { color: var(--ember-paper); font-size: 0.78rem; font-weight: 700; text-decoration: none; }
+.brand { letter-spacing: 0.28em; }
+.returnLink { border-bottom: 1px solid var(--ember-line); padding-bottom: 0.35rem; }
+.topbarNote { color: rgba(243, 230, 210, 0.62); font-size: 0.63rem; }
+.hero { align-items: end; display: grid; isolation: isolate; min-height: min(920px, 92svh); overflow: hidden; padding: clamp(7rem, 15vw, 11rem) clamp(1.2rem, 8vw, 8rem) clamp(3rem, 7vw, 7rem); position: relative; }
+.heroMedia, .heroShade { inset: 0; position: absolute; }
+.heroMedia { z-index: -2; }
+.heroShade { background: linear-gradient(90deg, rgba(16, 7, 5, 0.88) 0%, rgba(16, 7, 5, 0.5) 48%, rgba(16, 7, 5, 0.18) 100%), linear-gradient(0deg, var(--ember-ink) 0%, transparent 45%); z-index: -1; }
+.heroContent { max-width: 760px; }
+.eyebrow { color: var(--ember-copper); font: 700 0.7rem/1.4 var(--font-sans, system-ui, sans-serif); letter-spacing: 0.22em; margin: 0 0 1.2rem; text-transform: uppercase; }
+.hero h1 { font-size: clamp(4rem, 10vw, 9.4rem); font-weight: 300; letter-spacing: -0.06em; line-height: 0.86; margin: 0; }
+.hero h1 em { color: var(--ember-copper); font-style: italic; }
+.heroIntro { color: rgba(243, 230, 210, 0.82); font: 1.05rem/1.65 var(--font-sans, system-ui, sans-serif); margin: 2rem 0; max-width: 510px; }
+.heroActions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.button, .buttonGhost, .textButton, .tab, .tabActive, .link, .linkActive { cursor: pointer; font-family: var(--font-sans, system-ui, sans-serif); }
+.button, .buttonGhost { border: 1px solid var(--ember-copper); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; padding: 1rem 1.25rem; text-transform: uppercase; transition: background 180ms ease, color 180ms ease; }
+.button { background: var(--ember-copper); color: var(--ember-ink); }
+.button:hover { background: var(--ember-paper); border-color: var(--ember-paper); }
+.buttonGhost { background: transparent; color: var(--ember-paper); }
+.buttonGhost:hover { background: rgba(243, 230, 210, 0.12); }
+.heroMeta { border-top: 1px solid var(--ember-line); display: flex; flex-wrap: wrap; gap: 2rem; margin-top: clamp(4rem, 10vw, 9rem); padding-top: 1rem; }
+.heroMeta span { color: rgba(243, 230, 210, 0.64); font: 0.65rem var(--font-sans, system-ui, sans-serif); letter-spacing: 0.15em; }
+.heroMeta b { color: var(--ember-copper); margin-right: 0.4rem; }
+.statement, .menuSection, .experiences, .inquirySection { margin: 0 auto; max-width: 1440px; padding: clamp(5rem, 10vw, 10rem) clamp(1.2rem, 5vw, 5rem); }
+.statement { max-width: 1000px; text-align: center; }
+.statement h2, .sectionHeading h2, .storyCopy h2, .inquiryIntro h2 { font-size: clamp(2.8rem, 6vw, 6.2rem); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin: 0; }
+.statement h2 { margin-bottom: 1.8rem; }
+.statement > p:last-child { color: var(--ember-muted); font: 1rem/1.8 var(--font-sans, system-ui, sans-serif); margin: 0 auto; max-width: 650px; }
+.menuSection { border-top: 1px solid var(--ember-line); }
+.sectionHeading { align-items: end; display: flex; gap: 3rem; justify-content: space-between; margin-bottom: 3.5rem; }
+.sectionLead { color: var(--ember-muted); font: 0.95rem/1.7 var(--font-sans, system-ui, sans-serif); margin: 0; max-width: 360px; }
+.tabs { border-bottom: 1px solid var(--ember-line); display: flex; gap: 1.5rem; margin-bottom: 3rem; }
+.tab, .tabActive { background: transparent; border: 0; border-bottom: 2px solid transparent; color: var(--ember-muted); font-size: 0.72rem; letter-spacing: 0.16em; padding: 0 0 1rem; }
+.tabActive { border-color: var(--ember-copper); color: var(--ember-paper); }
+.tab:hover { color: var(--ember-paper); }
+.plateGrid { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); margin-bottom: 5rem; }
+.plateCard { background: #241310; }
+.plateImage { aspect-ratio: 1 / 1.1; overflow: hidden; position: relative; }
+.plateCard img { transition: transform 700ms ease; }
+.plateCard:hover img { transform: scale(1.04); }
+.plateCopy { padding: 1.1rem 1.2rem 1.35rem; }
+.plateCopy span, .experienceCopy > span, .specialCard > span { color: var(--ember-copper); font: 700 0.62rem var(--font-sans, system-ui, sans-serif); letter-spacing: 0.15em; text-transform: uppercase; }
+.plateCopy h3 { font-size: 1.35rem; font-weight: 400; margin: 0.45rem 0 0; }
+.menuColumns { display: grid; gap: 3rem; grid-template-columns: repeat(3, 1fr); }
+.menuListHeading { border-bottom: 1px solid var(--ember-copper); margin-bottom: 0.4rem; padding-bottom: 1rem; }
+.menuListHeading h3 { font-size: 1.8rem; font-weight: 400; margin: 0 0 0.25rem; }
+.menuListHeading p { color: var(--ember-muted); font: 0.75rem var(--font-sans, system-ui, sans-serif); margin: 0; }
+.menuItem { border-bottom: 1px solid var(--ember-line); padding: 1.15rem 0; }
+.menuItem h4 { font-size: 1.08rem; font-weight: 400; margin: 0 0 0.35rem; }
+.menuItem p { color: var(--ember-muted); font: 0.78rem/1.55 var(--font-sans, system-ui, sans-serif); margin: 0; }
+.drinkView { background: #251511; display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
+.drinkPhoto { min-height: 480px; position: relative; }
+.drinkList { padding: clamp(2rem, 5vw, 5rem); }
+.drinkList h3 { font-size: clamp(2.3rem, 4vw, 4.6rem); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin: 0 0 2rem; max-width: 430px; }
+.drinkItem { border-top: 1px solid var(--ember-line); padding: 1.15rem 0; }
+.drinkItem h4 { font-size: 1.15rem; font-weight: 400; margin: 0 0 0.35rem; }
+.drinkItem p { color: var(--ember-muted); font: 0.78rem var(--font-sans, system-ui, sans-serif); margin: 0; }
+.specialGrid { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+.specialCard { background: #291713; border-top: 1px solid var(--ember-copper); display: flex; flex-direction: column; min-height: 330px; padding: 1.6rem; }
+.specialCard h3 { font-size: 2rem; font-weight: 400; letter-spacing: -0.03em; margin: 2.4rem 0 1rem; }
+.specialCard p { color: var(--ember-muted); font: 0.9rem/1.7 var(--font-sans, system-ui, sans-serif); margin: 0; }
+.textButton { background: transparent; border: 0; color: var(--ember-paper); font-size: 0.68rem; letter-spacing: 0.13em; margin-top: auto; padding: 2rem 0 0; text-align: left; text-transform: uppercase; }
+.textButton span { color: var(--ember-copper); font-size: 1.1rem; margin-left: 0.4rem; }
+.fireStory { align-items: stretch; background: #291713; display: grid; grid-template-columns: 1fr 1fr; }
+.storyImage { min-height: 680px; position: relative; }
+.storyCopy { align-self: center; max-width: 570px; padding: clamp(3rem, 7vw, 8rem); }
+.storyCopy h2 { margin-bottom: 1.8rem; }
+.storyCopy > p:not(.eyebrow) { color: var(--ember-muted); font: 1rem/1.8 var(--font-sans, system-ui, sans-serif); margin: 0 0 2rem; max-width: 450px; }
+.experiences { border-bottom: 1px solid var(--ember-line); }
+.experienceGrid { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+.experienceCard { background: #251511; }
+.experienceImage { aspect-ratio: 1 / 0.86; overflow: hidden; position: relative; }
+.experienceCopy { padding: 1.45rem; }
+.experienceCopy h3 { font-size: 1.8rem; font-weight: 400; margin: 0.6rem 0 0.75rem; }
+.experienceCopy p { color: var(--ember-muted); font: 0.85rem/1.65 var(--font-sans, system-ui, sans-serif); margin: 0; }
+.inquirySection { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: minmax(240px, 0.8fr) minmax(400px, 1.2fr); }
+.inquiryIntro h2 { margin-bottom: 1.5rem; }
+.inquiryIntro > p:not(.eyebrow) { color: var(--ember-muted); font: 0.9rem/1.7 var(--font-sans, system-ui, sans-serif); max-width: 390px; }
+.inquiryLinks { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 2rem; }
+.link, .linkActive { background: transparent; border: 0; color: var(--ember-muted); font-size: 0.68rem; letter-spacing: 0.15em; padding: 0.5rem 0; text-align: left; text-transform: uppercase; }
+.linkActive { color: var(--ember-copper); }
+.link:hover { color: var(--ember-paper); }
+.inquiryForm { background: #251511; padding: clamp(1.5rem, 4vw, 4rem); }
+.formGrid { display: grid; gap: 1.6rem; grid-template-columns: 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.6rem; }
+.field span { color: var(--ember-copper); font: 700 0.62rem var(--font-sans, system-ui, sans-serif); letter-spacing: 0.15em; }
+.field input, .field select, .field textarea { background: transparent; border: 0; border-bottom: 1px solid var(--ember-line); border-radius: 0; color: var(--ember-paper); font: 1rem var(--font-sans, system-ui, sans-serif); outline: 0; padding: 0.55rem 0; width: 100%; }
+.field textarea { border: 1px solid var(--ember-line); padding: 0.8rem; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--ember-copper); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(243, 230, 210, 0.36); }
+.field option { background: var(--ember-ink); color: var(--ember-paper); }
+.success { border-left: 2px solid var(--ember-copper); color: var(--ember-paper); font: 0.8rem/1.5 var(--font-sans, system-ui, sans-serif); margin: 1.5rem 0 0; padding-left: 0.8rem; }
+.footer { border-top: 1px solid var(--ember-line); color: var(--ember-muted); display: flex; font: 0.6rem var(--font-sans, system-ui, sans-serif); justify-content: space-between; letter-spacing: 0.13em; padding: 1.5rem clamp(1.2rem, 5vw, 5rem); text-transform: uppercase; }
+@media (max-width: 900px) { .topbarNote { display: none; } .plateGrid, .experienceGrid { grid-template-columns: repeat(2, 1fr); } .menuColumns { grid-template-columns: 1fr 1fr; } .menuList:last-child { grid-column: span 2; } .drinkView, .fireStory, .inquirySection { grid-template-columns: 1fr; } .storyImage { min-height: 500px; } }
+@media (max-width: 620px) { .topbar { padding-top: 1.2rem; } .returnLink { font-size: 0.62rem; } .hero { min-height: 770px; } .hero h1 { font-size: clamp(3.4rem, 17vw, 6rem); } .heroMeta { gap: 0.8rem 1rem; } .heroMeta span { font-size: 0.55rem; } .sectionHeading { align-items: start; flex-direction: column; gap: 1rem; } .plateGrid, .menuColumns, .specialGrid, .experienceGrid { grid-template-columns: 1fr; } .menuList:last-child { grid-column: auto; } .drinkPhoto { min-height: 360px; } .storyImage { min-height: 360px; } .formGrid { grid-template-columns: 1fr; gap: 0; } .footer { align-items: start; flex-direction: column; gap: 0.75rem; line-height: 1.4; } }
