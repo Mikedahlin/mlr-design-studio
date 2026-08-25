@@ -9,7 +9,7 @@ type MenuTab = "MENU" | "DRINKS" | "SPECIALS";
 
 const plateShots = [
   { name: "Coal-roasted ribeye", label: "FROM THE FIRE", image: "/media/production/ember/ember-dish-hero.webp", alt: "A grilled steak on a white plate with candlelight behind it" },
-  { name: "The live-fire table", label: "FOR THE TABLE", image: "/media/production/ember/ember-grill-card-CONCEPT.webp", alt: "Steaks, corn, mushrooms, and vegetables arranged around a live grill" },
+  { name: "The live-fire table", label: "FOR THE TABLE", image: "/media/production/ember/ember-grill-hero-CONCEPT.webp", alt: "Steaks, corn, mushrooms, and vegetables arranged around a live grill" },
   { name: "Smoke, citrus, and rye", label: "FROM THE BAR", image: "/media/production/ember/ember-cocktail-hero.webp", alt: "A whiskey cocktail glowing beside a flame" },
   { name: "Green things, warmed slowly", label: "FROM THE GARDEN", image: "/media/production/ember/ember-macro-oil-hero-CONCEPT.webp", alt: "Green herb oil and fire-warmed ingredients on a dark plate" }
 ];
