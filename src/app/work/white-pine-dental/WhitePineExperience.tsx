@@ -70,7 +70,7 @@ export default function WhitePineExperience() {
 
       <main id="main">
         <section className={styles.hero} id="top">
-          <Image className={styles.heroImage} src="/media/production/whitepine/whitepine-chair-hero-CONCEPT.webp" alt="A serene White Pine Dental practice interior" fill priority sizes="100vw" />
+          <Image className={styles.heroImage} src="/media/production/whitepine/whitepine-chair-card-CONCEPT.webp" alt="A serene White Pine Dental practice interior" fill priority sizes="100vw" />
           <div className={styles.heroShade} />
           <div className={styles.heroContent}>
             <p className={styles.eyebrow}>North woods calm · modern dental care</p>
