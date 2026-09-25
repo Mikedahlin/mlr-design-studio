@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "@types/three": "^0.185.4",
     "framer-motion": "^12.42.2",
     "next": "16.2.12",
@@ -27,5 +29,22 @@
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mikedahlin/mlr-design-studio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  
+  "bugs": {
+    "url": "https://github.com/Mikedahlin/mlr-design-studio/issues"
+  },
+  "homepage": "https://github.com/Mikedahlin/mlr-design-studio#readme"
 }
