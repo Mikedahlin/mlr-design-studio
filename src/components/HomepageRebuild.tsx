@@ -13,6 +13,25 @@ import s from "./HomepageRebuild.module.css";
 const mod=(n:number,l:number)=>((n%l)+l)%l;
 const dist=(i:number,p:number)=>{let d=i-mod(p,6);if(d>3)d-=6;if(d<-3)d+=6;return d};
 
+function startCardVideo(video: HTMLVideoElement, active: boolean) {
+  video.dataset.active = active ? "true" : "false";
+  if (!video.dataset.playbackBound) {
+    const retry = () => {
+      if (video.dataset.active === "true") void video.play().catch(() => {});
+    };
+    video.addEventListener("canplay", retry);
+    video.addEventListener("loadeddata", retry);
+    video.dataset.playbackBound = "true";
+  }
+  if (active) {
+    if (video.readyState === HTMLMediaElement.HAVE_NOTHING) video.load();
+    void video.play().catch(() => {});
+  } else if (!video.paused || video.currentTime > 0) {
+    video.pause();
+    video.currentTime = 0;
+  }
+}
+
 function Gallery({navOpen}:{navOpen:boolean}){
   const[selected,setSelected]=useState(0);
   const[open,setOpen]=useState(false);
@@ -46,8 +65,10 @@ function Gallery({navOpen}:{navOpen:boolean}){
         card.classList.toggle(s.frontCard,front);
         card.setAttribute("aria-hidden",String(!front));
         const b=card.querySelector("a");if(b)b.tabIndex=front?0:-1;
-        const video=card.querySelector("video");
-        if(video){if(front){if(video.paused)void video.play().catch(()=>{})}else if(!video.paused)video.pause()}
+      }
+      const video=card.querySelector<HTMLVideoElement>("video");
+      if(video){
+        startCardVideo(video,front);
       }
     });
   },[]);
