@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.mlrassets.com";
-  const routes = [""];
+  const routes = ["", "/about", "/services", "/work", "/contact"];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
