@@ -6,14 +6,16 @@ import {useCallback,useEffect,useLayoutEffect,useRef,useState,type CSSProperties
 const siteHref=(slug:string)=>`/work/${slug}`;
 import {useMotionValue,animate} from "framer-motion";
 import {lockedConcepts} from "./lockedWheelData";
+const CARD_COUNT = lockedConcepts.length;
 import {commitWheelSelection,getAutoTurnDuration,getAutoTurnTarget,getCardTapAction} from "./homepageWheelLogic.mjs";
 import NeonMark from "./NeonMark";
 import HomepageFoldingNav from "./HomepageFoldingNav";
 import s from "./HomepageRebuild.module.css";
 const mod=(n:number,l:number)=>((n%l)+l)%l;
-const dist=(i:number,p:number)=>{let d=i-mod(p,6);if(d>3)d-=6;if(d<-3)d+=6;return d};
+const dist=(i:number,p:number)=>{let d=i-mod(p,CARD_COUNT);if(d>CARD_COUNT/2)d-=CARD_COUNT;if(d<-CARD_COUNT/2)d+=CARD_COUNT;return d};
 
 function startCardVideo(video: HTMLVideoElement, active: boolean) {
+  video.muted = true; // card previews stay silent; guards autoplay when the mp4 has an audio track
   video.dataset.active = active ? "true" : "false";
   if (!video.dataset.playbackBound) {
     const retry = () => {
@@ -55,7 +57,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
     const reachBase=innerWidth*(mobile?.48:.58);
     const reach=Math.min(reachBase,mobile?140:720);
     cards.forEach((card,i)=>{
-      const d=dist(i,v),a=d*Math.PI/3,cos=Math.cos(a),depth=(cos+1)/2,z=cos*(mobile?180:500),x=Math.sin(a)*reach,front=i===selectedRef.current,scale=mobile?.52+depth*.44:.52+depth*.50;
+      const d=dist(i,v),a=d*Math.PI*2/CARD_COUNT,cos=Math.cos(a),depth=(cos+1)/2,z=cos*(mobile?180:500),x=Math.sin(a)*reach,front=i===selectedRef.current,scale=mobile?.52+depth*.44:.52+depth*.50;
       card.style.transform=`translate3d(${x.toFixed(2)}px,${(-depth*(mobile?5:11)).toFixed(2)}px,${z.toFixed(2)}px) scale(${scale.toFixed(4)}) rotateY(${(-Math.sin(a)*(mobile?10:19)).toFixed(2)}deg)`;
       card.style.opacity=String((.18+depth*.82).toFixed(3));
       card.style.zIndex=String(Math.round(depth*30));
@@ -111,7 +113,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
             ease:"linear",
             onComplete:()=>{
               animRef.current=null;
-              const n=commitWheelSelection(selectedRef.current,rawPos.get(),true);
+              const n=commitWheelSelection(selectedRef.current,rawPos.get(),true,CARD_COUNT);
               selectedRef.current=n;
               setSelected(n);
             }
@@ -139,14 +141,14 @@ function Gallery({navOpen}:{navOpen:boolean}){
       damping:30,
       mass:.8,
       restDelta:.0001,
-      onComplete:()=>{animRef.current=null;const n=commitWheelSelection(selectedRef.current,rawPos.get(),true);selectedRef.current=n;setSelected(n)}
+      onComplete:()=>{animRef.current=null;const n=commitWheelSelection(selectedRef.current,rawPos.get(),true,CARD_COUNT);selectedRef.current=n;setSelected(n)}
     });
   },[rawPos,stopAnim]);
 
   useEffect(()=>{
     const key=(e:KeyboardEvent)=>{
-      if(e.key==="ArrowRight"){e.preventDefault();go(mod(Math.round(rawPos.get())+1,6))}
-      if(e.key==="ArrowLeft"){e.preventDefault();go(mod(Math.round(rawPos.get())-1,6))}
+      if(e.key==="ArrowRight"){e.preventDefault();go(mod(Math.round(rawPos.get())+1,CARD_COUNT))}
+      if(e.key==="ArrowLeft"){e.preventDefault();go(mod(Math.round(rawPos.get())-1,CARD_COUNT))}
       if(e.key==="Escape")setOpen(false);
     };
     addEventListener("keydown",key);
@@ -176,7 +178,7 @@ function Gallery({navOpen}:{navOpen:boolean}){
 
   const settle=()=>{
     const snap=Math.round(rawPos.get());
-    animRef.current=animate(rawPos,snap,{type:"spring",stiffness:150,damping:20,mass:.9,restDelta:.0001,onComplete:()=>{animRef.current=null;const n=commitWheelSelection(selectedRef.current,rawPos.get(),true);selectedRef.current=n;scene.current?.classList.remove(s.dragging);setSelected(n)}});
+    animRef.current=animate(rawPos,snap,{type:"spring",stiffness:150,damping:20,mass:.9,restDelta:.0001,onComplete:()=>{animRef.current=null;const n=commitWheelSelection(selectedRef.current,rawPos.get(),true,CARD_COUNT);selectedRef.current=n;scene.current?.classList.remove(s.dragging);setSelected(n)}});
   };
 
   const releasePointer=(e:PointerEvent<HTMLDivElement>)=>{

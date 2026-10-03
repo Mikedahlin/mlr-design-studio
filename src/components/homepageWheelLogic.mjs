@@ -4,8 +4,8 @@ export function getSnappedIndex(position, cardCount = 6) {
   return mod(Math.round(position), cardCount);
 }
 
-export function commitWheelSelection(currentIndex, position, settled) {
-  return settled ? getSnappedIndex(position) : currentIndex;
+export function commitWheelSelection(currentIndex, position, settled, cardCount = 6) {
+  return settled ? getSnappedIndex(position, cardCount) : currentIndex;
 }
 
 const AUTO_TURN_RATE = 0.000035;

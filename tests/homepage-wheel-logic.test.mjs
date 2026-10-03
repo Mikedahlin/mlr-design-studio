@@ -19,6 +19,13 @@ test("the visual position resolves to the nearest card", () => {
   assert.equal(getSnappedIndex(5.8), 0);
 });
 
+test("snapping honors the live card count", () => {
+  assert.equal(getSnappedIndex(5.8, 8), 6);
+  assert.equal(getSnappedIndex(7.1, 8), 7);
+  assert.equal(commitWheelSelection(0, 6, true, 8), 6);
+  assert.equal(commitWheelSelection(0, 6, false, 8), 0);
+});
+
 test("selection stays committed while motion is still in progress", () => {
   assert.equal(commitWheelSelection(1, 2.1, false), 1);
   assert.equal(commitWheelSelection(1, 2.1, true), 2);
