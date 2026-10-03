@@ -96,5 +96,34 @@ export const lockedConcepts: LockedConcept[] = [
     ink: "#fae6df",
     sub: "Your hair, louder.",
     line: "A fashion-forward salon site with editorial attitude and bold beauty movement.",
+  }\\
+},
+  {
+    slug: "buffalo-king",
+    name: "Buffalo King",
+    industry: "Live Build / Slot Game",
+    image: "/media/card-previews/buffalo-king-action.jpg",
+    video: "/media/card-previews/buffalo-king-action.mp4",
+    videoMobile: "/media/card-previews/buffalo-king-action.mp4",
+    poster: "/media/card-previews/buffalo-king-action.jpg",
+    accent: "#d59a32",
+    bg: "#1a1206",
+    ink: "#ffe9c4",
+    sub: "Spin the reels.",
+    line: "A fully playable web slot game with custom art, video, and sound - live at buffalo-king.vercel.app.",
+  },
+  {
+    slug: "alley-cat-ink",
+    name: "Alley Cat Ink",
+    industry: "Live Build / Tattoo & Piercing Studio",
+    image: "/media/production/alley-cat/alley-cat-card.jpg",
+    video: "/media/card-previews/alley-cat-reel.mp4",
+    videoMobile: "/media/card-previews/alley-cat-reel.mp4",
+    poster: "/media/card-previews/posters/alley-cat-ink.jpg",
+    accent: "#e8a038",
+    bg: "#0b0f0d",
+    ink: "#f4f4f1",
+    sub: "Walk-ins welcome.",
+    line: "A fast, mobile-first site for a Hutchinson tattoo studio - live at alleycatinkmn.com.",
   }
 ];
