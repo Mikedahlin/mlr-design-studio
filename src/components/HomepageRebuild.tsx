@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useCallback,useEffect,useLayoutEffect,useRef,useState,type CSSProperties,type MouseEvent,type PointerEvent} from "react";
 
-const siteHref=(slug:string)=>`/work/${slug}`;
+const siteHref=(slug:string)=>slug==="route7"?"https://route7-khaki.vercel.app/":`/work/${slug}`;
 import {useMotionValue,animate} from "framer-motion";
 import {lockedConcepts} from "./lockedWheelData";
 const CARD_COUNT = lockedConcepts.length;
