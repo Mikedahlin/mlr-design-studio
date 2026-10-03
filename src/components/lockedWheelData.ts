@@ -96,8 +96,7 @@ export const lockedConcepts: LockedConcept[] = [
     ink: "#fae6df",
     sub: "Your hair, louder.",
     line: "A fashion-forward salon site with editorial attitude and bold beauty movement.",
-  }\\
-},
+  },
   {
     slug: "buffalo-king",
     name: "Buffalo King",
