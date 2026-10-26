@@ -1,59 +1,25 @@
-"use client";
+﻿"use client";
 
 import AnimatedSection from "./AnimatedSection";
-import PricingCard from "./PricingCard";
 
-const plans = [
+const pricing = [
   {
-    name: "Starter",
-    price: "$2,500",
-    period: "one-time",
+    name: "Simple fixes",
+    price: "Scoped per fix",
     description:
-      "Perfect for a focused landing page, MVP, or single-page site that needs to look professional and load fast.",
-    features: [
-      "Single-page or simple multi-page site",
-      "Custom design and development",
-      "Responsive, mobile-first build",
-      "Basic SEO setup",
-      "2 revision rounds",
-      "14-day delivery",
-    ],
-    cta: "Get Started",
+      "Speed, styling, or mobile fixes on an existing site. You’ll know the price before I start.",
   },
   {
-    name: "Professional",
-    price: "$5,000",
-    period: "- $12,000",
+    name: "Custom websites",
+    price: "From $99/mo",
     description:
-      "Full custom website for growing businesses. Multiple pages,CMS integration, and conversion-focused design.",
-    features: [
-      "Multi-page custom website",
-      "Custom design system",
-      "CMS integration (Sanity, Contentful, etc.)",
-      "Advanced SEO + analytics",
-      "Interactive elements & animations",
-      "Priority support for 30 days",
-      "3-week delivery",
-    ],
-    cta: "Start a Project",
-    highlighted: true,
+      "A full custom build for local businesses: free build, $99/mo care plan, and you keep the site for 12 months on-time.",
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
+    name: "Bigger builds",
+    price: "Custom quote",
     description:
-      "Complex builds — web apps, e-commerce platforms, or multi-site architectures. Scoped to your needs.",
-    features: [
-      "Full-stack web application",
-      "Custom API integrations",
-      "E-commerce / payments",
-      "Performance & security audits",
-      "Dedicated project manager",
-      "Ongoing support retainer available",
-      "Timeline: scoped per project",
-    ],
-    cta: "Book a Call",
+      "Web apps, online stores, and anything bigger than a website. I’ll scope it and give you one straight number.",
   },
 ];
 
@@ -66,37 +32,35 @@ export default function Pricing() {
             Pricing
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-            Transparent pricing,
+            Straight pricing,
             <br className="hidden md:block" />
             <span className="gradient-text"> no surprises</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Unlike traditional agencies, we publish our ranges. Every project
-            is scoped individually, but you&apos;ll know what ballpark
-            you&apos;re in before we ever talk.
+            Every project is scoped individually — you’ll know exactly what
+            it costs before I start anything. Small fixes, full builds, and
+            everything in between.
           </p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
-          {plans.map((plan, index) => (
+          {pricing.map((plan, index) => (
             <AnimatedSection key={plan.name} delay={index * 0.1}>
-              <PricingCard
-                name={plan.name}
-                price={plan.price}
-                period={plan.period}
-                description={plan.description}
-                features={plan.features}
-                cta={plan.cta}
-                highlighted={plan.highlighted}
-              />
+              <div className="glass-card p-6 md:p-8 h-full">
+                <h3 className="text-lg font-semibold text-text mb-2">{plan.name}</h3>
+                <p className="text-2xl font-bold gradient-text mb-4">{plan.price}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {plan.description}
+                </p>
+              </div>
             </AnimatedSection>
           ))}
         </div>
 
         <AnimatedSection className="text-center mt-8" delay={0.3}>
           <p className="text-xs text-text-muted">
-            All prices in USD. Payment milestones available for larger
-            projects.
+            Every project scoped individually. You approve the price before I
+            start, and I don’t bill past what you approved.
           </p>
         </AnimatedSection>
       </div>

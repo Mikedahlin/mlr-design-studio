@@ -11,7 +11,7 @@ export default function FinalCTA() {
           <div className="relative overflow-hidden border border-border bg-ink">
             <div className="relative px-6 py-16 md:px-12 md:py-20 text-center">
               <p className="mono-label text-xs text-primary mb-4">
-                Human Crafted, 2026
+                MLR Assets LLC
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-5">
                 Ready to build
@@ -26,13 +26,13 @@ export default function FinalCTA() {
                   href="/contact"
                   className="bg-primary text-background px-8 py-4 mono-label text-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[3px_3px_0_#ffffff] transition-all"
                 >
-                  Book a Free Call
+                  Get in Touch
                 </Link>
                 <Link
                   href="/work"
                   className="border border-background text-background px-8 py-4 mono-label text-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[3px_3px_0_#ff3e1a] transition-all"
                 >
-                  See Case Studies
+                  See the Work
                 </Link>
               </div>
             </div>

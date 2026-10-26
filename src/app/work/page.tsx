@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Work | MLR Assets",
   description:
-    "See what we build: custom websites and digital experiences for real businesses.",
+    "Real projects, live and visitable.",
   alternates: {
     canonical: "/work",
   },
@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: "Majestic Pine Renovations",
     category: "Client Project",
     description:
-      "Custom website for a construction contractor — project galleries, service pages, and lead generation forms built with modern web tooling.",
+      "Custom website for a construction contractor — project galleries, service pages, and lead generation.",
     metrics: [
       { label: "Status", value: "Live" },
       { label: "Stack", value: "Full Build" },
@@ -64,13 +64,12 @@ export default function WorkPage() {
             <AnimatedSection>
               <p className="mono-label text-xs text-primary mb-3">Work</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Proof over
-                <span className="gradient-text"> promises</span>
+                Real work.
+                <span className="gradient-text"> No promises.</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-                We lead with outcomes. Every project page includes real
-                metrics — load times, conversion rates, Lighthouse scores.
-                Here&apos;s what we&apos;ve built so far.
+                Real projects, no invented numbers. The projects below are
+                live � you can visit them yourself.
               </p>
             </AnimatedSection>
           </div>
@@ -165,10 +164,10 @@ export default function WorkPage() {
           {/* Process CTA */}
           <AnimatedSection className="mt-12 text-center" delay={0.3}>
             <div className="glass-card p-8 md:p-10 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold text-text mb-3">Want to see how we build?</h3>
+              <h3 className="text-xl font-bold text-text mb-3">Want to see how I build??</h3>
               <p className="text-sm text-text-secondary mb-6">
-                We document our build process for every project. Ask us
-                about our transparent workflow on your next project.
+                I walk you through the process at every step. Ask me
+                about it � no mystery, no surprises.
               </p>
               <Link href="/contact" className="btn-primary">
                 Start a Project

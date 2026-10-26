@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "About | MLR Assets",
   description:
-    "A small web and visual design studio focused on clear thinking, strong craft, and measurable results.",
+    "A one-person web and visual design studio in Minnesota. Clear thinking, strong craft, and straight answers.",
   alternates: {
     canonical: "/about",
   },
@@ -14,24 +14,24 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    title: "Transparency First",
+    title: "Straight Answers",
     description:
-      "We show the plan, the work, the timeline, and the handoff clearly. No black boxes.",
+      "I tell you what I can do, what I can’t, and what it costs before you pay anything. No black boxes, no surprise fees.",
   },
   {
-    title: "Speed Without Shortcuts",
+    title: "Care Over Speed",
     description:
-      "We move quickly without skipping the details that make a site dependable, accessible, and easy to use.",
+      "I move fast, but not at the expense of the details that make a site dependable, accessible, and easy to use.",
   },
   {
-    title: "Results Over Aesthetics",
+    title: "No Hype",
     description:
-      "Beautiful sites that don't convert are expensive art. We design for measurable outcomes — traffic, leads, revenue.",
+      "I won’t promise you a #1 ranking on Google or invent results to win a sale. What I do: real, findable, working websites.",
   },
   {
-    title: "Client Ownership",
+    title: "You Own Everything",
     description:
-      "You own everything — code, design, content. No lock-in, no hidden pricing, no platform dependency, no surprise fees. Sleep good knowing if anything ever happens to us, your site stays the same.",
+      "You own your code, your design, your content. If you ever want to walk away, everything comes with you — no lock-in.",
   },
 ];
 
@@ -44,17 +44,17 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <AnimatedSection>
               <p className="mono-label text-xs text-primary mb-3">
-                About Us
+                About
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Built for the
-                <span className="gradient-text"> work that matters</span>
+                One person.
+                <span className="gradient-text"> No middlemen.</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-                MLR Assets is a small web and visual design studio. We pair
-                clear strategy, thoughtful design, and dependable code to
-                build sites that help real businesses earn attention and
-                make it easier for customers to take the next step.
+                MLR Assets is a one-person web and visual design studio.
+                When you work with me, you’re talking to the person who
+                plans, designs, builds, and tests every page. Nothing gets
+                lost in a handoff, because there isn’t one.
               </p>
             </AnimatedSection>
           </div>
@@ -66,47 +66,45 @@ export default function AboutPage() {
         <div className="container-custom px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <AnimatedSection>
-              <h2 className="text-3xl font-bold text-text mb-5">Our Story</h2>
+              <h2 className="text-3xl font-bold text-text mb-5">Why I started this</h2>
               <div className="space-y-4 text-text-secondary leading-relaxed">
                 <p>
-                  The web development industry often makes a choice between
-                  do-it-yourself builders and expensive agency processes. Both
-                  can leave a business with the wrong fit. We believe you
-                  should own your site with no hidden fees.
+                  Small businesses usually get two choices: a cheap DIY builder
+                  that makes your site look like everyone else’s, or an
+                  agency that charges more than the site earns. Both are a
+                  bad fit for most local shops and contractors.
                 </p>
                 <p>
-                  Do-it-yourself builders can be fast but generic. Traditional
-                  agencies can deliver quality but at a pace and price that
-                  excludes many businesses who need it. Your site should be
-                  specific to your work, not a compromise.
+                  Your site should be built around your business — not a
+                  template, not a committee. It should be findable when
+                  someone in your town searches for what you do, and it
+                  should be easy for a customer to call or book.
                 </p>
                 <p>
-                  MLR Assets fills the gap with direct, focused collaboration.
-                  You work with the person making the decisions, the design,
-                  and the code. The result is a site with agency-level care
-                  without layers of handoffs or unnecessary meetings.
+                  I built MLR Assets to be that middle path: real craft,
+                  one person, a fair price, and a site you actually own.
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <h2 className="text-3xl font-bold text-text mb-5">Our Approach</h2>
+              <h2 className="text-3xl font-bold text-text mb-5">How I work</h2>
               <div className="space-y-4 text-text-secondary leading-relaxed">
                 <p>
-                  Every project starts with strategy. We learn your business,
-                  your audience, and your goals. Then we plan the structure,
-                  design the experience, build the site, and personally review
-                  every detail before handoff.
+                  Every project starts with a conversation. I learn what your
+                  business does, who your customers are, and what you actually
+                  need — not just what looks good.
                 </p>
                 <p>
-                  The process is collaborative and practical. You get clear
-                  decisions, visible progress, and a finished site that your
-                  business can actually own and use. We believe in working as
-                  hard as you do.
+                  Then I plan the structure, design it, build it, and review
+                  every page on desktop and mobile before it goes live.
+                  You see progress the whole way, and you get a say in every
+                  decision.
                 </p>
                 <p>
-                  We&apos;re transparent because you deserve to know how your site
-                  gets planned, built, tested, and handed over.
+                  When it’s done, you get a site that works and you know how
+                  to use it. If anything ever needs fixing, you call me.
+                  That’s the whole process.
                 </p>
               </div>
             </AnimatedSection>
@@ -122,7 +120,7 @@ export default function AboutPage() {
               Values
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text">
-              What we stand for
+              What I stand for
             </h2>
           </AnimatedSection>
 
@@ -148,14 +146,14 @@ export default function AboutPage() {
         <div className="container-custom px-4 md:px-6">
           <AnimatedSection className="text-center mb-12">
             <p className="mono-label text-xs text-primary mb-3">
-              Team
+              Who
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              The people behind the work
+              The person behind the work
             </h2>
             <p className="text-text-secondary max-w-xl mx-auto">
-              A small, focused team. Every person here builds — no
-              middlemen, no account managers, no wasted meetings.
+              No account managers, no subcontractors, no meetings that
+              could have been an email. You talk to the builder.
             </p>
           </AnimatedSection>
 
@@ -171,14 +169,14 @@ export default function AboutPage() {
                 />
               </div>
               <h3 className="text-xl font-semibold text-text mb-2">
-                Founder & Lead Developer
+                Mike Dahlin
               </h3>
               <p className="text-sm text-text-muted mb-4">
-                MLR Assets LLC
+                Founder &amp; Builder — MLR Assets LLC
               </p>
               <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto">
-                Building useful digital work for real businesses — not chasing
-                hype, not overselling capabilities.
+                I build websites for real businesses. No hype, no overselling,
+                just work I’m willing to put my name on.
               </p>
             </div>
           </AnimatedSection>

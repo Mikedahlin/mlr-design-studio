@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import Pricing from "@/components/Pricing";
 import FinalCTA from "@/components/FinalCTA";
@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Services | MLR Assets",
   description:
-    "Custom web development, applications, e-commerce, performance optimization, and business integrations.",
+    "Websites, custom applications, online stores, and site fixes — built by one person, priced straight.",
   alternates: {
     canonical: "/services",
   },
@@ -14,74 +14,49 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    title: "Web Development",
+    title: "Website Design",
     description:
-      "Custom websites planned, designed, and built around your business, audience, and goals.",
+      "A custom website built around your business — not a template. Designed to look sharp, load fast, and make it easy for customers to call or book.",
     features: [
-      "Custom design (not templates)",
-      "Strategy-led development",
-      "Responsive, mobile-first builds",
-      "Performance-optimized (sub-2s loads)",
-      "SEO-ready architecture",
+      "Custom design, no template look",
+      "Mobile-first build",
+      "Google Business Profile setup",
+      "Local SEO basics",
+      "Contact and booking forms",
     ],
   },
   {
     title: "Custom Applications",
     description:
-      "Full-stack web apps, dashboards, and internal tools. React, Next.js, and modern frameworks — built to your specifications with clean, maintainable code.",
+      "Got a tool your business needs that doesn’t exist yet? I build custom web apps for booking, scheduling, quoting, and whatever else your workflow needs.",
     features: [
-      "React / Next.js / TypeScript",
-      "API design and integration",
-      "Database design (PostgreSQL, MongoDB)",
-      "Authentication & authorization",
-      "Real-time features (WebSockets, SSE)",
+      "Booking and scheduling systems",
+      "Custom dashboards",
+      "Internal tools and forms",
+      "Data entry and reporting",
     ],
   },
   {
     title: "E-Commerce",
     description:
-      "Shopify stores, custom headless builds, or platform migrations. Optimized for conversion rate, page speed, and inventory management.",
+      "Sell online without the headache. A store your customers can actually use, and one you can manage yourself.",
     features: [
-      "Shopify / headless commerce",
-      "Payment integration (Stripe, etc.)",
-      "Product catalog management",
-      "Checkout optimization",
-      "Analytics & conversion tracking",
+      "Product and inventory setup",
+      "Payment processing",
+      "Order management",
+      "Training so you can run it yourself",
     ],
   },
   {
-    title: "Performance & SEO",
+    title: "Site Optimization",
     description:
-      "Core Web Vitals optimization, technical SEO audits, and speed improvements. Sites that rank higher and load faster — directly impacting revenue.",
+      "Your site already exists but it’s slow, broken, or invisible to Google? I fix it — without breaking your links or losing your content.",
     features: [
-      "Core Web Vitals audit & fixes",
-      "Technical SEO implementation",
-      "Page speed optimization",
-      "Schema markup & structured data",
-      "Ongoing monitoring & reporting",
-    ],
-  },
-  {
-    title: "Automation & Integrations",
-    description:
-      "Connect the tools your business already uses and streamline the work that happens behind your website.",
-    features: [
-      "Forms and lead routing",
-      "Search and data connections",
-      "Content and workflow automation",
-      "Custom API integrations",
-    ],
-  },
-  {
-    title: "Migrations & Redesigns",
-    description:
-      "Move from WordPress, Wix, Squarespace, or legacy platforms to modern stacks — without losing SEO equity, breaking links, or downtime.",
-    features: [
+      "Speed and performance fixes",
+      "Mobile and accessibility fixes",
+      "Google findability fixes",
       "Platform migration (WordPress, Wix, etc.)",
-      "301 redirect mapping",
-      "SEO equity preservation",
-      "Content migration & cleanup",
-      "Design refresh / rebrand",
+      "301 redirects and link cleanup",
     ],
   },
 ];
@@ -98,63 +73,42 @@ export default function ServicesPage() {
                 Services
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                What we
-                <span className="gradient-text"> build</span>
+                What I do<span className="gradient-text">.</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-                Full-spectrum web development for ambitious small businesses.
-                From landing pages to full-stack applications — we build
-                around your goals, not a template.
+                Websites, custom apps, online stores, and fixes for sites
+                that aren’t working. One person. You tell me what you need,
+                I tell you what it takes, and I build it.
               </p>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Services List */}
+      {/* Services Grid */}
       <section className="section">
         <div className="container-custom px-4 md:px-6">
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {services.map((service, index) => (
-              <AnimatedSection key={service.title} delay={index * 0.08}>
-                <div className="glass-card p-6 md:p-8 lg:p-10">
-                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
-                    <div className="lg:col-span-2">
-                      <h2 className="text-xl md:text-2xl font-bold text-text mb-3">
-                        {service.title}
-                      </h2>
-                      <p className="text-sm text-text-secondary leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                    <div className="lg:col-span-3">
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {service.features.map((feature) => (
-                          <li
-                            key={feature}
-                            className="flex items-start gap-3 text-sm"
-                          >
-                            <svg
-                              className="w-5 h-5 text-primary shrink-0 mt-0.5"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2}
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                            <span className="text-text-secondary">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+              <AnimatedSection key={service.title} delay={index * 0.1}>
+                <div className="glass-card p-6 md:p-8 h-full">
+                  <h2 className="text-xl font-bold text-text mb-3">
+                    {service.title}
+                  </h2>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-5">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 mb-5">
+                    {service.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="text-sm text-text-secondary flex items-start gap-2"
+                      >
+                        <span className="text-primary mt-1">→</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </AnimatedSection>
             ))}
@@ -162,7 +116,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Pricing */}
       <Pricing />
+
       <FinalCTA />
     </>
   );

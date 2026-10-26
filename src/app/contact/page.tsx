@@ -33,7 +33,7 @@ export default function ContactPage() {
       setSubmitted(true);
     } catch {
       setError(
-        "We could not send that message. Please email hello@mlrassets.com directly."
+        "I could not send that message. Please email hello@mlrassets.com directly."
       );
     } finally {
       setSubmitting(false);
@@ -50,7 +50,7 @@ export default function ContactPage() {
               Let&apos;s talk.
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg">
-              Tell us what you need. A name, an email, and a few words are
+              Tell me what you need. A name, an email, and a few words are
               enough to get the conversation started.
             </p>
           </div>
@@ -92,8 +92,8 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="mb-2 block text-sm font-medium text-text">How can we help?</label>
-                      <textarea id="message" name="message" required rows={6} className="w-full resize-y border border-border bg-card px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none" placeholder="Tell us what you have in mind." />
+                      <label htmlFor="message" className="mb-2 block text-sm font-medium text-text">How can I help??</label>
+                      <textarea id="message" name="message" required rows={6} className="w-full resize-y border border-border bg-card px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none" placeholder="Tell me what you have in mind." />
                     </div>
 
                     {error && <p className="text-sm text-primary" role="alert">{error}</p>}

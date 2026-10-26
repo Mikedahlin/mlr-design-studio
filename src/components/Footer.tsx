@@ -19,8 +19,6 @@ const footerLinks = {
   ],
 };
 
-
-
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
@@ -37,7 +35,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-text-secondary leading-relaxed max-w-xs">
-              Custom websites, branding, and visual design with direct one-person service.
+              Websites, branding, and visual design — one person, direct with you, no middlemen.
             </p>
             <a
               href="tel:+13202009969"
@@ -95,28 +93,48 @@ export default function Footer() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
+                role="img"
               >
+                {/* 13 stripes: 7 red, 6 white */}
                 <rect width="24" height="16" fill="#B22234" />
-                <rect y="2" width="24" height="2" fill="#fff" />
-                <rect y="6" width="24" height="2" fill="#fff" />
-                <rect y="10" width="24" height="2" fill="#fff" />
-                <rect width="10" height="8" fill="#3C3B6E" />
-                {/* Simple star pattern */}
-                <g fill="#fff" transform="translate(1,1) scale(0.9)">
-                  <circle cx="1" cy="1" r="0.6" />
-                  <circle cx="3" cy="1" r="0.6" />
-                  <circle cx="5" cy="1" r="0.6" />
-                  <circle cx="2" cy="2.5" r="0.6" />
-                  <circle cx="4" cy="2.5" r="0.6" />
+                <rect y="1.2308" width="24" height="1.2308" fill="#fff" />
+                <rect y="3.6923" width="24" height="1.2308" fill="#fff" />
+                <rect y="6.1538" width="24" height="1.2308" fill="#fff" />
+                <rect y="8.6154" width="24" height="1.2308" fill="#fff" />
+                <rect y="11.0769" width="24" height="1.2308" fill="#fff" />
+                <rect y="13.5385" width="24" height="1.2308" fill="#fff" />
+                {/* Canton: 7/13 of the height, 2/5 of the width */}
+                <rect width="9.6" height="8.6154" fill="#3C3B6E" />
+                {/* 50 stars: 9 rows alternating 6 and 5, evenly spaced */}
+                <g fill="#fff">
+                  {[0, 1, 2, 3, 4].map((row) => (
+                    <g key={`row6-${row}`}>
+                      {[0, 1, 2, 3, 4, 5].map((col) => (
+                        <circle
+                          key={`s6-${row}-${col}`}
+                          cx={0.9 + col * 1.56}
+                          cy={0.85 + row * 1.731}
+                          r="0.36"
+                        />
+                      ))}
+                    </g>
+                  ))}
+                  {[0, 1, 2, 3].map((row) => (
+                    <g key={`row5-${row}`}>
+                      {[0, 1, 2, 3, 4].map((col) => (
+                        <circle
+                          key={`s5-${row}-${col}`}
+                          cx={1.68 + col * 1.56}
+                          cy={1.715 + row * 1.731}
+                          r="0.36"
+                        />
+                      ))}
+                    </g>
+                  ))}
                 </g>
               </svg>
               <span className="mono-label text-[11px] text-text-muted">Made in America</span>
             </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 mono-label text-[11px] text-text-muted">
-            <span className="w-1.5 h-1.5 bg-primary" />
-            All systems operational
           </div>
         </div>
       </div>
