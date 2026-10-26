@@ -39,46 +39,18 @@ const projects: Project[] = [
     url: "https://majesticpinerenovations.com",
   },
   {
-    title: "Buselmeier Law — Live Site",
-    category: "Client Project · What Ted Chose",
+    title: "Buffalo King",
+    category: "Interactive Experience",
     description:
-      "The real site in production. We presented multiple design directions; this is the one the client selected. Practice area pages, attorney profile, and case results.",
+      "A playable slot-machine experience with custom art, synchronized sound, and a live production build.",
     metrics: [
       { label: "Status", value: "Live" },
-      { label: "Version", value: "In Production" },
-      { label: "Type", value: "Professional Site" },
+      { label: "Type", value: "Game Experience" },
+      { label: "Build", value: "Production" },
     ],
-    tags: ["Web Design", "Professional", "Client's Pick"],
+    tags: ["Interaction", "Motion", "Sound"],
     status: "Live",
-    url: "https://tedbuselmeierlaw.com",
-  },
-  {
-    title: "Buselmeier Law — Rendering A",
-    category: "Design Direction · Light & Traditional",
-    description:
-      "A clean, conservative law-firm direction — light palette, serif typography, structured sections built around trust and readability.",
-    metrics: [
-      { label: "Status", value: "Demo" },
-      { label: "Direction", value: "Light & Traditional" },
-      { label: "Type", value: "Static Build" },
-    ],
-    tags: ["Concept", "Traditional", "Trust-First"],
-    status: "Demo",
-    url: "https://www.mlrassets.com/templates/ted-v1/index.html",
-  },
-  {
-    title: "Buselmeier Law — Rendering B",
-    category: "Design Direction · Cinematic & Motion",
-    description:
-      "An immersive, motion-forward alternative — dark palette, bold display type, animated hero. A second real direction for the same client.",
-    metrics: [
-      { label: "Status", value: "Demo" },
-      { label: "Direction", value: "Cinematic & Motion" },
-      { label: "Type", value: "React Build" },
-    ],
-    tags: ["Concept", "Motion Design", "Cinematic"],
-    status: "Demo",
-    url: "https://www.mlrassets.com/templates/ted-v2/index.html",
+    url: "https://buffalo-king.vercel.app/",
   },
 ];
 
@@ -189,29 +161,6 @@ export default function WorkPage() {
               </AnimatedSection>
             ))}
           </div>
-
-          {/* Templates anchor and compact list */}
-          <AnimatedSection className="mt-12" delay={0.2}>
-            <div id="templates" className="glass-card p-6 md:p-8 max-w-3xl mx-auto">
-              <p className="mono-label text-xs text-primary mb-2">Earlier Directions</p>
-              <h3 className="text-xl font-bold text-text mb-3">Selected design directions</h3>
-              <p className="text-sm text-text-secondary mb-4">
-                These are clearly labeled demos and design directions — not live client sites. Click an item to view it in full.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <Link href="/templates/ted-v1/index.html" className="px-4 py-3 border border-border bg-surface text-text text-sm hover:bg-primary/5">
-                  Ted — Cinematic Draft
-                </Link>
-                <Link href="/templates/ted-v2/index.html" className="px-4 py-3 border border-border bg-surface text-text text-sm hover:bg-primary/5">
-                  Ted — React Build
-                </Link>
-                <Link href="/templates/ted-blue/index.html" className="px-4 py-3 border border-border bg-surface text-text text-sm hover:bg-primary/5">
-                  Ted — Black &amp; Gold
-                </Link>
-              </div>
-            </div>
-          </AnimatedSection>
 
           {/* Process CTA */}
           <AnimatedSection className="mt-12 text-center" delay={0.3}>

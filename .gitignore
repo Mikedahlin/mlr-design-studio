@@ -79,3 +79,6 @@ untrack-list.txt
 /media-generation-master-list.md
 /replace_paths.py
 /assets/hdris/
+
+.vercel
+.env*
