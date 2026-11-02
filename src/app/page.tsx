@@ -1,5 +1,5 @@
-import HomepageRebuild from "@/components/HomepageRebuild";
+import InteractiveWheel from "@/components/InteractiveWheel";
 
-export default function Home() {
-  return <HomepageRebuild />;
+export default function HomePage() {
+  return <InteractiveWheel />;
 }
