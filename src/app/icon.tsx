@@ -10,18 +10,20 @@ export default function Icon() {
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: "50%",
-          background: "#0a0a0a",
+          borderRadius: "8px",
+          background: "#03070e",
+          border: "2px solid #38bdf8",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#faf9f6",
-          fontSize: 20,
-          fontWeight: 700,
+          color: "#f8fafc",
+          fontSize: 13,
+          fontWeight: 800,
+          letterSpacing: "-0.04em",
           fontFamily: "sans-serif",
         }}
       >
-        M
+        -60°
       </div>
     ),
     { ...size }

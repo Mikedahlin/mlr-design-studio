@@ -1,9 +1,9 @@
 export default function Logo({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`w-8 h-8 rounded-full bg-ink flex items-center justify-center text-background font-bold text-sm ${className}`}
+      className={`w-8 h-8 rounded-lg bg-[#03070e] border border-[#38bdf8]/60 flex items-center justify-center text-[#f8fafc] font-bold text-[11px] tracking-tighter ${className}`}
     >
-      M
+      -60°
     </div>
   );
 }
