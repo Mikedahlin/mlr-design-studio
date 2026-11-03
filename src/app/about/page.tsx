@@ -1,5 +1,4 @@
 ﻿import type { Metadata } from "next";
-import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import FinalCTA from "@/components/FinalCTA";
 
@@ -138,48 +137,6 @@ export default function AboutPage() {
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="section">
-        <div className="container-custom px-4 md:px-6">
-          <AnimatedSection className="text-center mb-12">
-            <p className="mono-label text-xs text-primary mb-3">
-              Who
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              The person behind the work
-            </h2>
-            <p className="text-text-secondary max-w-xl mx-auto">
-              No account managers, no subcontractors, no meetings that
-              could have been an email. You talk to the builder.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.15}>
-            <div className="glass-card p-8 md:p-12 max-w-2xl mx-auto text-center">
-              <div className="relative w-28 h-28 mx-auto mb-5 border border-border overflow-hidden">
-                <Image
-                  src="/Mikes_Website_Profile_Pic.jpg"
-                  alt="Mike Dahlin, Founder of MLR Assets"
-                  fill
-                  className="object-cover grayscale"
-                  sizes="112px"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-text mb-2">
-                Mike Dahlin
-              </h3>
-              <p className="text-sm text-text-muted mb-4">
-                Founder &amp; Builder — MLR Assets LLC
-              </p>
-              <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto">
-                I build websites for real businesses. No hype, no overselling,
-                just work I’m willing to put my name on.
-              </p>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
 

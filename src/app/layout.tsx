@@ -22,31 +22,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "MLR Creative Studio — Websites, Branding & Visual Design",
-  description:
-    "Custom websites, branding, renderings, and graphic design with direct one-person service from start to finish.",
-  keywords: [
-    "small business web design",
-    "custom website design",
-    "logo design",
-    "architectural renderings",
-    "graphic design",
-    "custom web development",
-  ],
+  title: "60BELOW — Interactive Digital Studio",
+  description: "Interactive digital art, spatial interfaces, and experimental web systems.",
   openGraph: {
-    title: "MLR Creative Studio — Websites, Branding & Visual Design",
-    description:
-      "Custom creative work with direct one-person service from start to finish.",
+    title: "60BELOW — Interactive Digital Studio",
+    description: "Interactive digital art, spatial interfaces, and experimental web systems.",
     url: "https://www.mlrassets.com",
     type: "website",
     locale: "en_US",
-    siteName: "MLR Assets",
+    siteName: "60BELOW",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MLR Creative Studio — Websites, Branding & Visual Design",
-    description:
-      "Custom creative work with direct one-person service from start to finish.",
+    title: "60BELOW — Interactive Digital Studio",
+    description: "Interactive digital art, spatial interfaces, and experimental web systems.",
   },
   robots: {
     index: true,
@@ -67,25 +56,6 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "MLR Assets LLC",
-              url: "https://www.mlrassets.com",
-              telephone: "+13202009969",
-              email: "hello@mlrassets.com",
-              description:
-                "Custom websites, branding, renderings, and graphic design with direct one-person service.",
-              founder: {
-                "@type": "Person",
-                name: "Mike Dahlin",
-              },
-            }),
           }}
         />
         <Navbar />
